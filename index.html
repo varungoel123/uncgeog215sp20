@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Math 615 homepage</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css/custom_css.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">MATH 615</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="schedule.html">
+    <span class="fa fa-calendar"></span>
+     
+    Schedule
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-folder-open"></span>
+     
+    Materials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="notes.html">
+        <span class="fa fa-file-alt"></span>
+         
+        All Files
+      </a>
+    </li>
+    <li>
+      <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/">
+        <span class="fa fa-book-open"></span>
+         
+        Applied Stats Notebook
+      </a>
+    </li>
+    <li>
+      <a href="https://hackmd.io/@norcalbiostat/r_notes">
+        <span class="fa fa-file-code"></span>
+         
+        Collaborative R notes on Hack MD
+      </a>
+    </li>
+    <li>
+      <a href="https://hackmd.io/@norcalbiostat/spss_notes">
+        <span class="fa fa-file-code"></span>
+         
+        Collaborative SPSS notes on Hack MD
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-bar-chart"></span>
+     
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="project.html">Project Instructions</a>
+    </li>
+    <li>
+      <a href="https://docs.google.com/spreadsheets/d/16aT7O6A7fylqhE-OLpIp7cwpaQLKULrxT-D6yxQC15M/edit?usp=sharing">Peer Review Assignments</a>
+    </li>
+    <li>
+      <a href="https://drive.google.com/drive/u/3/folders/1jULudBjRbHdW-uLIvmMbxRBEJJkq9crY">Project Data (Google Drive)</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-wrench"></span>
+     
+    Tools
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://drive.google.com/drive/folders/11ah_oFsHalQ_35AkK5bkYW7wDbm97_vu?usp=sharing">
+        <span class="fa fa-google"></span>
+         
+        Google Drive
+      </a>
+    </li>
+    <li>
+      <a href="https://hackmd.io/">
+        <span class="fa fa-file-code"></span>
+         
+        Hack MD
+      </a>
+    </li>
+    <li>
+      <a href="https://math615.slack.com/">
+        <span class="fa fa-slack"></span>
+         
+        Slack (class discussions)
+      </a>
+    </li>
+    <li>
+      <a href="https://csuchico.zoom.us/">
+        <span class="fa fa-video-camera"></span>
+         
+        Zoom (video conference)
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="faq.html">
+    <span class="fa fa-question"></span>
+     
+    Help
+  </a>
+</li>
+<li>
+  <a href="syllabus_615_f19.html">
+    <span class="fa fa-info-circle"></span>
+     
+    Syllabus
+  </a>
+</li>
+<li>
+  <a href="http://bit.ly/cc_hours">
+    <span class="fa fa-group"></span>
+     
+    Community Coding
+  </a>
+</li>
+<li>
+  <a href="http://www.norcalbiostat.com/">
+    <span class="fa fa-paw"></span>
+     
+    Dr. D's website
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Math 615 homepage</h1>
+
+</div>
+
+
+<p>This is the landing page for <span style="color:blue"><strong>Statistical Methods for Graduate Research</strong></span> course taught by <a href="http://www.norcalbiostat.com">Dr. Robin Donatello</a> for <span style="color:blue"><strong>Fall 2019</strong></span>.<br />
+This page is used for posting of regular announcements and information for students of the class.</p>
+<div id="week-16-finals-week" class="section level3">
+<h3>12-16-2019 Week 16: Finals Week</h3>
+<p>Poster Session - <strong>Thursday</strong> 12/19, 10-12pm Tehama 116.</p>
+<p>I am very sorry I cannot make it. Edward Roualdes will supervise and serve as reviewer.</p>
+<p><strong>Room Setup</strong></p>
+<ol style="list-style-type: decimal">
+<li>Move the tables and chairs away from 7 monitors in the front half of the room.</li>
+<li>Presenters going in the first round each picks a monitor and log into Google Drive
+<ul>
+<li>You can see what round you are in by looking at the peer review Google Form link below.</li>
+<li>The keyboards have numbers on them that match a number in the top right of the monitor.</li>
+</ul></li>
+<li>Download your poster as PDF - then <span style="color:red"><strong>Open this file in Adobe</strong></span>
+<ul>
+<li>This will let you use the touch screen to zoom in and navigate around the PDF in presentation mode.</li>
+</ul></li>
+</ol>
+<p><strong>Presentations</strong></p>
+<ul>
+<li>Presentations will be conducted in 2 rounds.
+<ul>
+<li>Edward will read off the names of those going in the first round.</li>
+<li>Expect to spend no more than 5-7 minutes at each poster,</li>
+</ul></li>
+<li>Presenters: Don’t read your poster to the audience. Summarize your findings.</li>
+<li>Audience: Be a good audience. Ask questions. Don’t sit down.
+<ul>
+<li>This is a conversation between scholars, the presenter is not a teacher at the board. Don’t stand like 15 feet away from them.</li>
+</ul></li>
+</ul>
+<p><strong>Reviews</strong></p>
+<ul>
+<li>Poster peer review Google Form: <a href="https://forms.gle/oFMQ2hqtthZFPq7T7" class="uri">https://forms.gle/oFMQ2hqtthZFPq7T7</a>
+<ul>
+<li>Some paper copies will be available. You still must do data entry later.</li>
+<li>You will be expected to review everyone not in your presentation round. This will be 6-7 people.</li>
+</ul></li>
+</ul>
+<p><span style="color:red"><strong>Office Hours for Finals Week</strong></span></p>
+<blockquote>
+<p>OH for Finals Week: All hours will be held in Holt 202<br />
+- Mon: 9-10am, 2-3pm<br />
+- Tue: 10:30-11:30, 8-9pm (Zoom link in Slack) - Wed: 9:30-11am</p>
+</blockquote>
+</div>
+<div id="week-15-poster-building" class="section level3">
+<h3>12-09-2019 Week 15: Poster building!</h3>
+<ul>
+<li>Poster building week! See the project page for instructions.
+<ul>
+<li>Drafts are due Fri 11/13, Peer review on Sun 12/15</li>
+<li>Final version due to Google Drive by 9am on Thursday.</li>
+</ul></li>
+<li>Take Home Final exam
+<ul>
+<li>Distributed Wed 12/11 via Slack.</li>
+<li>Due Friday 12/20 EOD.</li>
+<li>All links to files and for submission in Slack post.</li>
+</ul></li>
+</ul>
+</div>
+<div id="week-14-model-building-model-fit" class="section level3">
+<h3>12-02-2019 Week 14: Model building / Model fit</h3>
+<ul>
+<li>You’ve been exploring relationships on variables related to your individual research question all semester. Now is time to bring all this information together and build a ‘final’ model.
+<ul>
+<li>Build a final multivariable model. y ~ x1 + x2 + …</li>
+<li>The goal is to explain the variabilty in your response variable, using multiple predictor variables.</li>
+</ul></li>
+<li>Model building is cyclical, we’ll go over some criteria this week on how to know when to stop and how to compare different models.</li>
+<li>Poster prep stage IV is due this week - this is the final stage before you build your posters. Pay close attention to the requirement details on the project page.
+<ul>
+<li>wrapping up your ‘story’</li>
+<li>describe the limitations to your study</li>
+<li>propose further work: What can someone <em>DO</em> with the information you’ve found?</li>
+</ul></li>
+</ul>
+</div>
+<div id="fall-break" class="section level3">
+<h3>11-25-2019 Fall Break</h3>
+<p>Relax, get caught up on sleep.</p>
+</div>
+<div id="week-13-generalized-linear-models" class="section level3">
+<h3>11-18-2019 Week 13: Generalized Linear Models</h3>
+<ul>
+<li>What to do when the response variable is no longer continuous.</li>
+<li>How to include categorical variables in multivariable models.</li>
+</ul>
+</div>
+<div id="week-12-multivariable-regression-modeling" class="section level3">
+<h3>11-11-2019 Week 12: Multivariable Regression Modeling</h3>
+<ul>
+<li>Writing and interpreting multivariable models</li>
+<li>How else can tertiary variable muck up an observed bivariate relationship? Confounding.</li>
+<li>Start HW10 this week.</li>
+</ul>
+</div>
+<div id="week-11-moderation" class="section level3">
+<h3>11-04-2019 Week 11: Moderation</h3>
+<p>Let’s start to explore how a third variable can effect, or change, a pattern or relationship between two variables. This is called <em>moderation</em>, and it introduces a type of analysis called <em>stratification</em>.</p>
+<p>We’re also going to continue your personal resarch by applying appropriate statistical analyses to your poster prep slides. (Stage III)</p>
+</div>
+<div id="week-10-correlation-and-regression-analysis" class="section level3">
+<h3>10-28-2019 Week 10: Correlation and Regression Analysis</h3>
+<ul>
+<li>Two ways to assess relationships between two continuous measurements:
+<ul>
+<li>Correlation. Is X associated with y?</li>
+<li>Regression. How much does Y change as X changes?</li>
+</ul></li>
+<li>Back to reading PMA5. The Applied Stats course notes is the short version. Quiz topics will be out of both.</li>
+</ul>
+</div>
+<div id="week-9-inference-on-multiple-groups" class="section level3">
+<h3>10-21-2019 Week 9: Inference on multiple groups</h3>
+<p>The <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/">[Applied Stats]</a> notebook is being updated to include separate sections for each bivariate analysis. Read through the relevant chapters prior to class.</p>
+<ul>
+<li>Some board work on ANOVA on Tuesday</li>
+<li>Chi-squared activity with M&amp;M’s on Thursday</li>
+</ul>
+<p>Each day will have open work time.</p>
+<hr />
+</div>
+<div id="week-8-statistical-inference" class="section level3">
+<h3>10-14-2019 Week 8: Statistical Inference</h3>
+<ul>
+<li>Active discussion on transformations for normality, and choosing appropriate analyses on Tuesday.
+<ul>
+<li>Bring your textbook!</li>
+</ul></li>
+<li>Start Bivariate Inference (hw08) on Thursday.
+<ul>
+<li>Two sample T-test for a difference in means.</li>
+</ul></li>
+</ul>
+</div>
+<div id="week-7-quantifying-uncertainty-calculating-probabilities" class="section level3">
+<h3>10-07-2019 Week 7: Quantifying Uncertainty, Calculating Probabilities</h3>
+<p>As we start our next phase of the class working on conducting <em>Inferential Statistics</em>, we need to finish learning how to correctly interpret a confidence interval, and how to use known distributions (like the sampling distribution) to calculate probabilities.</p>
+<p>Each day for the next 2 weeks we will cover how to analyze a different combination of response &amp; explanatory variables. Don’t wait until the end to do that portion of the HW08. As soon as we cover that topic, do that piece of the HW.</p>
+<p>This week you should also be working on your Poster prep stage II: Showcase your data.</p>
+<p>We’re still working out of external resources such as</p>
+<ul>
+<li><a href="https://leanpub.com/openintro-statistics">OpenIntro Statistics textbook Ch5</a></li>
+<li>Dr. D’s <a href="https://norcalbiostat.github.io/MATH315/reading/RAD_course_notes_f19.pdf">Math 315 course notes</a></li>
+</ul>
+<p><strong>Tuesday</strong></p>
+<ul>
+<li>Calculating Probabilities under a known distribution <a href="https://hackmd.io/@norcalbiostat/math615_lec05">[Hack MD Lec05]</a>.</li>
+<li>Additional resource for calculating probabilities
+<ul>
+<li><a href="https://www.youtube.com/watch?v=Bv9iY8-UzYw&amp;feature=youtu.be">Dr D’s course notes ch 3.3</a></li>
+<li>OpenIntro Statistis <a href="https://gallery.shinyapps.io/dist_calc/">Shiny app</a></li>
+</ul></li>
+<li>Interpreting Confidence intervals as a range of plausible values
+<ul>
+<li>Collaborative recap on <a href="https://hackmd.io/@norcalbiostat/math615_lec06">[Hack MD Lec06]</a> notes on terminology</li>
+</ul></li>
+</ul>
+<p><strong>Thursday</strong></p>
+<ul>
+<li>Group quiz on interval estimation</li>
+<li>Foundations for how to conduct a thourough hypothesis test.</li>
+</ul>
+<hr />
+</div>
+<div id="week-6-probability" class="section level3">
+<h3>09-30-2019 Week 6: Probability</h3>
+<p>So far you have been conducting an exploratory data analysis to learn the distributions of your measures, and to assess for any possible relationships in your research. You cannot make any statistical claims about whether or not a relationship is significant at this point. That is under the realm of <em>inferential statistics</em> and will be the topic of the class after Spring break.</p>
+<p>To understand why inferential statistics can be used to make valid claims, we have to learn a little bit about <em>Probability</em> first. If you are rusty on your basic statistics and probability, I recommend getting the OpenIntro textbook as a review.</p>
+<p>This is a much more mathematical section of the course, so be sure to plan your time accordingly.</p>
+<p><strong>Updates</strong> I have cxl’d HW 6 (research proposal).</p>
+<hr />
+</div>
+<div id="week-5-describing-relationships-between-two-variables" class="section level3">
+<h3>09-23-2019 Week 5: Describing Relationships between two variables</h3>
+<p>Goals for the week:</p>
+<ol style="list-style-type: decimal">
+<li>Describe the relationship between two variables using all the same descriptive principles you learned to describe a single variable. (HW05, HackMD lecture notes 04)</li>
+<li>Start your research poster prep slides. (PPI)</li>
+</ol>
+<p><strong>Housekeeping</strong></p>
+<ul>
+<li>Monday 2pm OH cancelled this week. Extra OH Monday at 9, and Wed at 9am.</li>
+<li>I will be out of town Wed aft - Sunday. I’ll be reachable by Slack still, but mostly not at a computer. Kathy Gray will be covering class on Thursday, which will be mostly an open work day.</li>
+</ul>
+<hr />
+</div>
+<div id="week-4-describing-distributions-of-data" class="section level3">
+<h3>09-16-2019 Week 4: Describing Distributions of Data</h3>
+<p>I’m alive!</p>
+<blockquote>
+<p>OH Cancelled Monday. Sorry, lot of Drs appts in the upcoming weeks that were scheduled months ago. Additional OH Wednesday at 9am</p>
+</blockquote>
+<p>If there’s one take home message for this week, is to describe the distribution of variables you need:</p>
+<ol style="list-style-type: decimal">
+<li>a picture</li>
+<li>summary statistics</li>
+<li>a complete sentence interpretation</li>
+</ol>
+<blockquote>
+<p>Re: Homework 03. I will adjusted the grading rubric to downweight the data management portion. We’ll continue to work more on data management this week (and for the next few weeks).</p>
+</blockquote>
+<hr />
+</div>
+<div id="week-3-preparing-your-data-for-analysis." class="section level3">
+<h3>09-09-2019 Week 3: Preparing your data for analysis.</h3>
+<p>We talked about what a reproducible research pipeline looked like, and started a data management file that imported your research data into your SPC.</p>
+<p>This week we’ll talk about how to identify features of data that will need to be changed prior to analysis. We can’t cover them all, nor would you remember them all. This is a place where experience and repetition will be the true learning method. Most importantly, when you figure out how to do a “thing”.. share that “thing” with others by posting the problem &amp; code solution on the collaborative HackMD notes. You’ll thank not only yourself but others later when you come across having to do that “thing” again.. (because it’s never just once.)</p>
+<hr />
+</div>
+<div id="week-2" class="section level3">
+<h3>09-02-2019: Week 2</h3>
+<p>Hope everyone had a relaxing 3day weekend. Office hours have been set. Thank you for contributing!</p>
+<ul>
+<li>Monday 2-3pm Holt 202</li>
+<li>Tuesday 10-11am Holt 202</li>
+<li>Wednesday 2-4pm PHSC 213 (Community Coding)</li>
+<li>Thursday 2-4pm MLIB 442 (Community Coding)</li>
+</ul>
+<p>Collaborative Hack MD notes are posted under “Materials” in the nav bar.</p>
+<p>Next up is formulating research hypotheses on your selected data, and setting up a reproducible research pipeline to prepare data for analysis.</p>
+<hr />
+</div>
+<div id="welcome-to-fall-19" class="section level3">
+<h3>08-26-2019: Welcome to Fall 19!</h3>
+<ul>
+<li>This course website contains all materials except the textbook for this class. Be sure to familarize yourself with the organization. You will be here a lot. Bookmark this page.</li>
+<li>Specifically click on and explore items in the top navigation bar.</li>
+<li>Take this survey to help choose when I should hold Office Hours: <a href="https://forms.gle/6ZTSfrJ2WbyKMfk39" class="uri">https://forms.gle/6ZTSfrJ2WbyKMfk39</a></li>
+<li>We will use Slack to faciliate outside of class discussion, and to replace emails.
+<ul>
+<li>Use the link under ‘Tools’ in the navigation boar of this page to go to our Slack workspace, make an account using your <span class="citation">@mail.csuchico.edu</span> email address.</li>
+<li>You must download either the desktop app, or the phone app, or both. Do not rely on the browser based version.</li>
+</ul></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
