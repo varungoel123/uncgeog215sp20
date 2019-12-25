@@ -1,7 +1,7 @@
-name: "Robin Donatello"
+name: "Varun Goel"
 output_dir: "."
 navbar:
-  title: MATH 615
+  title: GEOG 215
   left:
   - text: Schedule
     icon: fa-calendar
