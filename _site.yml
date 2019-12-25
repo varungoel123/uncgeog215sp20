@@ -1,50 +1,27 @@
 name: "Varun Goel"
 output_dir: "."
 navbar:
-  title: GEOG 215
+  title: "GEOG 215 : Introduction to Spatial Data Science"
   left:
   - text: Schedule
     icon: fa-calendar
-    href: schedule.html
+    href: schedule_v1.html
   - text: "Materials"
     icon: fa-folder-open
     menu:
-    - text: "All Files"
+    - text: "Readings"
       icon: fa-file-alt
-      href: notes.html
-    - text: "Applied Stats Notebook"
+      href: GEOG-215-Readings-FS2019.html
+    - text: "Resources"
       icon: fa-book-open
-      href: https://norcalbiostat.github.io/AppliedStatistics_notes/
+      href: Resources_websites_GEOG215.html
     - text: "Collaborative R notes on Hack MD"
       icon: fa-file-code
       href: https://hackmd.io/@norcalbiostat/r_notes
     - text: "Collaborative SPSS notes on Hack MD"
       icon: fa-file-code
       href: https://hackmd.io/@norcalbiostat/spss_notes
-  - text: "Projects"
-    icon: fa-bar-chart
-    menu:
-    - text: "Project Instructions"  
-      href: project.html
-    - text: "Peer Review Assignments"
-      href: https://docs.google.com/spreadsheets/d/16aT7O6A7fylqhE-OLpIp7cwpaQLKULrxT-D6yxQC15M/edit?usp=sharing
-    - text: "Project Data (Google Drive)"
-      href: https://drive.google.com/drive/u/3/folders/1jULudBjRbHdW-uLIvmMbxRBEJJkq9crY
-  - text: Tools
-    icon: fa-wrench
-    menu:
-    - text: Google Drive
-      icon: fa-google
-      href: https://drive.google.com/drive/folders/11ah_oFsHalQ_35AkK5bkYW7wDbm97_vu?usp=sharing
-    - text: Hack MD
-      icon: fa-file-code
-      href: https://hackmd.io/
-    - text: Slack (class discussions)
-      icon: fa-slack
-      href: https://math615.slack.com/
-    - text: Zoom (video conference)
-      icon: fa-video-camera
-      href: https://csuchico.zoom.us/
+
   right:
     - text: Help
       icon: fa-question

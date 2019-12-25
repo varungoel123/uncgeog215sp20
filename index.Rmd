@@ -8,9 +8,7 @@ wk1.date <- as.Date("2019-08-26")
 
 This course will introduce students to data science with a focus on spatial (geographic) data, which are data that are referenced to a particular location on Earth's surface.  Students will learn concepts, techniques, and tools they need to apply various facets of data science practice, including data collection, management, and integration, descriptive modeling, exploratory spatial data analysis, and effective communication via data visualization and mapping.  Real world examples and datasets spanning physical, social, and health sciences will be used throughout the course in an effort to promote contextual learning.
 
-
-
-
+<img style="width:400px;height:400px;float:left;" src="globecloud.png">
 
 ### `r format(wk1.date+7*16, "%m-%d-%Y")` Week 16: Finals Week
 

@@ -1,0 +1,148 @@
+---
+title: "Reading List, GEOG 215"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse); library(kableExtra);library(stringr); library(pander)
+library(lubridate)
+options(knitr.table.format = "html", knitr.kable.NA = '') 
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE) 
+```
+
+Updated: `r format(Sys.Date(), format = "%B %d %Y")`
+
+The "Weeks" below correspond to enumerated weeks found in the syllabus schedule. Please email Dr. D immediately if any links are broken!
+
+******
+
+# Week #1
+
+* [R for Data Science, Chapter 1. Introduction (1 - 1.6)](https://r4ds.had.co.nz/introduction.html)
+* [R for Data Science, Chapter 4. Workflow: basics (4 - 4.3)](https://r4ds.had.co.nz/workflow-basics.html)
+* [Spatial Data Science with R, Introduction to R, Chapter 1. (Basic data types - Indexing, Read and write files)](https://rspatial.org/intr/2-basic-data-types.html)
+* [R for Data Science, Chapter 27. R Markdown](https://r4ds.had.co.nz/r-markdown.html)
+* [Geospatial Analysis, Chapter 2.1.2. Attributes](http://www.spatialanalysisonline.com/HTML/index.html?attributes.htm)
+
+******
+
+# Week #2
+
+* [Intro to GIS and Spatial Analysis, Chapter 9. Coordinate Systems](https://mgimond.github.io/Spatial/coordinate-systems.html)
+* [Intro to GIS and Spatial Analysis, Chapter 2. Feature Representation](https://mgimond.github.io/Spatial/feature-representation.html)
+* [Geospatial Analysis, Chapter 2.1.3. Objects](http://www.spatialanalysisonline.com/HTML/index.html?objects.htm)
+* [Geospatial Analysis, Chapter 2.1.9. Detail, resolution, and scale](http://www.spatialanalysisonline.com/HTML/index.html?detail__resolution__and_scale.htm)
+
+******
+
+# Week #3
+
+* [UNC Library, Spatial Data Online: Getting Started](https://guides.lib.unc.edu/spatialdata/getting-started) <<< follow a few links to view the various options available for acquiring spatial data (e.g., data types, data formats, delivery options)
+* [Geocomputation with R, Chapter 7. Geographic data I/O (7 - 7.5) ](https://geocompr.robinlovelace.net/read-write.html)
+* [Earth analytics, Chapter 13. Programmic Data Access, Lesson 1: Introduction to APIs](https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/intro-to-programmatic-data-access-r/)
+
+******
+
+# Week #4
+* [Relative Paths and the Working Directory in R (Video)](https://www.youtube.com/watch?v=fe6GA200dks)
+* [R for Data Science, Chapter 8. Workflow: projects](https://r4ds.had.co.nz/workflow-projects.html)
+* [Sarah B. Bouchat, Introduction to Statistical Computing, Data Management in R ](https://bouchat.github.io/IntroDataMgmt20Jan.html#data_management_in_r)
+* [Pebesma, E., Nüst, D. and Bivand, R., (2012), The R software environment in reproducible geoscientific research, Eos Trans. AGU, 93(16), 163.](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2012EO160003) pdf also available on Sakai
+
+******
+
+# Week #5
+* [Data Wrangling with R, Chapter 15. Importing Data](https://link.springer.com/chapter/10.1007/978-3-319-45599-0_15) pdf also available on Sakai
+* [Data Wrangling with R, Chapter 16. Scraping Data](https://link.springer.com/chapter/10.1007/978-3-319-45599-0_16) pdf also available on Sakai
+* [Data Wrangling with R, Chapter 5. Dealing with Character Strings](https://link.springer.com/chapter/10.1007/978-3-319-45599-0_5) pdf also available on Sakai
+* [Data Wrangling with R, Chapter 14. Dealing with Missing Values](https://link.springer.com/chapter/10.1007/978-3-319-45599-0_14) pdf also available on Sakai
+
+******
+
+# Week #6
+* No readings!
+
+******
+
+# Week #7
+
+* [Spatial Data Science with R, Introduction to R, Chapter 11. Data Preparation](https://rspatial.org/intr/11-dataprep.html)
+* [Claudia A Engel, Using Spatial Data with R, Chapter 2. Spatial data manipulation in R ](https://cengel.github.io/R-spatial/spatialops.html)
+* [Nick Eubank, Merging Spatial Data](http://www.nickeubank.com/wp-content/uploads/2015/10/RGIS2_MergingSpatialData_part1_Joins.html)
+* [Geocomputation with R, Chapter 3. Attribute data operations (3 - 3.2)](https://geocompr.robinlovelace.net/attr.html)
+
+******
+
+# Week #8
+
+* [R for Data Science, Chapter 7. Exploratory Data Analysis](https://r4ds.had.co.nz/exploratory-data-analysis.html)
+* [Bivand RS. Exploratory Spatial Data Analysis. In: Fischer MM, Getis A, editors. Handbook of Applied Spatial Analysis. Springer Berlin Heidelberg; 2010. p. 219–54.](http://dx.doi.org/10.1007/978-3-642-03647-7_13)
+* [Corey Sparks, DEM 7263, Exploratory Spatial Data Analysis](https://rpubs.com/corey_sparks/460703)
+
+******
+
+# Week #9
+
+* [A Reader on Data Visualization, Chapter 1. Introduction (1.1 - 1.3)](https://mschermann.github.io/data_viz_reader/introduction.html)
+* [A Reader on Data Visualization, Chapter 4. Patterns (4.1, 4.2, 4.4)](https://mschermann.github.io/data_viz_reader/patterns.html)
+* [Axis Maps Cartography Guide, Choropleth Maps](https://www.axismaps.com/guide/univariate/choropleth/)
+* [Axis Maps Cartography Guide, Proportional Symbols](https://www.axismaps.com/guide/univariate/proportional-symbols/)
+
+******
+
+# Week #10
+
+* [Spatial Data Science with R, Spatial data analysis, Scale and distance](https://rspatial.org/raster/analysis/2-scale_distance.html)
+* [Kyle E. Walker, Spatial neighbors in R - an interactive illustration](http://personal.tcu.edu/kylewalker/spatial-neighbors-in-r.html) *NOTE: Check out the interactive example, click on a polygon to see its neighbors, and change the neighborhood definition*  
+
+
+******
+
+# Week #11
+
+* [Spatial Data Science with R, Spatial data analysis, Chapter 3. Spatial autocorrelation](https://rspatial.org/raster/analysis/3-spauto.html)
+* [Manuel Gimond, Intro to GIS and Spatial Analysis, Chapter 13. Spatial Autocorrelation](https://mgimond.github.io/Spatial/spatial-autocorrelation.html) 
+* [Manuel Gimond, Intro to GIS and Spatial Analysis, Chapter 11. Point Pattern Analysis (minus these sections: 11.1, 11.2.2.3, 11.2.3, 11.3.2, 11.3.3) )](https://mgimond.github.io/Spatial/point-pattern-analysis.html#density-based-analysis) 
+
+
+******
+
+# Week #12
+
+* No readings!
+
+
+******
+
+# Week #13
+
+* [A Reader on Data Visualization, Chapter 2. Fundamentals (2 - 2.3)](https://mschermann.github.io/data_viz_reader/fundamentals.html)
+* [A Reader on Data Visualization, Chapter 5. Ethics](https://mschermann.github.io/data_viz_reader/ethics.html)
+* [Geocomputation with R, Chapter 8. Making maps with R (8 - 8.4) ](https://geocompr.robinlovelace.net/adv-map.html)
+* [Data Analysis and Prediction Algorithms with R, Chapter 10. Data visualization principles](https://rafalab.github.io/dsbook/data-visualization-principles.html)
+
+******
+
+# Week #14
+
+* [Geographic Data Analysis, Regression analysis (minus Section 4)](https://pjbartlein.github.io/GeogDataAnalysis/lec12.html)
+* [Corey Sparks, DEM 7273, Regression Analysis Part 1](https://rpubs.com/corey_sparks/320045)
+* [Data Analysis and Prediction Algorithms with R, Chapter 19. Association is not causation](https://rafalab.github.io/dsbook/association-is-not-causation.html)
+
+******
+
+# Week #15
+
+* No Readings
+
+
+******
+
+# Week #16
+
+* Coming soon
+
+******
