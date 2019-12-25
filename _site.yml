@@ -1,8 +1,67 @@
-name: "my-website"
+name: "Robin Donatello"
+output_dir: "."
 navbar:
-  title: "My Website"
+  title: MATH 615
   left:
-    - text: "Home"
-      href: index.html
-    - text: "About"
-      href: about.html
+  - text: Schedule
+    icon: fa-calendar
+    href: schedule.html
+  - text: "Materials"
+    icon: fa-folder-open
+    menu:
+    - text: "All Files"
+      icon: fa-file-alt
+      href: notes.html
+    - text: "Applied Stats Notebook"
+      icon: fa-book-open
+      href: https://norcalbiostat.github.io/AppliedStatistics_notes/
+    - text: "Collaborative R notes on Hack MD"
+      icon: fa-file-code
+      href: https://hackmd.io/@norcalbiostat/r_notes
+    - text: "Collaborative SPSS notes on Hack MD"
+      icon: fa-file-code
+      href: https://hackmd.io/@norcalbiostat/spss_notes
+  - text: "Projects"
+    icon: fa-bar-chart
+    menu:
+    - text: "Project Instructions"  
+      href: project.html
+    - text: "Peer Review Assignments"
+      href: https://docs.google.com/spreadsheets/d/16aT7O6A7fylqhE-OLpIp7cwpaQLKULrxT-D6yxQC15M/edit?usp=sharing
+    - text: "Project Data (Google Drive)"
+      href: https://drive.google.com/drive/u/3/folders/1jULudBjRbHdW-uLIvmMbxRBEJJkq9crY
+  - text: Tools
+    icon: fa-wrench
+    menu:
+    - text: Google Drive
+      icon: fa-google
+      href: https://drive.google.com/drive/folders/11ah_oFsHalQ_35AkK5bkYW7wDbm97_vu?usp=sharing
+    - text: Hack MD
+      icon: fa-file-code
+      href: https://hackmd.io/
+    - text: Slack (class discussions)
+      icon: fa-slack
+      href: https://math615.slack.com/
+    - text: Zoom (video conference)
+      icon: fa-video-camera
+      href: https://csuchico.zoom.us/
+  right:
+    - text: Help
+      icon: fa-question
+      href: faq.html
+    - text: Syllabus
+      icon: fa-info-circle
+      href: syllabus_615_f19.html
+    - text: Community Coding
+      icon: fa-group
+      href: http://bit.ly/cc_hours
+    - text: Dr. D's website
+      icon: fa-paw
+      href: http://www.norcalbiostat.com/
+output:
+  html_document:
+    theme: flatly
+    highlight: tango
+    lib_dir: site_libs
+    self_contained: no
+    css: css/custom_css.css
