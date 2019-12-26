@@ -3,6 +3,9 @@ output_dir: "."
 navbar:
   title: "GEOG 215 : Introduction to Spatial Data Science"
   left:
+  - text: Overview
+    icon: fa-info-circle
+    href: schedule_v1.html
   - text: Schedule
     icon: fa-calendar
     href: schedule_v1.html
@@ -12,29 +15,14 @@ navbar:
     - text: "Readings"
       icon: fa-file-alt
       href: GEOG-215-Readings-FS2019.html
-    - text: "Resources"
-      icon: fa-book-open
-      href: Resources_websites_GEOG215.html
-    - text: "Collaborative R notes on Hack MD"
-      icon: fa-file-code
-      href: https://hackmd.io/@norcalbiostat/r_notes
-    - text: "Collaborative SPSS notes on Hack MD"
-      icon: fa-file-code
-      href: https://hackmd.io/@norcalbiostat/spss_notes
-
+  - text: "Resources"
+    icon: fa-book-open
+    href: Resources_websites_GEOG215.html
   right:
     - text: Help
       icon: fa-question
       href: faq.html
-    - text: Syllabus
-      icon: fa-info-circle
-      href: syllabus_615_f19.html
-    - text: Community Coding
-      icon: fa-group
-      href: http://bit.ly/cc_hours
-    - text: Dr. D's website
-      icon: fa-paw
-      href: http://www.norcalbiostat.com/
+
 output:
   html_document:
     theme: flatly
