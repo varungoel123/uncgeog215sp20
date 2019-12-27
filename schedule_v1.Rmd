@@ -11,8 +11,6 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 
 # Last Updated: `r format(Sys.time(), "%a %b %d %X")` {.tabset .tabset-fade .tabset-pills}
 
-## Overview
-
 <p>
 Unless specified otherwise, all assignments are due at midnight on the due date listed. The weekly quizzes are on material from the prior week. 
 </p>
@@ -37,7 +35,7 @@ wk_schedule %>%
   column_spec(1, bold = T) %>%
   collapse_rows(columns = 1, valign = "top") %>%
   row_spec(0,bold = T, color = "white", background = "#000000") %>%
-  row_spec(c(1,14,18,19,24), bold = T)
+  row_spec(c(4,14,18,19,24), bold = T,italic = T)
 
 
 #
