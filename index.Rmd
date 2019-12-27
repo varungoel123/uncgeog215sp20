@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Intro to Spatial Data Science"
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}

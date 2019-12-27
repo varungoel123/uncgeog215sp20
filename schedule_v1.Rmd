@@ -23,19 +23,21 @@ wk_schedule <- read_csv("weekly_schedule.csv")
 # Set semester start date and format weeks nicely
 start.date <- as_date("2020/01/08")
 no_wks <- 16
-class_seq <- c(seq(no_wks)*7,seq(no_wks)*7+2) %>% sort
+class_seq <- c(seq(no_wks)*7,seq(no_wks)*7+5) %>% sort
 class_date <- start.date+class_seq-7
 wk_schedule <- wk_schedule %>% dplyr::select(-Order) %>% 
   mutate(Date = paste(month(class_date[-length(class_date)]),
                       day(class_date[-length(class_date)]),sep="/"),
-         Day = wday(class_date[-length(class_date)],label=T))
+         Day = wday(class_date[-length(class_date)],label=T)) %>%
+  transmute(Week = wknum, Day = Day, Date = Date, Topic = topic)
 wk_schedule %>%
   kable(align="lccclc", escape=FALSE) %>%
   kable_styling(bootstrap_options = c("hover", "striped", 
                                       "responsive", "bordered")) %>%
   column_spec(1, bold = T) %>%
   collapse_rows(columns = 1, valign = "top") %>%
-  row_spec(0,bold = T, color = "white", background = "#000000")
+  row_spec(0,bold = T, color = "white", background = "#000000") %>%
+  row_spec(c(1,14,18,19,24), bold = T)
 
 
 #
