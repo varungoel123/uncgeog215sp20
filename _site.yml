@@ -5,7 +5,7 @@ navbar:
   left:
   - text: Overview
     icon: fa-info-circle
-    href: schedule_v1.html
+    href: overview.html
   - text: Schedule
     icon: fa-calendar
     href: schedule_v1.html

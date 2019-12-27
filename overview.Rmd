@@ -1,0 +1,9 @@
+---
+title: "Overview"
+output: html_document
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```
+
+This course will introduce students to data science with a focus on spatial (geographic) data, which are data that are referenced to a particular location on Earth's surface.  The main aim of the course is to equip students with core competencies and tools in Spatial Data Science. These include geo-statistical and numerical literacy, basic principles of programming and geospatial computational tools, and a comprehensive overview of major research methodologies available to the spatial data scientist along with intuition as to how and when they can be applied. Students will learn GIS and data science concepts and use tools programmatically to import, manipulate and analyse spatial data in different formats. Students will also gain an understanding ‘under the hood’ of main methodological approaches and critically evaluate the suitability of a specific technique to a variety of research questions. Real world examples and datasets spanning social, environmental, political and health sciences will be used throughout the course to promote contextual learning and understand how to interpret results, turn data into useful information, and communicate findings effectively in reproducible and accessible formats. Finally, students will be able to apply their skills independently in an inter-disciplinary team on a final research project using geographic data science tools programmatically to extract valuable insights.
