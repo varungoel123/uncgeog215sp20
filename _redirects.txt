@@ -1,2 +1,2 @@
 https://geog215-spds.netlify.com/*  https://geog215-spds.rbind.io  301!
-http://geog215-spds.rbind.io	https://geog215-spds.rbind.io
+http://geog215-spds.rbind.io	https://geog215-spds.rbind.io	301!
