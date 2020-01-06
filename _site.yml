@@ -8,13 +8,13 @@ navbar:
     href: overview.html
   - text: Schedule
     icon: fa-calendar
-    href: schedule_v1.html
+    href: course_info/schedule_v1.html
   - text: "Materials"
     icon: fa-folder-open
     menu:
     - text: "Readings"
       icon: fa-file-alt
-      href: GEOG-215-Readings-FS2019.html
+      href: readings/GEOG-215-Readings-FS2019.html
   - text: "Resources"
     icon: fa-book-open
     href: Resources_websites_GEOG215.html

@@ -3,7 +3,7 @@ title: "Intro to Spatial Data Science"
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-wk1.date <- as.Date("2019-08-26")
+wk1.date <- as.Date("2020-01-08")
 ```
 <h1><mark><b>GEOG 215</b></mark></h1>
 
@@ -15,7 +15,8 @@ wk1.date <- as.Date("2019-08-26")
 
 
 > * <b>Instructor:</b> Varun Goel
-> * <b>Graduate Research consultant (GRC):</b> Kate Brandt
+> * <b>Teaching Assistant:</b> Prabisha Shreshta
+> * <b>Graduate Research consultant:</b> Kate Brandt
 > * <b>Lectures:</b> Monday 3:35 pm - 4:50 pm
 > * <b>Labs:</b> Wednesday 3:35 pm - 4:50 pm,
 > * <b>Location:</b> <mark>Carolina Hall 204</mark>

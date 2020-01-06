@@ -1,0 +1,33 @@
+Order,wknum,topic,deliverables
+1.1,1,"Intro to Spatial Data Science, spatial data, & geographic information",
+2.1,2,Intro to R and modern computing environments,
+2.2,2,R basics,
+3.1,3,NO CLASS (MLK day),
+3.2,3,Tidy data: Intro to Tidyverse,Lab 1
+4.1,4,Representing location and space,
+4.2,4,Collecting spatial data,Lab 2
+5.1,5,Acquiring spatial data,
+5.2,5,Handling spatial data,Lab 3
+6.1,6,Principles of reproducible research,
+6.2,6,Data wrangling I,Lab 4
+7.1,7,Data wrangling II,
+7.2,7,Data visualization I,"Lab 5, HW 1"
+8.1,8,Data visualization II,
+8.2,8,Review for Exam 1,Lab 6
+9.1,9,Intro to exploratory spatial data analysis (ESDA),
+9.2,9,Mapping spatial data,
+10.1,10,NO CLASS (Spring Break),
+10.2,10,NO CLASS (Spring Break),
+11.1,11,Descriptive spatial statistics,Project part 1
+11.2,11,Interpreting spatial patterns,Lab 7
+12.1,12,Wrangling with spatial data,
+12.2,12,Spatial weights,Lab 8
+13.1,13,Spatial autocorrelation I,
+13.2,13,Spatial autocorrelation II,"Lab 9, HW2"
+14.1,14,Spatial clustering,
+14.2,14,Review for Exam 2,Lab 10
+15.1,15,Advance topics in spatial data science,
+15.2,15,Data science in action (guest lecture),
+16.1,16,Project peer review,Project Part 2
+16.2,16,Course wrap up and summary,
+17,18,Final Exam Period (Starts at 4:00 pm),Presentations

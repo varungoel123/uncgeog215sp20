@@ -1,0 +1,206 @@
+\documentclass[11pt,]{article}
+\usepackage[margin=1in]{geometry}
+\newcommand*{\authorfont}{\fontfamily{phv}\selectfont}
+\usepackage[]{mathpazo}
+\usepackage{abstract}
+\renewcommand{\abstractname}{}    % clear the title
+\renewcommand{\absnamepos}{empty} % originally center
+\newcommand{\blankline}{\quad\pagebreak[2]}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}} 
+\usepackage{longtable,booktabs}
+
+\usepackage{parskip}
+\usepackage{titlesec}
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{6pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{6pt plus 2pt minus 2pt}
+
+\titleformat*{\subsubsection}{\normalsize\itshape}
+
+\usepackage{titling}
+\setlength{\droptitle}{-.25cm}
+
+%\setlength{\parindent}{0pt}
+%\setlength{\parskip}{6pt plus 2pt minus 1pt}
+%\setlength{\emergencystretch}{3em}  % prevent overfull lines 
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lastpage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.0pt} 
+\lhead{}
+\chead{}
+\rhead{\footnotesize POSC 0000: A Class with an R Markdown Syllabus -- Fall 2016}
+\lfoot{}
+\cfoot{\small \thepage/\pageref*{LastPage}}
+\rfoot{}
+
+\fancypagestyle{firststyle}
+{
+\renewcommand{\headrulewidth}{0pt}%
+   \fancyhf{}
+   \fancyfoot[C]{\small \thepage/\pageref*{LastPage}}
+}
+
+%\def\labelitemi{--}
+%\usepackage{enumitem}
+%\setitemize[0]{leftmargin=25pt}
+%\setenumerate[0]{leftmargin=25pt}
+
+
+
+
+\makeatletter
+\@ifpackageloaded{hyperref}{}{%
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+}
+\@ifpackageloaded{color}{
+    \PassOptionsToPackage{usenames,dvipsnames}{color}
+}{%
+    \usepackage[usenames,dvipsnames]{color}
+}
+\makeatother
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={ ()},
+             pdfkeywords = {},  
+            pdftitle={POSC 0000: A Class with an R Markdown Syllabus},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+
+
+\setcounter{secnumdepth}{0}
+
+
+
+
+
+\usepackage{setspace}
+
+\title{POSC 0000: A Class with an R Markdown Syllabus}
+\author{Steven V. Miller}
+\date{Fall 2016}
+
+
+\begin{document}  
+
+		\maketitle
+		
+	
+		\thispagestyle{firststyle}
+
+%	\thispagestyle{empty}
+
+
+	\noindent \begin{tabular*}{\textwidth}{ @{\extracolsep{\fill}} lr @{\extracolsep{\fill}}}
+
+
+E-mail: \texttt{\href{mailto:svmille@clemson.edu}{\nolinkurl{svmille@clemson.edu}}} & Web: \href{http://svmiller.com/teaching}{\tt svmiller.com/teaching}\\
+Office Hours: W 09:00-11:30 a.m.  &  Class Hours: TR 02:00-03:45 p.m.\\
+Office: 230A Brackett Hall  & Class Room: \emph{online}\\
+	&  \\
+	\hline
+	\end{tabular*}
+	
+\vspace{2mm}
+	
+
+
+\hypertarget{course-description}{%
+\section{Course Description}\label{course-description}}
+
+You'll learn stuff in this class, I hope. Lorem ipsum dolor sit amet,
+consectetur adipiscing elit. Maecenas scelerisque elit sapien, eu
+consequat dui blandit in. Vestibulum dignissim feugiat mauris, at
+pretium turpis blandit nec. Aliquam porta scelerisque tortor, eget
+imperdiet quam dapibus et. Sed ut sollicitudin orci, id elementum arcu.
+Sed arcu quam, vestibulum molestie mattis sed, ultricies sed est.
+Phasellus eu nunc et urna volutpat pharetra. Donec interdum ante vitae
+odio malesuada blandit. Fusce at condimentum libero, eu elementum arcu.
+Aenean posuere id lorem in varius. Sed bibendum neque pretium dolor
+faucibus, in cursus ipsum suscipit. Lorem ipsum dolor sit amet,
+consectetur adipiscing elit. Aliquam erat volutpat. Phasellus mollis
+egestas risus, non maximus nisl euismod sit amet. Vestibulum laoreet et
+urna vitae rutrum. Donec quis dui elit.
+
+\hypertarget{course-objectives}{%
+\section{Course Objectives}\label{course-objectives}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  You'll learn this
+\item
+  And also that
+\item
+  Perhaps some of this too.
+\end{enumerate}
+
+\hypertarget{required-readings}{%
+\section{Required Readings}\label{required-readings}}
+
+\hypertarget{course-policy}{%
+\section{Course Policy}\label{course-policy}}
+
+I will detail the policy for this course below. Basically, don't cheat
+and try to learn stuff. Don't be that guy.
+
+\hypertarget{grading-policy}{%
+\subsection{Grading Policy}\label{grading-policy}}
+
+\begin{itemize}
+\item
+  \textbf{20\%} of your grade will be determined by a midterm during
+  normal class hours.
+\item
+  \textbf{20\%} of your grade will be determined by a term paper that
+  documents your appreciation of Foghat's ``Slow Ride'', the most
+  important song ever written. ``Slow Ride'' is what Mozart wishes
+  \emph{Don Giovanni} could have been.
+\item
+  \textbf{10\%} of your grade will be determined by your attendance and
+  participation in class. Generally, ask questions and answer them.
+\item
+  \textbf{20\%} of your grade will be determined by a 20-page term paper
+  on when exactly ``The Love Boat'' jumped the proverbial shark. You
+  will address whether this shark-jumping can be attributed to Ted
+  McGinley, the introduction of Jill Whelan as ``Vicki'', or some other
+  cause.
+\item
+  \textbf{30\%} of your grade will be determined by a final exam.
+\end{itemize}
+
+\hypertarget{attendance-policy}{%
+\subsection{Attendance Policy}\label{attendance-policy}}
+
+
+
+
+\end{document}
+
+\makeatletter
+\def\@maketitle{%
+  \newpage
+%  \null
+%  \vskip 2em%
+%  \begin{center}%
+  \let \footnote \thanks
+    {\fontsize{18}{20}\selectfont\raggedright  \setlength{\parindent}{0pt} \@title \par}%
+}
+%\fi
+\makeatother
