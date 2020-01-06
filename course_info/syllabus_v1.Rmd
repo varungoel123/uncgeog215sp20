@@ -1,0 +1,160 @@
+---
+title: 'GEOG 215: Introduction to Spatial Data Science'
+author: "Varun Goel"
+date: "Spring 2020"
+output:
+  html_document:
+    theme: flatly
+    highlight: tango
+    lib_dir: site_libs
+    self_contained: no
+    toc: yes
+    toc_float: yes
+    css: css/custom_css.css
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse); library(kableExtra);library(stringr); library(pander)
+library(lubridate)
+#options(knitr.table.format = "latex", knitr.kable.NA = '') 
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE) 
+```
+**Location:** 204 Carolina/Hurston Hall  
+**Time:** MW 3:35pm - 4:50pm  
+**Website:** [geog215-spds.rbind.io](geog215-spds.rbind.io)    
+
+**Instructor:** Varun Goel | varung@live.unc.edu  
+Office Hours: TBD | TBD  
+  
+**Teaching Assistant:** Prabisha Shreshta | prabisha@live.unc.edu  
+Office Hours: TBD | TBD  
+  
+**Graduate Research Consultant:** Kate Brandt | kebrandt@live.unc.edu  
+
+*---*
+
+# Course Description
+This course will introduce students to data science with a focus on spatial (geographic) data, which are data that are referenced to a particular location on Earth's surface.  Students will learn concepts, techniques, and tools they need to apply various facets of data science practice, including data collection, management, and integration, descriptive modeling, exploratory spatial data analysis, and effective communication via data visualization and mapping.  Real world examples and datasets spanning physical, social, and health sciences will be used throughout the course in an effort to promote contextual learning.
+
+# Course Objectives
+The overall objective objective of the course is to equip you with the core competencies, tools and intuition required to be a succesful spatial data scientist. This course is much more about “learning to learn” and problem solving rather than acquiring specific programming tricks or stats wizardry.
+
+By the end of the semester you should be able to:
+
+1. Pull down publicly available datasets from non-conventional data streams within R no more pointing and clicking on the interwebs)
+
+2. Quickly and efficiently organize, clean, and visualize complex spatial datasets programmatically using tidydata principles
+
+3. Customize and develop exploratory spatial data analysis methods and techniques needed to solve a particular spatial data science problem. 
+
+4. Assess the assumptions ‘under the hood’ of main methodological approaches and critically evaluate the suitability of a specific technique to a variety of research questions
+
+5. Visualize, write and communicate your results in a scientific and reproducible manner using [literate programming](http://ross.net/funnelweb/tutorial/intro_what.html) language such as Mardown
+
+6. Apply your skills to your own dataset in an inter-disciplinary team and use geospatial data science tools and principles to answer a useful research question.
+
+# Course Structure
+
+Programming is a skill that is best learnt by doing, and programming languages, like any other language, are best learnt through practice, practice and practice. As such, the best way to learn R or any language is to fully commit to the language and do everything you can to practice it most days of the week for at least half an hour, and ideally more. Other than the materials covered in class, one could hone their R skills by writing other class homeworks in RMarkdown, create a personal website in R, make presenetation in R, or even send emails through R.The main idea is to immerse yourself into the language, learn how to ask for help, and continuously practicing what you learn. Although coding, just like any other language can seem frustrating at the beginning, I promise that this immersive approach will help in the short and long run. This class is primarily a coding class, and I as your instructor will introduce you to new tools and techniques, and help you learn by working through a variety of tasks and activities through out each class. 
+ 
+ The course is divided into five following components:
+ 
+## Classroom participation and discussion *(15%)*
+ 
+Class sessions will include a mixture of lecture, discussion, and applied activities (conducted both individually and in small groups). All students are expected to not only attend class, but also be active participants.   
+In addition to the classroom, we will be using Piazza for class discussion. Piazza is a widely used class discussion platform to assist you with getting help efficiently from (and providing help to) your classmates, the teaching assistant and myself)The system is highly catered to getting you help fast and efficiently from classmates and myself. Rather than emailing questions to me, I encourage you to first post your questions on Piazza. Find our class page at: https://piazza.com/unc/spring2020/geog215/home
+
+## Labs *(20%)*
+The objective of the labs is to give you hands on experience with data analysis using modern statistical software. The labs will also provide you with tools that you will need to complete the project successfully. All labs must be submitted electronically prior to the due date/time. The lab with lowest score for each student will be dropped.
+
+## Homeworks *(15%)*
+Beyond the in class activities and labs, you will be given 2 larger data analysis tasks during the semester. The purpose of these homeworks is to combine different skills introduced in the labs to conduct an integrated data analysis. These assignments will be completed individually.
+
+## Exams *(30%)*
+There will be 2 exams (15% each) during the semester. Each exam will require you to complete a number of small programming and or analysis tasks related to the material presented in the class. The exams will be written to take between 2-5 hours. The exact structure and content of the exams will be discussed in more detail before they are assigned.
+
+## Final project *(20%)*
+You will complete a final project for this course, the goal of which is to tackle an "interesting" problem using the tools and techniques covered in this class. This project will be done in teams assigned by me to ensure a good balance of skills. Additional details on the project will be provided as the course progresses. 
+To assist you with your project, you will be working with a Graduate Research Consultant, Kate Brandt, who will assist you in the research project. The GRC Program is sponsored by the Office for Undergraduate Research (http://our.unc.edu), and you may be able to use this research-exposure course to meet a requirement of the Carolina Research Scholars Program (http://our.unc.edu/students/crsp). I encourage you to visit the OUR website to learn about how you might engage in research, scholarship and creative performance while you are at Carolina.
+
+## Overall Grading Criteria
+- Class participation: **15%**
+- Labs: **20%**
+- Homeworks: **15**
+- Exams: **30%**
+- Final project: **20%**
+
+Grades will be based on the following low cutoff values, although I reserve the right to modify the exact values: **A** *(93%)*, **A-** *(90%)*, **B+** *(87%)*, **B** *(83%)*, **B-** *(80%)*, **C+** *(77%)*, **C** *(73%)*, **C-** *(70%)*, **D** *(60%)*, anything below *60%* is an **F**
+ 
+## Required Text
+The course has no required text. We will read chapters and articles that are freely available online. There will be roughly 1-3 readings per week, which will be posted on the course website. The expectation for readings is that you will be able to summarize and discuss the main points/topics/ideas, as well as to identify interesting or important aspects of each as they pertain to your personal interests or the broader course material.
+
+## Prerequisites
+There is no prerequisite for this course.  However, some familiarity with spatial data, basic statistics, computation, and/or coding is recommended.
+
+## Computers and Software
+In the course, we will be working with the programming language, R. R is an open-source programming language and software environment widely used in both industry (high employable) and academia. It can run on both Windows and Mac OS.  A software document will be provided to assist you with getting set up with R. Computers should be brought to class everyday to complete in-class activities and demonstrations.
+
+
+
+# Class Policies
+
+
+## Classroom Expectations
+I encourage healthy, constructive discussion of the topics and course material.  I operate under the assumption and requirement that everyone will be respectful of their fellow classmates in this endeavor. Class attendance in lecture and lab is a firm expectation; frequent absences or tardiness will be considered a legitimate cause for grade reduction.
+No right or privilege exists that permits a student to be absent from any class meetings, except for these University Approved Absences:
+- Authorized University activities
+- Disability/religious observance/pregnancy, as required by law and approved by Accessibility Resources and Service and/or the Equal Opportunity and Compliance Office (EOC)
+- Significant health condition and/or personal/family emergency as approved by the Office of the Dean of Students, Gender Violence Service Coordinators, and/or the Equal Opportunity and Compliance Office (EOC).
+
+For situations when an absence is not University approved or fall under the above mentioned criteria (e.g., a job interview or club activity), please communicate with me early about potential absences. Please be aware that you are bound by the Honor Code when making a request for a University approved absence.
+
+# Diversity Statement
+
+It is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students' learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength and benefit. It is my intent to present materials and activities that are respectful of diversity: race, gender identity, national origin, ethnicity, religion, social class, age, sexual orientation, political background, and physical and learning ability. Your suggestions are encouraged and appreciated. Please let me know ways to improve the effectiveness of the course for you personally, or for other students or student groups.
+
+Furthermore, I would like to create a learning environment for my students that supports a diversity of thoughts, perspectives and experiences, and honors your identities (including gender identity, sexuality, disability, age, socioeconomic status, ethnicity, race, nationality, religion, and culture.) To help accomplish this:
+
+If you have a name and/or set of pronouns that differ from those that appear in your official Duke records, please let me know!
+If you feel like your performance in the class is being impacted by your experiences outside of class, please don't hesitate to come and talk with me. I want to be a resource for you. If you prefer to speak with someone outside of the course, your academic dean is an excellent resource.
+I (like many people) am still in the process of learning about diverse perspectives and identities. If something was said in class (by anyone) that made you feel uncomfortable, please talk to me about it.
+
+## Late submissions
+
+Late submissions will be penalized 20% for each day late.  Late submissions will only go unpenalized for documented medical reasons or by previous agreement with the instructor.
+
+# ACADEMIC INTEGRITY
+
+No grade is important enough to justify academic misconduct.  UNC-CH has an Honor Code with clear guidelines regarding academic integrity. Three fundamental and rather simple principles to follow at all times are that: (1) all work submitted be your own; (2) when using the work or ideas of others, including fellow students, give full credit through accurate citations; and (3) if you are uncertain about the rules on a particular assignment, ask for clarification.
+
+**A note on sharing / reusing code:** I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something the course's policy is that you may make use of any online resources (e.g. StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. On individual assignments you may not directly share code with another student in this class. Except for the take home exams, you are welcome to discuss the problems together and ask for advice, but you may not send or make use of code from another team. On the take home exams all communication with classmates is explicitly forbidden.
+
+
+# UNC-CH RESOURCES
+
+The Writing Center, http://writingcenter.unc.edu/
+Research Hub, http://library.unc.edu/hub/
+University Libraries, http://library.unc.edu/
+Counseling and Psychological Services, https://campushealth.unc.edu/
+
+
+# ACCESSIBILITY
+
+UNC at Chapel Hill facilitates the implementation of reasonable accommodations, including resources and services, for students with disabilities, chronic medical conditions, a temporary disability or pregnancy complications resulting in difficulties with accessing learning opportunities. All accommodations are coordinated through the Accessibility Resources and Service Office. See the ARS Website for contact information: accessibillity.unc.edu.
+
+# Professional Conduct
+Students are expected to treat one another with the utmost respect at all times. Disrespectful behavior
+toward other students or instructors/TAs will not be tolerated and will result in disciplinary action and
+significant grade penalties of at least 2/3 of a letter grade off the student’s final course grade. (If final
+course grades have already been submitted to the Registrar, any grade penalties associated with
+disrespectful of unprofessional conduct will be counted as arithmetic errors that occurred during the
+semester and submitted as amendments to the student’s transcript.)
+
+# Title IX Resources
+
+Acts of discrimination, harassment, interpersonal (relationship) violence, sexual violence, sexual exploitation, stalking, and related retaliation are prohibited at UNC-Chapel Hill. If you have experienced these types of conduct, you are encouraged to report the incident and seek resources on campus or in the community. Please contact the Director of Title IX Compliance/Title IX Coordinator (Adrienne Allison, adrienne.allison@unc.edu), Report and Response Coordinators (Ew Quimbaya-Winship, eqw@unc.edu; Rebecca Gibson, rmgibson@unc.edu; Kathryn Winn kmwinn@unc.edu), Counseling and Psychological Services (CAPs) (confidential) in Campus Health Services at (919) 966-3658, or the Gender Violence Services Coordinators (confidential) (Cassidy Johnson, cassidyjohnson@unc.edu; Holly Lovern, holly.lovern@unc.edu) to discuss your specific needs. Additional resources are available at safe.unc.edu.
+
+# Class Resources
+All lectures, notes, readings and other resources will be posted both on the [course website](geog215-spds.rbind.io) and on Sakai. We will use sakai for assignment submissions and grading. 
+
+
