@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 &nbsp
 
 **Instructor:** Varun Goel | varung@live.unc.edu  
-Office Hours: *223 Carolina (Hurston) Hall | Tue & Thu 2-4 pm, or by appointment*
+Office Hours: *223 Carolina (Hurston) Hall | Mon 11-12 pm, Thu 2-4 pm, Fri 2-3 pm or by appointment*
   
 **Teaching Assistant:** Prabisha Shreshta | prabisha@live.unc.edu  
 Office Hours: *317 Carolina (Hurston) Hall | TBD*  

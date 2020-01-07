@@ -3,7 +3,6 @@ title: "Lecture Slides"
 output: html_document
 ---
 
----
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse); library(kableExtra);library(stringr); library(pander)
 library(lubridate)

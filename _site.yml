@@ -26,7 +26,7 @@ navbar:
       href: homeworks.html
     - text: "Project"
       icon: fa-file-powerpoint
-      href: projects.html
+      href: project.html
   - text: "Resources"
     icon: fa-book-open
     href: Resources_websites_GEOG215.html
