@@ -5,7 +5,7 @@ navbar:
   left:
   - text: Announcements
     icon: fa-bullhorn
-    href: schedule_v1.html
+    href: announcements.html
   - text: Schedule
     icon: fa-calendar
     href: schedule_v1.html
