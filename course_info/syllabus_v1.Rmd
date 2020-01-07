@@ -4,7 +4,7 @@ author: "Spring 2020"
 date: "MW 3:35 pm - 4:50 pm"
 output:
   html_document:
-    lib_dir: site_libs
+    lib_dir: ./site_libs
     self_contained: no
     toc: yes
     toc_float: yes
