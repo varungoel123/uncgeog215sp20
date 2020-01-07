@@ -24,7 +24,7 @@ navbar:
     href: overview.html
   - text: Help
     icon: fa-question
-      href: course_info/faq.html
+    href: course_info/faq.html
 
 output:
   html_document:
