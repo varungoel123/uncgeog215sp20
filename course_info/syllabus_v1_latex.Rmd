@@ -25,7 +25,7 @@ library(lubridate)
 #options(knitr.table.format = "latex", knitr.kable.NA = '') 
 knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE) 
 ```
-**Location:** 204 Carolina/Hurston Hall  
+**Location:** 204 Carolina (Hurston) Hall  
 **Time:** MW 3:35pm - 4:50pm  
 **Course Website:** [geog215-spds.rbind.io](geog215-spds.rbind.io)  
 **Class Discussion Website:** [https://piazza.com/unc/spring2020/geog215/home](https://piazza.com/unc/spring2020/geog215/home)
@@ -33,56 +33,59 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 \  
 
 **Instructor:** Varun Goel | varung@live.unc.edu  
-Office Hours: *223 Carolina/Hurston Hall | Tue/Thu 2-4 pm, or by appointment*
+Office Hours: *223 Carolina (Hurston) Hall | Tue & Thu 2-4 pm, or by appointment*
   
 **Teaching Assistant:** Prabisha Shreshta | prabisha@live.unc.edu  
-Office Hours: *317 Carolina/Hurston Hall | TBD*  
+Office Hours: *317 Carolina (Hurston) Hall | TBD*  
   
 **Graduate Research Consultant:** Kate Brandt | kebrandt@live.unc.edu  
 
 *---------------------------------------------------------------------------------------------------------------------------------*
 
 # COURSE DESCRIPTION
-This course will introduce students to data science with a focus on spatial (geographic) data, which are data that are referenced to a particular location on Earth's surface.  Students will learn concepts, techniques, and tools they need to apply various facets of data science practice, including data collection, management, and integration, descriptive modeling, exploratory spatial data analysis, and effective communication via data visualization and mapping.  Real world examples and datasets spanning physical, social, and health sciences will be used throughout the course in an effort to promote contextual learning.
+This course will introduce you to data science with a focus on spatial (geographic) data, which are data that are referenced to a particular location on Earth's surface.  You will learn concepts, techniques, and tools you need to apply various facets of data science practice, including data collection, management, and integration, descriptive modeling, exploratory spatial data analysis, and effective communication via data visualization and mapping.  Real world examples and datasets spanning physical, social, and health sciences will be used throughout the course in an effort to promote contextual learning.
 
-# COURSE OBJECTIVE
-The overall objective objective of the course is to introduce you to the core competencies, tools and intuition required to be a succesful spatial data scientist. This course is much more about “learning to learn” and problem solving rather than acquiring specific programming tricks or stats wizardry.
+# COURSE OBJECTIVES
+The overall objective of this course is to introduce you to the core concepts, tools and intuition required to be a succesful and responsible spatial data scientist. This course is much more about “learning to learn” and problem solving rather than acquiring specific programming tricks or stats wizardry.
 
 By the end of the semester you should be able to:
 
-1. Pull down publicly available datasets from non-conventional data streams within R (no more pointing and clicking on the numerous weblinks)
+1. Pull down publicly available datasets from non-conventional data sources within R (no more pointing and clicking on the numerous weblinks)
 
 2. Quickly and efficiently organize, clean, and visualize spatial datasets programmatically using tidydata principles
 
-3. Describing and interpreting spatial patterns in data using visualizations and words.
+3. Describe and interpret interesting spatial patterns in data
 
-4. Critically evaluate and choose appropriate Exploratory Spatial Data Analysis to answer useful research questions.
+4. Critically evaluate and choose appropriate Exploratory Spatial Data Analysis to analyze data
 
-5. Write and communicate your results in a scientific and reproducible manner using [literate programming](http://ross.net/funnelweb/tutorial/intro_what.html) language such as Mardown
+5. Write and communicate your results in a scientific and reproducible manner using a [literate programming](http://ross.net/funnelweb/tutorial/intro_what.html) language such as Mardown
 
-6. Apply your skills to your own dataset in an inter-disciplinary team and use spatial data science tools and principles to answer a useful research question.
+6. Answer useful research questions by applying the tools and principles of spatial data science to a real world dataset with an inter-disciplinary team
 
 # COURSE STRUCTURE
-Programming is a skill that is best learnt by doing, and programming languages, like any other language, are best learnt through practice, practice and practice. As such, the best way to learn R or any language is to fully commit to the language and do everything you can to practice it most days of the week for at least half an hour, and ideally more. Other than the materials covered in class, you can hone your R skills by writing other class homeworks in RMarkdown, creating a personal website in R, making presenetations in R, or even sending emails through R.The main idea is to immerse yourself into the language, learn how to ask for help, and continuously practice what you learn. Although coding, just like any other language can seem frustrating at the beginning, I promise that this immersive approach will help in the short and long run. As your instructor, I will facilitate your immersion as much as possible through a variety of class activites and assignments. While I will introduce you to new tools and techniques, it is up to you to take them and make use of them.
 
- The course is divided into five following components:
+To help you achieve the course objectives, we will primarily engage in active learning through numerous in-class activites and labs. You will be provided with readings and interactive modules to complete *before class* so that most of the class time can be used for discussion and hands-on activites instead of passive lecturing. Similarly, the homeworks, exams and the final project are aimed to help you solidify your understanding of the material and apply tools and principles learned in class. The main purpose of having these numerous *checks* is not to test you on what is right or wrong, but to help you think creatively and provide you with a platform to express your creativity. Since you will spend majority of the class programming in R, I hope that you consider programming as a medium (and an important skill for the job market) that enables you to be creative, but in a scientifically sound, transparent and meaningful manner.
+
+Programming is a skill that is best learnt by doing, and programming languages, like any other language, are best learnt through practice, practice and practice. As such, the best way to learn R or any language is to fully commit to the language and do everything you can to practice it most days of the week for at least half an hour, and ideally more. Other than the materials covered in class, you can hone your R skills by writing other class homeworks in RMarkdown, creating a personal website in R, making presentations in R, or even sending emails through R. The main idea is to immerse yourself into the language, learn how to ask for help, and continuously practice what you learn. Although coding, just like any other language can seem frustrating at the beginning, I promise that this immersive approach will help in the short and long run. As your instructor, I will facilitate your immersion as much as possible through a variety of class activites and assignments. While I will introduce you to new tools and techniques, it is up to you to take them and make use of them.
+
+ The course is divided into the following *five* components:
  
 ## Classroom participation and discussion *(15%)*
 Class sessions will include a mixture of lecture, discussion, and applied activities (conducted both individually and in small groups). All students are expected to not only attend class, but also be active participants.  In addition to the classroom, we will be using **Piazza** for class discussion. Piazza is a widely used class discussion platform to assist you with getting help efficiently from (and providing help to) your classmates, the teaching assistant and myself. Rather than emailing questions to me, I encourage you to first post your questions on Piazza. Find our class page at: https://piazza.com/unc/spring2020/geog215/home
 Class participation and discussion will be graded on *both presence and active participation in the class and on piazza*.
 
 ## Labs *(20%)*
-The objective of the labs is to give you hands on experience with data analysis using modern statistical software. The labs will also provide you with tools that you will need to complete the project successfully. All labs must be submitted electronically through **Sakai** prior to the due date/time. The lab with lowest score for each student will be dropped.
+The objective of the labs is to give you hands on experience with data analysis using modern statistical software. The labs will also provide you with tools that you will need to complete the project successfully. All labs must be submitted electronically through *Sakai* by the **start** of class on the due date as indicated in the schedule below. The lab with lowest score for each student will be dropped.
 
 ## Homeworks *(15%)*
-Beyond the in-class activities and labs, you will be given two larger data analysis tasks during the semester. The purpose of these homeworks is to combine different skills introduced in the labs to conduct an integrated data analysis. These assignments will be completed individually.All assignments must be submitted electronically through **Sakai** prior to the due date/time.
+Beyond the in-class activities and labs, you will be given two larger data analysis tasks during the semester. The purpose of these homeworks is to combine different skills introduced in the labs to conduct an integrated data analysis. All assignments must be submitted electronically through *Sakai* by the **start** of class on the due date as indicated in the schedule below.
 
 ## Exams *(30%)*
-There will be 2 exams during the semester. Each exam will require you to complete a number of small programming and/or analysis tasks related to the material presented in the class. The exams will be take home, and each exam will be written to take between 3-5 hours. The exams are to be completed individually and you are forbidden to talk about exam content to other students in the class. The exact structure and content of the exams will be discussed in more detail before they are assigned.
+There will be 2 exams during the semester. Each exam will require you to complete a number of small programming and/or analysis tasks related to the material presented in the class. The exams will be take home, and each exam will be written to take between 3-5 hours. The exams are to be completed individually and you are not allowed to talk about exam content to other students in the class. The exact structure and content of the exams will be discussed in more detail before they are assigned.
 
 ## Final project *(20%)*
-You will complete a final project for this course, the goal of which is to tackle a novel problem using the tools and techniques covered in this class. This project will be done in teams assigned by me to ensure a good balance of skills. Additional details on the project will be provided as the course progresses. 
-To assist you with your project, you will be working with a Graduate Research Consultant, Kate Brandt, who will assist you in the research project. The GRC Program is sponsored by the Office for Undergraduate Research (http://our.unc.edu), and you may be able to use this research-exposure course to meet a requirement of the Carolina Research Scholars Program (http://our.unc.edu/students/crsp). I encourage you to visit the OUR website to learn about how you might engage in research, scholarship and creative performance while you are at Carolina.
+You will complete a final project for this course, the goal of which is to tackle an interesting problem using the tools and techniques covered in this class. This project will be completed in teams assigned by me to ensure a good balance of skills. Additional details on the project will be provided as the course progresses. 
+To assist you with your project, you will work with a Graduate Research Consultant, Kate Brandt. The GRC Program is sponsored by the Office for Undergraduate Research (http://our.unc.edu), and you may be able to use this research-exposure course to meet a requirement of the Carolina Research Scholars Program (http://our.unc.edu/students/crsp). I encourage you to visit the OUR website to learn about how you might engage in research, scholarship and creative performance while you are at Carolina.
 
 ## Grading Criteria
 - Class participation: **15%**
@@ -106,7 +109,7 @@ All lectures, notes, readings and other resources will be posted both on the [co
 In the course, we will be working with the programming language, R. R is an open-source programming language and software environment widely used in both industry (high employable) and academia. It can run on both Windows and Mac OS.  A software document will be provided to assist you with getting set up with R. Computers should be brought to class *everyday* to complete in-class activities and demonstrations.
 
 # OUTLINE AND SCHEDULE
-The following outline and schedule and subject to change
+The class schedule is subject to change as needed. ***(Deliverables are due before class on the mentioned date)***
 ```{r}
 # Read in schedule
 wk_schedule <- read_csv("~/Documents/unc/geog_215_spring2020/uncgeog215sp20/course_info/weekly_schedule.csv")
@@ -127,16 +130,16 @@ wk_schedule <- wk_schedule %>% dplyr::select(-Order) %>%
 # add exams and project 3 dates manually
 wk_schedule <- wk_schedule %>% add_row(Week = "", Day = "Sun",Date = "3/1", Topic = "**EXAM 1 due at 5 pm**", Deliverables ="",.after = 15) %>%
   add_row(Week = "", Day = "Sun",Date = "4/12", Topic = "**EXAM 2 due at 5 pm**", Deliverables ="",.after = 28) %>%
-  add_row(Week = "", Day = "Mon",Date = "4/27", Topic = "**Project Part 3 (final report) due at 5 pm**", Deliverables ="",.after = 33)
+  add_row(Week = "", Day = "Mon",Date = "4/27", Topic = "**FINAL Project Report due at 5 pm**", Deliverables ="",.after = 33)
                       
 wk_schedule %>%
-  kable("latex", booktabs =T,align="lllll",linesep = "", caption = "Schedule : **(Deliverables are due before class on the mentioned date)**") %>%
-  kable_styling(latex_options = c("striped","HOLD_position"),
-                font_size = 7.5) %>%
+  kable("latex", longtable= T, booktabs =T,align="lllll",linesep = "") %>%
+  kable_styling(latex_options = c("striped","repeat_header"),
+                font_size = 10) %>%
   column_spec(c(1,5), bold = T) %>%
   collapse_rows(columns = 1, latex_hline = "major", valign = "middle") %>%
   row_spec(0,bold = T, color = "white", background = "#000000") %>%
-  row_spec(c(4,16,19,29,34), bold = T,italic = T)
+  row_spec(c(4,16,19,20,29,34), bold = T,italic = T)
 ```
 
 # CLASS POLICIES
@@ -158,13 +161,13 @@ It is my intent that students from all diverse backgrounds and perspectives be w
 
 Furthermore, I would like to create a learning environment for my students that supports a diversity of thoughts, perspectives and experiences, and honors your identities (including gender identity, sexuality, disability, age, socioeconomic status, ethnicity, race, nationality, religion, and culture.) To help accomplish this:  
 
-If you have a name and/or set of pronouns that differ from those that appear in your official university records, please let me know.  
+-- If you have a name and/or set of pronouns that differ from those that appear in your official university records, please let me know.  
 
-If you feel like your performance in the class is being impacted by your experiences outside of class, please don't hesitate to come and talk with me. I want to be a resource for you.   
+-- If you feel like your performance in class is impacted by your experiences outside of class, please don't hesitate to talk with me. I want to be a resource for you. I have completed both the Safe Zone and Mental Health First Aid trainings, and while I may not be able to directly help you, I can help you find and reach those that can help.
 
-If you prefer to speak with someone outside of the course, your academic dean is an excellent resource. 
+-- If you prefer to speak with someone outside of the course, your academic dean is an excellent resource. 
 
-I (like many people) am still in the process of learning about diverse perspectives and identities. If something was said in class (by anyone) that made you feel uncomfortable, please talk to me about it.
+-- I (like many people) am still in the process of learning about diverse perspectives and identities. If something is said in class (by anyone) that makes you feel uncomfortable, please talk to me about it.
 
 ## Late submissions
 
@@ -180,6 +183,10 @@ No grade is important enough to justify academic misconduct.  UNC-CH has an Hono
 
 **A note on sharing / reusing code:** I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something the course's policy is that you may make use of any online resources (e.g. StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. On individual assignments you may not directly share code with another student in this class. Except for the take home exams, you are welcome to discuss the problems together and ask for advice, but you may not send or make use of code from another team. On the take home exams all communication with classmates is explicitly forbidden.
 
+## Professional Conduct
+Students are expected to treat one another with the utmost respect at all times. Disrespectful behavior toward other students or instructors/TAs will not be tolerated and will result in disciplinary action and significant grade penalties of at least 2/3 of a letter grade off the student’s final course grade. (If final
+course grades have already been submitted to the Registrar, any grade penalties associated with disrespectful of unprofessional conduct will be counted as arithmetic errors that occurred during the semester and submitted as amendments to the student’s transcript.)
+
 ## UNC-CH Resources
 - The Writing Center, http://writingcenter.unc.edu/
 - Research Hub, http://library.unc.edu/hub/
@@ -187,11 +194,8 @@ No grade is important enough to justify academic misconduct.  UNC-CH has an Hono
 - Counseling and Psychological Services, https://campushealth.unc.edu/
 
 ## Accessibility
-UNC at Chapel Hill facilitates the implementation of reasonable accommodations, including resources and services, for students with disabilities, chronic medical conditions, a temporary disability or pregnancy complications resulting in difficulties with accessing learning opportunities. All accommodations are coordinated through the Accessibility Resources and Service Office. See the ARS Website for contact information: accessibillity.unc.edu.
+UNC at Chapel Hill facilitates the implementation of reasonable accommodations, including resources and services, for students with disabilities, chronic medical conditions, a temporary disability or pregnancy complications resulting in difficulties with accessing learning opportunities. All accommodations are coordinated through the Accessibility Resources and Service Office. See the ARS Website for contact information: [accessibillity.unc.edu](accessibillity.unc.edu)
 
-## Professional Conduct
-Students are expected to treat one another with the utmost respect at all times. Disrespectful behavior toward other students or instructors/TAs will not be tolerated and will result in disciplinary action and significant grade penalties of at least 2/3 of a letter grade off the student’s final course grade. (If final
-course grades have already been submitted to the Registrar, any grade penalties associated with disrespectful of unprofessional conduct will be counted as arithmetic errors that occurred during the semester and submitted as amendments to the student’s transcript.)
 
 
 
