@@ -8,7 +8,7 @@ navbar:
     href: schedule_v1.html
   - text: Schedule
     icon: fa-calendar
-    href: chedule_v1.html
+    href: schedule_v1.html
   - text: "Materials"
     icon: fa-folder-open
     menu:
