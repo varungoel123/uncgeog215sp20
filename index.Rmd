@@ -20,6 +20,7 @@ wk1.date <- as.Date("2020-01-08")
 > * <b>Lectures:</b> Monday 3:35 pm - 4:50 pm
 > * <b>Labs:</b> Wednesday 3:35 pm - 4:50 pm,
 > * <b>Location:</b> <mark>Carolina Hall 204</mark>
+> * <b> Class Discussion Page: [Click here](https://piazza.com/unc/spring2020/geog215/home){target="_blank"}
 
 
 
