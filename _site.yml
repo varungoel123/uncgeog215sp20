@@ -5,10 +5,10 @@ navbar:
   left:
   - text: Announcements
     icon: fa-bullhorn
-    href: course_info/schedule_v1.html
+    href: schedule_v1.html
   - text: Schedule
     icon: fa-calendar
-    href: course_info/schedule_v1.html
+    href: chedule_v1.html
   - text: "Materials"
     icon: fa-folder-open
     menu:
