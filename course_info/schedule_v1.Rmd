@@ -41,7 +41,7 @@ wk_schedule <- wk_schedule %>% dplyr::select(-Order) %>%
 # add exams and project 3 dates manually
 wk_schedule <- wk_schedule %>% add_row(Week = "", Day = "Sun",Date = "3/1", Topic = "**EXAM 1 due at 5 pm**", Deliverables ="",.after = 15) %>%
   add_row(Week = "", Day = "Sun",Date = "4/12", Topic = "**EXAM 2 due at 5 pm**", Deliverables ="",.after = 28) %>%
-  add_row(Week = "", Day = "Mon",Date = "4/27", Topic = "**Project Part 3 (final report) due at 5 pm**", Deliverables ="",.after = 33)
+  add_row(Week = "", Day = "Mon",Date = "4/27", Topic = "**FINAL Project Report due at 5 pm**", Deliverables ="",.after = 33)
                       
 wk_schedule %>%
   kable("html", align="lllll",linesep = "", caption = "Schedule : **(Deliverables are due before class on the mentioned date)**") %>%

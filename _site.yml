@@ -12,8 +12,20 @@ navbar:
   - text: "Materials"
     icon: fa-folder-open
     menu:
+    - text: "Lecture slides"
+      icon: fa-laptop
+      href: readings/GEOG-215-Readings-FS2019.html
     - text: "Readings"
       icon: fa-file-alt
+      href: readings/GEOG-215-Readings-FS2019.html
+    - text: "Labs"
+      icon: fa-flask
+      href: readings/GEOG-215-Readings-FS2019.html
+    - text: "Homework"
+      icon: fa-clipboard-list
+      href: readings/GEOG-215-Readings-FS2019.html
+    - text: "Project"
+      icon: fa-file-powerpoint
       href: readings/GEOG-215-Readings-FS2019.html
   - text: "Resources"
     icon: fa-book-open
