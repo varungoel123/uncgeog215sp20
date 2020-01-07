@@ -14,7 +14,7 @@ wk1.date <- as.Date("2020-01-08")
 <img style="width:400px;height:400px;float:left;" src="globecloud.png">
 
 
-> * <b>Instructor:</b> Varun Goel
+> * <b>Instructor:</b> Varun Goel | 
 > * <b>Teaching Assistant:</b> Prabisha Shreshta
 > * <b>Graduate Research consultant:</b> Kate Brandt
 > * <b>Lectures:</b> Monday 3:35 pm - 4:50 pm

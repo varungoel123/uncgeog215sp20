@@ -1,11 +1,11 @@
 name: "Varun Goel"
 output_dir: "."
 navbar:
-  title: "GEOG 215 : Introduction to Spatial Data Science"
+  title: "GEOG 215"
   left:
-  - text: Overview
-    icon: fa-info-circle
-    href: overview.html
+  - text: Announcements
+    icon: fa-bullhorn
+    href: course_info/schedule_v1.html
   - text: Schedule
     icon: fa-calendar
     href: course_info/schedule_v1.html
@@ -19,8 +19,11 @@ navbar:
     icon: fa-book-open
     href: Resources_websites_GEOG215.html
   right:
-    - text: Help
-      icon: fa-question
+  - text: Syllabus
+    icon: fa-info-circle
+    href: overview.html
+  - text: Help
+    icon: fa-question
       href: course_info/faq.html
 
 output:
