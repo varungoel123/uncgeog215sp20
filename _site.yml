@@ -33,7 +33,7 @@ navbar:
   right:
   - text: Syllabus
     icon: fa-info-circle
-    href: overview.html
+    href: course_info/syllabus_v1.html
   - text: Help
     icon: fa-question
     href: course_info/faq.html
