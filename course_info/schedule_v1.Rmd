@@ -1,12 +1,5 @@
 ---
 title: "Schedule"
-output: 
-  html_document:
-    theme: flatly
-    highlight: tango
-    lib_dir: site_libs
-    self_contained: no
-    css: css/custom_css.css
 ---
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse); library(kableExtra);library(stringr); library(pander)
