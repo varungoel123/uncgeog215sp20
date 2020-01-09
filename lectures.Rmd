@@ -11,3 +11,9 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 ```
 
 # Last Updated: `r format(Sys.time(), "%a %b %d %X")` {.tabset .tabset-fade .tabset-pills}
+
+---
+
+# Week 1: Introduction
+
+**Jan 7: Introduction, Spatial Data and Geographic Information:** [pdf](lectures/01_introduction.pdf){target="_blank"} , [html](lectures/01_introduction/index.html){target="_blank"}
