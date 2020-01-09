@@ -29,7 +29,10 @@ navbar:
       href: project.html
   - text: "Resources"
     icon: fa-book-open
-    href: Resources_websites_GEOG215.html
+    menu:
+    - text: "Software resources"
+      icon: fa-desktop
+      href: software_resources.html
   right:
   - text: Syllabus
     icon: fa-info-circle
