@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 ```
 **Location:** 204 Carolina (Hurston) Hall  
 **Time:** MW 3:35pm - 4:50pm  
-**Course Website:** [geog215-spds.rbind.io](geog215-spds.rbind.io)  
+**Course Website:** [geog215-spds.rbind.io](https://geog215-spds.rbind.io)  
 **Class Discussion Website:** [https://piazza.com/unc/spring2020/geog215/home](https://piazza.com/unc/spring2020/geog215/home)
 \  
 \  
@@ -112,7 +112,7 @@ In the course, we will be working with the programming language, R. R is an open
 The class schedule is subject to change as needed. ***(Deliverables are due before class on the mentioned date)***
 ```{r}
 # Read in schedule
-wk_schedule <- read_csv("~/Documents/unc/geog_215_spring2020/uncgeog215sp20/course_info/weekly_schedule.csv")
+wk_schedule <- read_csv("./weekly_schedule.csv")
 wk_schedule$deliverables[is.na(wk_schedule$deliverables)]<-""
 # Set semester start date and format weeks nicely
 start.date <- as_date("2020/01/08")
