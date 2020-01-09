@@ -19,12 +19,20 @@ The "Weeks" below correspond to enumerated weeks found in the syllabus schedule.
 
 ******
 
-# Week #2 :  Introduction to R
+## Week 2 :  Introduction to R
 
-Note: Although you are choose to complete the tasks in whatever order you prefer, i recommend following the sequence
+1. Install R and Rstudio [Click for Instructions here](software_resources.html) **[Required]**
 
-1. Install R and Rstudio [Click for Instructions here](software_resources.html)
-2. Install and complete  relevant Swirl modules in RStudio [instruction here](readings/wk1/swirl_rprog.html){target="_blank"}
+2. Install and complete relevant Swirl modules in RStudio [instruction here](readings/wk1/swirl_rprog.html){target="_blank"} **[Required]**
 
+3. Complete the poll everywhere survey [here](https://pollev.com/goelvarun553). **[required]**
+You need to register with your unc email address. I will use this survey to help form balanced teams with a mix of programming, GIS skills and subject skills for the  projects.
+
+4. Sign up for the [class Piazza page](https://piazza.com/unc/spring2020/geog215) **[required]** if you have not done so already
+
+4. Chapter 1: Introduction from *Doing Data Science (Schutt & O'Neill, 2013)* :[Excellent and inclusive introduction to Data Science including how it is done in Academia and Industry](http://cdn.oreillystatic.com/oreilly/booksamplers/9781449358655_sampler.pdf) **[Recommended]**
+
+5. [A fun interview with 3 Data Science Stalwarts on Data Science in Everyday life](http://www.sciencefriday.com/segments/solving-lifes-everyday-problems-with-data/) **[Recommended]**
 ******
 
+---
