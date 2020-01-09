@@ -13,7 +13,7 @@ options(knitr.table.format = "html", knitr.kable.NA = '')
 knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE) 
 ```
 
-# Last Updated: `r format(Sys.time(), "%a %b %d %X")` {.tabset .tabset-fade .tabset-pills}
+### Last Updated: `r format(Sys.time(), "%a %b %d %X")` {.tabset .tabset-fade .tabset-pills}
 
 The "Weeks" below correspond to enumerated weeks found in the syllabus schedule. The readings should be completed before the start of class for the corresponding week. For example, readings under week 2 are relevant to the class discussion during week 2, and hence should be completed before the classes in week 2. Please email me immediately if any links are broken!
 
@@ -24,7 +24,7 @@ The "Weeks" below correspond to enumerated weeks found in the syllabus schedule.
 Note: Although you are choose to complete the tasks in whatever order you prefer, i recommend following the sequence
 
 1. Install R and Rstudio [Click for Instructions here](software_resources.html)
-2. Install and complete  relevant Swirl modules in RStudio.
+2. Install and complete  relevant Swirl modules in RStudio [instruction here](readings/wk1/swirl_rprog.html){target="_blank"}
 
 ******
 

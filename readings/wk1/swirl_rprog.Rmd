@@ -45,3 +45,4 @@ Swirl is a fantastic completely open-source and free self paced module that teac
   
   - **8: Logic**: You know the difference between `5 != 7` and `!5 == 7`, and the difference between `&` and `&&`, and the use of the `which()` operator.
 
+NOTE: Please select No when the lessons prompt you to receive credit for the course on Coursera.
