@@ -26,6 +26,7 @@ Swirl is a fantastic completely open-source and free self paced module that teac
 
 - Follow the prompts in your RStudio console. When it asks your to install a course, please select **1: R Programming: The basics of programming in R**. Please read the prompts and texts carefully because they will give you a good understanding of your R programming environment.
 
+#### Part 2: Complete Swirl module- Beginner R programming 
 - The course is subdivided into lessons that take around 10-30 mins on average. If you have never worked in R before, or dont remember anything from your R class taken long ago, I suggest you start from Lesson **1: Basic Building Blocks**. The next week is going to be an extremely fast-tracked condensed R Basics 101 class. To keep up, I suggest you complete atleast first 8 lessons. Lessons 9-12 are slightly more advanced, but will reap more benefit later. If you feel comfortable with the first 8 lessons, go ahead and give them a shot too. The extra work will help you immensely with grasping the tidyverse packages.
 
 - If you have have some experience, or are extremely comfortable with the basics of R, feel free to skip appropriate lessons ***ONLY if you feel confident*** answering the following questions for each lesson.
