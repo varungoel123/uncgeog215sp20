@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -221,6 +220,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -393,12 +393,23 @@ div.tocify {
     </li>
   </ul>
 </li>
-<li>
-  <a href="Resources_websites_GEOG215.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-book-open"></span>
      
     Resources
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="software_resources.html">
+        <span class="fa fa-desktop"></span>
+         
+        Software resources
+      </a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -430,152 +441,18 @@ div.tocify {
 </div>
 
 
-<div id="last-updated-tue-jan-07-151828" class="section level1 tabset tabset-fade tabset-pills">
-<h1>Last Updated: Tue Jan 07 15:18:28</h1>
+<div id="last-updated-thu-jan-09-154527" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Last Updated: Thu Jan 09 15:45:27</h3>
 <p>The “Weeks” below correspond to enumerated weeks found in the syllabus schedule. The readings should be completed before the start of class for the corresponding week. For example, readings under week 2 are relevant to the class discussion during week 2, and hence should be completed before the classes in week 2. Please email me immediately if any links are broken!</p>
 <hr />
 </div>
-<div id="week-1" class="section level1">
-<h1>Week #1</h1>
-<ul>
-<li><a href="https://r4ds.had.co.nz/introduction.html">R for Data Science, Chapter 1. Introduction (1 - 1.6)</a></li>
-<li><a href="https://r4ds.had.co.nz/workflow-basics.html">R for Data Science, Chapter 4. Workflow: basics (4 - 4.3)</a></li>
-<li><a href="https://rspatial.org/intr/2-basic-data-types.html">Spatial Data Science with R, Introduction to R, Chapter 1. (Basic data types - Indexing, Read and write files)</a></li>
-<li><a href="https://r4ds.had.co.nz/r-markdown.html">R for Data Science, Chapter 27. R Markdown</a></li>
-<li><a href="http://www.spatialanalysisonline.com/HTML/index.html?attributes.htm">Geospatial Analysis, Chapter 2.1.2. Attributes</a></li>
-</ul>
-<hr />
-</div>
-<div id="week-2" class="section level1">
-<h1>Week #2</h1>
-<ul>
-<li><a href="https://mgimond.github.io/Spatial/coordinate-systems.html">Intro to GIS and Spatial Analysis, Chapter 9. Coordinate Systems</a></li>
-<li><a href="https://mgimond.github.io/Spatial/feature-representation.html">Intro to GIS and Spatial Analysis, Chapter 2. Feature Representation</a></li>
-<li><a href="http://www.spatialanalysisonline.com/HTML/index.html?objects.htm">Geospatial Analysis, Chapter 2.1.3. Objects</a></li>
-<li><a href="http://www.spatialanalysisonline.com/HTML/index.html?detail__resolution__and_scale.htm">Geospatial Analysis, Chapter 2.1.9. Detail, resolution, and scale</a></li>
-</ul>
-<hr />
-</div>
-<div id="week-3" class="section level1">
-<h1>Week #3</h1>
-<ul>
-<li><a href="https://guides.lib.unc.edu/spatialdata/getting-started">UNC Library, Spatial Data Online: Getting Started</a> &lt;&lt;&lt; follow a few links to view the various options available for acquiring spatial data (e.g., data types, data formats, delivery options)</li>
-<li><a href="https://geocompr.robinlovelace.net/read-write.html">Geocomputation with R, Chapter 7. Geographic data I/O (7 - 7.5)</a></li>
-<li><a href="https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/intro-to-programmatic-data-access-r/">Earth analytics, Chapter 13. Programmic Data Access, Lesson 1: Introduction to APIs</a></li>
-</ul>
-<hr />
-</div>
-<div id="week-4" class="section level1">
-<h1>Week #4</h1>
-<ul>
-<li><a href="https://www.youtube.com/watch?v=fe6GA200dks">Relative Paths and the Working Directory in R (Video)</a></li>
-<li><a href="https://r4ds.had.co.nz/workflow-projects.html">R for Data Science, Chapter 8. Workflow: projects</a></li>
-<li><a href="https://bouchat.github.io/IntroDataMgmt20Jan.html#data_management_in_r">Sarah B. Bouchat, Introduction to Statistical Computing, Data Management in R</a></li>
-<li><a href="https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2012EO160003">Pebesma, E., Nüst, D. and Bivand, R., (2012), The R software environment in reproducible geoscientific research, Eos Trans. AGU, 93(16), 163.</a> pdf also available on Sakai</li>
-</ul>
-<hr />
-</div>
-<div id="week-5" class="section level1">
-<h1>Week #5</h1>
-<ul>
-<li><a href="https://link.springer.com/chapter/10.1007/978-3-319-45599-0_15">Data Wrangling with R, Chapter 15. Importing Data</a> pdf also available on Sakai</li>
-<li><a href="https://link.springer.com/chapter/10.1007/978-3-319-45599-0_16">Data Wrangling with R, Chapter 16. Scraping Data</a> pdf also available on Sakai</li>
-<li><a href="https://link.springer.com/chapter/10.1007/978-3-319-45599-0_5">Data Wrangling with R, Chapter 5. Dealing with Character Strings</a> pdf also available on Sakai</li>
-<li><a href="https://link.springer.com/chapter/10.1007/978-3-319-45599-0_14">Data Wrangling with R, Chapter 14. Dealing with Missing Values</a> pdf also available on Sakai</li>
-</ul>
-<hr />
-</div>
-<div id="week-6" class="section level1">
-<h1>Week #6</h1>
-<ul>
-<li>No readings!</li>
-</ul>
-<hr />
-</div>
-<div id="week-7" class="section level1">
-<h1>Week #7</h1>
-<ul>
-<li><a href="https://rspatial.org/intr/11-dataprep.html">Spatial Data Science with R, Introduction to R, Chapter 11. Data Preparation</a></li>
-<li><a href="https://cengel.github.io/R-spatial/spatialops.html">Claudia A Engel, Using Spatial Data with R, Chapter 2. Spatial data manipulation in R</a></li>
-<li><a href="http://www.nickeubank.com/wp-content/uploads/2015/10/RGIS2_MergingSpatialData_part1_Joins.html">Nick Eubank, Merging Spatial Data</a></li>
-<li><a href="https://geocompr.robinlovelace.net/attr.html">Geocomputation with R, Chapter 3. Attribute data operations (3 - 3.2)</a></li>
-</ul>
-<hr />
-</div>
-<div id="week-8" class="section level1">
-<h1>Week #8</h1>
-<ul>
-<li><a href="https://r4ds.had.co.nz/exploratory-data-analysis.html">R for Data Science, Chapter 7. Exploratory Data Analysis</a></li>
-<li><a href="http://dx.doi.org/10.1007/978-3-642-03647-7_13">Bivand RS. Exploratory Spatial Data Analysis. In: Fischer MM, Getis A, editors. Handbook of Applied Spatial Analysis. Springer Berlin Heidelberg; 2010. p. 219–54.</a></li>
-<li><a href="https://rpubs.com/corey_sparks/460703">Corey Sparks, DEM 7263, Exploratory Spatial Data Analysis</a></li>
-</ul>
-<hr />
-</div>
-<div id="week-9" class="section level1">
-<h1>Week #9</h1>
-<ul>
-<li><a href="https://mschermann.github.io/data_viz_reader/introduction.html">A Reader on Data Visualization, Chapter 1. Introduction (1.1 - 1.3)</a></li>
-<li><a href="https://mschermann.github.io/data_viz_reader/patterns.html">A Reader on Data Visualization, Chapter 4. Patterns (4.1, 4.2, 4.4)</a></li>
-<li><a href="https://www.axismaps.com/guide/univariate/choropleth/">Axis Maps Cartography Guide, Choropleth Maps</a></li>
-<li><a href="https://www.axismaps.com/guide/univariate/proportional-symbols/">Axis Maps Cartography Guide, Proportional Symbols</a></li>
-</ul>
-<hr />
-</div>
-<div id="week-10" class="section level1">
-<h1>Week #10</h1>
-<ul>
-<li><a href="https://rspatial.org/raster/analysis/2-scale_distance.html">Spatial Data Science with R, Spatial data analysis, Scale and distance</a></li>
-<li><a href="http://personal.tcu.edu/kylewalker/spatial-neighbors-in-r.html">Kyle E. Walker, Spatial neighbors in R - an interactive illustration</a> <em>NOTE: Check out the interactive example, click on a polygon to see its neighbors, and change the neighborhood definition</em></li>
-</ul>
-<hr />
-</div>
-<div id="week-11" class="section level1">
-<h1>Week #11</h1>
-<ul>
-<li><a href="https://rspatial.org/raster/analysis/3-spauto.html">Spatial Data Science with R, Spatial data analysis, Chapter 3. Spatial autocorrelation</a></li>
-<li><a href="https://mgimond.github.io/Spatial/spatial-autocorrelation.html">Manuel Gimond, Intro to GIS and Spatial Analysis, Chapter 13. Spatial Autocorrelation</a></li>
-<li><a href="https://mgimond.github.io/Spatial/point-pattern-analysis.html#density-based-analysis">Manuel Gimond, Intro to GIS and Spatial Analysis, Chapter 11. Point Pattern Analysis (minus these sections: 11.1, 11.2.2.3, 11.2.3, 11.3.2, 11.3.3) )</a></li>
-</ul>
-<hr />
-</div>
-<div id="week-12" class="section level1">
-<h1>Week #12</h1>
-<ul>
-<li>No readings!</li>
-</ul>
-<hr />
-</div>
-<div id="week-13" class="section level1">
-<h1>Week #13</h1>
-<ul>
-<li><a href="https://mschermann.github.io/data_viz_reader/fundamentals.html">A Reader on Data Visualization, Chapter 2. Fundamentals (2 - 2.3)</a></li>
-<li><a href="https://mschermann.github.io/data_viz_reader/ethics.html">A Reader on Data Visualization, Chapter 5. Ethics</a></li>
-<li><a href="https://geocompr.robinlovelace.net/adv-map.html">Geocomputation with R, Chapter 8. Making maps with R (8 - 8.4)</a></li>
-<li><a href="https://rafalab.github.io/dsbook/data-visualization-principles.html">Data Analysis and Prediction Algorithms with R, Chapter 10. Data visualization principles</a></li>
-</ul>
-<hr />
-</div>
-<div id="week-14" class="section level1">
-<h1>Week #14</h1>
-<ul>
-<li><a href="https://pjbartlein.github.io/GeogDataAnalysis/lec12.html">Geographic Data Analysis, Regression analysis (minus Section 4)</a></li>
-<li><a href="https://rpubs.com/corey_sparks/320045">Corey Sparks, DEM 7273, Regression Analysis Part 1</a></li>
-<li><a href="https://rafalab.github.io/dsbook/association-is-not-causation.html">Data Analysis and Prediction Algorithms with R, Chapter 19. Association is not causation</a></li>
-</ul>
-<hr />
-</div>
-<div id="week-15" class="section level1">
-<h1>Week #15</h1>
-<ul>
-<li>No Readings</li>
-</ul>
-<hr />
-</div>
-<div id="week-16" class="section level1">
-<h1>Week #16</h1>
-<ul>
-<li>Coming soon</li>
-</ul>
+<div id="week-2-introduction-to-r" class="section level1">
+<h1>Week #2 : Introduction to R</h1>
+<p>Note: Although you are choose to complete the tasks in whatever order you prefer, i recommend following the sequence</p>
+<ol style="list-style-type: decimal">
+<li>Install R and Rstudio <a href="software_resources.html">Click for Instructions here</a></li>
+<li>Install and complete relevant Swirl modules in RStudio <a href="readings/wk1/swirl_rprog.html" target="_blank">instruction here</a></li>
+</ol>
 <hr />
 </div>
 

@@ -1,0 +1,47 @@
+---
+title: "Installing and Completing Swirl modules"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse); library(kableExtra);library(stringr); library(pander)
+library(lubridate)
+options(knitr.table.format = "html", knitr.kable.NA = '') 
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE) 
+```
+
+### Last Updated: `r format(Sys.time(), "%a %b %d %X")` {.tabset .tabset-fade .tabset-pills}
+
+## Introduction
+
+Swirl is a fantastic completely open-source and free self paced module that teaches you R, right within your R environment. Sounds confusing? Wait for it, follow the instructions and discover the magic for yourself.
+
+#### Part 1: Install swirl
+- Navigate to the [swirl website](https://swirlstats.com/students.html)
+
+- Follow step 1 and step 2 if you have not already installed R and RStudio. Otherwise, proceed to **step 3: Install Swirl** and **step 4: Start Swirl**
+
+- Follow the prompts in your RStudio console. When it asks your to install a course, please select **1: R Programming: The basics of programming in R**. Please read the prompts and texts carefully because they will give you a good understanding of your R programming environment.
+
+- The course is subdivided into lessons that take around 10-30 mins on average. If you have never worked in R before, or dont remember anything from your R class taken long ago, I suggest you start from Lesson **1: Basic Building Blocks**. The next week is going to be an extremely fast-tracked condensed R Basics 101 class. To keep up, I suggest you complete atleast first 8 lessons. Lessons 9-12 are slightly more advanced, but will reap more benefit later. If you feel comfortable with the first 8 lessons, go ahead and give them a shot too. The extra work will help you immensely with grasping the tidyverse packages.
+
+- If you have have some experience, or are extremely comfortable with the basics of R, feel free to skip appropriate lessons ***ONLY if you feel confident*** answering the following questions for each lesson.
+
+  - **1: Basic Building Blocks** : You know what *vector recycling* is and how R recycles vectors of different lengths
+  
+  - **2: Workspace and Files** : You can *list, create files and directories* by writing code in R
+  
+  - **3: Sequences of Numbers**: You know the difference between `:`, `seq()` and `rep()`
+  - **4: Vectors**: You can predict and create vectors created with multiple conditions, and you know how to collapse a vector with multiple strings to a single string.
+  
+  - **5: Missing Values**: You know the difference between `is.na(x)` and `x == NA`. You can distinguish between `NA` and `NaN`
+  
+  - **6: Subsetting Vectors**: You know *ALL* the ways in which vectors can be subsetted [Hint: there are 4 popular ways]
+  
+  - **7: Matrices and Data Frames**: You know the difference between *vectors, matrices and dataframes*. You know how *coercion* of vector data types works in R.
+  
+  - **8: Logic**: You know the difference between `5 != 7` and `!5 == 7`, and the difference between `&` and `&&`, and the use of the `which()` operator.
+
