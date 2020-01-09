@@ -1,6 +1,5 @@
 ---
 title: "Software Resources, Spring 2020"
-author: "Varun Goel"
 output: html_document
 ---
 
@@ -15,3 +14,51 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 ## Last Updated: `r format(Sys.time(), "%a %b %d %X")` {.tabset .tabset-fade .tabset-pills}
 
 ---
+
+This document contains a number of resources that will (hopefully) assist you in accessing the software we will be using throughout the course. I am not an IT expert, but did install my software on both mac and windows. You can post on Piazza or come to office hours if you are having any software issues, but please also feel free to reach out to UNC ITS for assistance.
+R and R Studio.
+
+
+The main software we will be using in this course is R. The good news about this is 1) R coding is quickly becoming a sought-after skill across industry and academia, 2) R is free and runs on both Mac and Windows OS computers (and Unix/Linux), and 3) there is a lot of useful tutorials and help available online for R. The only not-so-good news about this is 1) if you are afraid of coding, you will have to learn to write R code [but this will be fun!] and 2) the examples might look a bit diferent from your computer because R looks a bit diferent depending on your OS and your code editor.
+
+## Install R on your personal computer (if R is not already installed)
+
+### Windows users
+1. Navigate to https://cran.r-project.org/bin/windows/base/ Click the link to download R 3.6.2 for Windows
+2. Follow the installation instructions provided here
+
+### Mac users
+1. Navigate to https://cran.r-project.org/bin/macosx/
+2. Download R-3.6.2.pkg
+3. Double click on the fle R-3.6.2.pkg and follow instructions to install
+
+## Update R on your personal computer (only if R is already installed and you would like to keep your current installed packages)
+
+### Windows users
+1. [Follow the link here](https://www.r-statistics.com/2013/03/updating-r-from-r-on-windows-using-the-installr-package/)
+
+### Mac users
+1. Follow instructions for a “new” install above
+2. Open R and run the following commands
+
+```{r eval = FALSE}
+p_df <- as.data.frame(installed.packages("/Library/Frameworks/R.framework/Versions/3.4/ Resources/library")) ## make sure to check this folder path and update the 3.X
+package_list <- as.character(p_df$Package)
+install.packages(package_list, dependencies=TRUE)
+```
+
+## Install RStudio on your personal computer (if RStudio is not already installed)
+
+1. Navigate to https://www.rstudio.com/
+2. Click the button that says “Download RStudio”
+3. Click the “Download” button under RStudio Desktop (FREE version)
+  - Windows users
+      1. Click on RStudio 1.2.5033 - Windows 7+ (64-bit) and download
+      2. Double click the fle Rstudio-1.2.5033.exe and install
+  - Mac users
+      1. Click on RStudio 1.2.5033 - macOS 10.12+ (64-bit) and download 
+      2. Double click the file RStudio-1.2.1335.dmg and install
+
+## Update RStudio on your personal computer (only if RStudio is already installed) Open RStudio
+1. Click on the Help menu and choose Check for Updates
+T
