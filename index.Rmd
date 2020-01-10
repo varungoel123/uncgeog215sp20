@@ -14,13 +14,18 @@ wk1.date <- as.Date("2020-01-08")
 <img style="width:400px;height:400px;float:left;" src="globecloud.png">
 
 
-> * <b>Instructor:</b> Varun Goel | 
-> * <b>Teaching Assistant:</b> Prabisha Shreshta
-> * <b>Graduate Research consultant:</b> Kate Brandt
-> * <b>Lectures:</b> Monday 3:35 pm - 4:50 pm
-> * <b>Labs:</b> Wednesday 3:35 pm - 4:50 pm,
-> * <b>Location:</b> <mark>Carolina Hall 204</mark>
-> * <b> Class Discussion Page: [Click here](https://piazza.com/unc/spring2020/geog215/home){target="_blank"}
+> - **Instructor:** Varun Goel
+> - **Teaching Assistant:** Prabisha Shreshta
+> - **Graduate Research consultant:** Kate Brandt
+> - **Lectures:** Monday, Wednesday *3:35 pm - 4:50 pm*
+> - **Location:** <mark>Carolina (Hurston) Hall 204</mark>
+> - **Class Discussion Page:** [Click here](https://piazza.com/unc/spring2020/geog215/home){target="_blank"}
+
+
+> ### **Office Hours:**
+> **Location:**  *223 Carolina (Hurston) Hall*  
+> **Varun Goel:**  Mon 11am - 12pm, Thu 2 - 4pm, Fri 2 - 3pm
+> **Prabisha Shrestha:** Mon 1 - 2pm, Wed 12 - 2pm
 
 
 
