@@ -41,8 +41,8 @@ The main software we will be using in this course is R. The good news about this
 1. Follow instructions for a “new” install above
 2. Open R and run the following commands
 
-```{r eval = FALSE}
-p_df <- as.data.frame(installed.packages("/Library/Frameworks/R.framework/Versions/3.4/ Resources/library")) ## make sure to check this folder path and update the 3.X
+```{r eval = FALSE, echo = TRUE}
+p_df <- as.data.frame(installed.packages(.libPaths())) ## make sure to check this folder path and update the 3.X
 package_list <- as.character(p_df$Package)
 install.packages(package_list, dependencies=TRUE)
 ```
