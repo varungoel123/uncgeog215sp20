@@ -1,7 +1,7 @@
 Order,wknum,topic,deliverables
 1.1,1,"Intro to Spatial Data Science, spatial data, & geographic information",
 2.1,2,Intro to R and modern computing environments,
-2.2,2,R basics,
+2.2,2,Introduction to RMarkdown,
 3.1,3,NO CLASS (MLK day),Lab 1
 3.2,3,Tidy data: Intro to Tidyverse,
 4.1,4,Representing location and space,Lab 2
