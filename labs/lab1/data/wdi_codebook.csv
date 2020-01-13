@@ -1,0 +1,29 @@
+indicator,ind_short
+Access to electricity (% of population),pop_w_electric
+"Adjusted net enrollment rate, primary, female (% of primary school age children)",f_net_enrollment
+Age dependency ratio (% of working-age population),age_dependency
+"Children out of school, female (% of female primary school age)",f_out_school
+CO2 emissions (kg per PPP $ of GDP),co2_kg_ppp_gdp
+CO2 emissions (kt),co2_kt
+"Fertility rate, total (births per woman)",fertility_rate
+GDP (current US$),gdp_currentUS
+GDP per unit of energy use (PPP $ per kg of oil equivalent),gdp_energy_perunit
+"GDP, PPP (current international $)",gdp_ppp_current
+GINI index (World Bank estimate),gini_index
+"Labor force participation rate, female (% of female population ages 15+) (national estimate)",f_labor_force
+"Life expectancy at birth, female (years)",f_lifeexp
+"Life expectancy at birth, male (years)",m_lifeexp
+"Life expectancy at birth, total (years)",pop_lifeexp
+"Literacy rate, adult female (% of females ages 15 and above)",f_adult_literacy
+"Mortality rate, under-5, female (per 1,000 live births)",f_u5_mortality
+"Mortality rate, under-5, male (per 1,000 live births)",m_u5_mortality
+Population density (people per sq. km of land area),pop_density
+Population growth (annual %),pop_growth
+Population in largest city,pop_largest_city
+Population in the largest city (% of urban population),pop_largest_city_perc
+"Population, female (% of total population)",f_pop
+"Population, male (% of total population)",m_pop
+"Population, total",pop_perc
+Poverty headcount ratio at $1.90 a day (2011 PPP) (% of population),pov_headcount
+Rural population (% of total population),rural_pop
+Urban population (% of total population),urban_pop
