@@ -20,4 +20,4 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 
 # Week 2: R basics and R Markdown
 
-**Jan 13: Introduction R and R Studio:** [in-class-excercise](02_datatypes_inclass.html){target="_blank"}
+**Jan 13: Introduction R and R Studio:** [in-class-excercise](lectures/02_datatypes_inclass.html){target="_blank"}
