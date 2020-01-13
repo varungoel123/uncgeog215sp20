@@ -1,0 +1,457 @@
+---
+title: "Data Types and Formats in R"
+author: 
+- GEOG215, Introduction to Spatial Data Science \newline
+- Varun Goel
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: 
+  html_document:
+    mathjax: null
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data Types in R {.tabset}
+
+### Character
+
+**A character object is used to store string values in R.  Note that anthing with a character value is inside quotations when displayed in R.**
+
+<details>
+  <summary>Create and get information about character object 1</summary>
+```{r}
+# Create an object with a single character value
+char <- "character data"
+# Print object to console
+char
+# Get type of object
+typeof(char)
+# Get class of object
+class(char)
+# Get structure of object
+str(char)
+# Ask if object is character
+is.character(char)
+# Number of characters?
+nchar(char)
+```
+</details>
+
+<details>
+  <summary>Subsetting within character object</summary>
+```{r}
+# Create an object with a single character value
+char <- "character data"
+char
+# Get first five characters
+substr(char, 1, 5)
+# Get last seven characters
+substr(char, nchar(char)-7, nchar(char))
+```
+</details>
+
+<details>
+  <summary>Create and get information about character object 2</summary>
+```{r}
+# Create an object with multiple character values
+char <- c("a", "GEO", "course")
+# Print object to console
+char
+# Get type of object
+typeof(char)
+# Get class of object
+class(char)
+# Get structure of object
+str(char)
+# Ask if object is character
+is.character(char)
+# Number of characters?
+nchar(char)
+```
+</details>
+
+<details>
+  <summary>Convert to character object</summary>
+```{r}
+# Convert object to character
+as.character(1)
+# Convert multiple objects to character
+as.character(1:10)
+```
+</details>
+
+<br>
+
+### Numeric
+
+**A numeric object is used to store numbers in R.**
+
+<details>
+  <summary>Create and get information about numeric object 1</summary>
+```{r}
+# Create an object with a single numeric value
+num <- 1.0
+# Print object to console
+num
+# Get type of object
+typeof(num)
+# Get class of object
+class(num)
+# Get structure of object
+str(num)
+# Ask if object is character
+is.character(num)
+# Ask if object is numeric
+is.numeric(num)
+```
+</details>
+
+<details>
+  <summary>Create and get information about numeric object 2</summary>
+```{r}
+# Create an object with a multiple numeric values
+num <- 1:10
+# Print object to console
+num
+# Get type of object
+typeof(num)
+# Get class of object
+class(num)
+# Get structure of object
+str(num)
+# Ask if object is numeric
+is.numeric(num)
+```
+</details>
+
+<details>
+  <summary>Convert to numeric object</summary>
+```{r}
+# Convert object to numeric
+as.numeric("1")
+# Convert multiple objects to numeric
+as.numeric(c("1", "2", "2"))
+# Convert multiple objects to numeric
+as.numeric(c("1", "100", "blue"))
+```
+</details>
+
+<br>
+
+### Logical
+
+**A logical object is used to store TRUE / FALSE (or 1 / 0) values in R. These result from logical queries.**
+
+<details>
+  <summary>Create and get information about logical object</summary>
+```{r}
+# Create an object with a single logical value
+lo <- TRUE
+# Print object to console
+lo
+# Get type of object
+typeof(lo)
+# Get class of object
+class(lo)
+# Get structure of object
+str(lo)
+# Ask if object is character
+is.character(lo)
+# Ask if object is numeric
+is.numeric(lo)
+# Ask if object is logical
+is.logical(lo)
+```
+</details>
+
+<details>
+  <summary>Logical objects and results of queries</summary>
+```{r}
+# Example queries
+3 > 2
+2 > 3
+1 %in% 1:20
+1 %in% 10:20
+1:20 %in% 5
+```
+</details>
+
+<details>
+  <summary>Convert to  logical object</summary>
+```{r}
+# Convert object to logical
+as.logical("1")
+# Convert object to logical
+as.logical(1)
+# Convert object to logical
+as.logical(0)
+# Convert object to logical
+as.logical(2)
+# Convert object to logical
+as.logical(c(1,0,0,1,0))
+```
+</details>
+
+<details>
+  <summary>Logical object as numeric</summary>
+```{r}
+# Convert object to logical
+lo <- as.logical(c(1,0,0,1,0))
+# Use sum function to find how many "TRUE"s
+sum(lo)
+```
+</details>
+
+## Data Structures in R {.tabset}
+
+### Vector
+
+**Vector is a basic data structure in R. It contains elements of the same type.**
+
+<details>
+  <summary>Create vectors</summary>
+```{r}
+# Numeric
+a.numeric.vector <- 1:10
+a.numeric.vector
+# Numeric
+a.numeric.vector <- 100:80
+a.numeric.vector
+# Numeric sequence
+a.numeric.vector <- seq(0, 20, 2)
+a.numeric.vector
+# Repeating value
+a.numeric.vector <- rep(2.5, 5)
+a.numeric.vector
+# Character
+a.char.vector <- c("A", "a", "aye?")
+a.char.vector
+# Mix elements of different types
+a.vector <- c("A", TRUE, 1)
+a.vector
+# Append two vectors
+a.vector <- 1:10
+b.vector <- 100:110
+c.vector <- c(a.vector, b.vector)
+c.vector
+```
+</details>
+
+
+<details>
+  <summary>Get info about vector</summary>
+```{r}
+# Create numeric vector
+a.numeric.vector <- 100:110
+a.numeric.vector
+# How many elements?
+length(a.numeric.vector)
+# Max, min, mean
+max(a.numeric.vector)
+min(a.numeric.vector)
+mean(a.numeric.vector)
+```
+</details>
+
+<details>
+  <summary>Vector subsetting</summary>
+```{r}
+# Create numeric vector
+a.numeric.vector <- 100:110
+# 5th element
+a.numeric.vector[5]
+# 2nd to 8th element
+a.numeric.vector[2:8]
+# Which element of vector equal to value
+which(a.numeric.vector == 102)
+a.numeric.vector[3]
+# Which element(s) of vector less than value
+which(a.numeric.vector < 103)
+a.numeric.vector[1:3]
+```
+</details>
+
+### Factor
+
+**A factor object stores nominal values as a vector of integers in the range [1-k] (where k is the number of unique values in the nominal variable), and an internal vector of character strings (the original values) mapped to these integers.**
+
+**These can be both very useful and very confusing when used in data frames in R!**
+
+<details>
+  <summary>Working with factors</summary>
+```{r}
+# Create factor
+fac <- factor(c("a", "b", "b", "a"))
+fac
+# Get information about factor
+class(fac)
+levels(fac)
+length(fac)
+# Be careful! You can't use values that are not in the levels
+fac[2] <- "c"
+fac
+# Watch out for conversion!
+as.numeric(fac)
+as.character(fac)
+# If your data are not clean, 
+# R will read in a numeric variable as a factor
+ex.dat <- data.frame(ID = 1:10, VALUE = c(101:109, "-"))
+str(ex.dat)
+ex.dat
+# Note what happens on convert to numeric
+ex.dat$VALUECONVERT <- as.numeric(ex.dat$VALUE)
+ex.dat
+# That's no good, try this
+ex.dat$VALUECONVERT2 <- as.numeric(as.character(ex.dat$VALUE))
+ex.dat
+
+```
+### Matrix
+
+**A matrix is an extension of the vector data structure. A matrix is simply an atomic vector with two dimensions: rows and columns. A matrix is similar to a table, but without the "awareness" that it is a a table.**
+
+<details>
+  <summary>Create matrices</summary>
+```{r}
+# Create empty
+m <- matrix(nrow = 2, ncol = 2)
+m
+# Create, populate by column
+m <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3)
+m
+# Create, populate by row
+m2 <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3, byrow = TRUE)
+m2
+# Create by appending as columns
+first.vec <- 1:5
+second.vec <- 6:10
+m3 <- cbind(first.vec, second.vec)
+m3
+# Create by appending as rows
+first.vec <- 1:5
+second.vec <- 6:10
+m3 <- rbind(first.vec, second.vec)
+m3
+```
+</details>
+
+<details>
+  <summary>Get info about matrix</summary>
+```{r}
+# Create, populate by row
+m2 <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3, byrow = TRUE)
+m2
+# Type
+class(m2)
+# Dimensions
+dim(m2)
+# Number of elements (total)
+length(m2)
+```
+</details>
+
+<details>
+  <summary>Matrix subsetting</summary>
+```{r}
+# Create, populate by row
+m2 <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3, byrow = TRUE)
+m2
+# 2nd row
+m2[2,]
+# 2nd column
+m2[,2]
+# 1st and 2nd column
+m2[,1:2]
+# By element (not recommended)
+m2[4]
+```
+</details>
+
+### Array
+
+**COMING SOON**
+
+### Data Frame
+
+**A data frame is a two dimensional object. It is similar to a matrix, but different columns can contain different modes of data (numeric, character, logical, and so on). A data frame is similar to the datasets in SAS, SPSS, and Stata. Data frames are the most common data structure you will be dealing with in R.**
+
+<details>
+  <summary>Create data frame and get information</summary>
+```{r}
+# Create from set of vectors with same length
+patientID <- c(1, 2, 3, 4, 5)
+age <- c(25, 34, 28, 52, 35)
+diabetes <- c("Type1", "Type2", "Type1", "Type1", "Type2")
+status <- c("Poor", "Improved", "Excellent", "Poor", "Poor")
+patientdata <- data.frame(patientID, age, diabetes, status)
+patientdata
+# Type
+class(patientdata)
+# Dimensions, number of rows, number of columns
+dim(patientdata)
+nrow(patientdata)
+ncol(patientdata)
+# Data types for each column
+str(patientdata)
+```
+</details>
+
+<details>
+  <summary>Data frame subsetting</summary>
+```{r}
+# See content above for patientdata object creation
+# 2nd row
+patientdata[2,]
+# 2nd column
+patientdata[,2]
+# 1st and 2nd column
+patientdata[,1:2]
+# By column name
+patientdata$patientID
+```
+</details>
+
+
+### List
+
+**A list acts as a container. The contents of a list are not restricted to a single mode and can encompass any mixture of data types. Lists are sometimes called generic vectors, because the elements of a list can by of any type of R object, even lists containing further lists. A list is somewhat similar to a data frame, but the contents of each vector do not have to be the same length**
+
+<details>
+  <summary>Create list and get information</summary>
+```{r}
+# Create list from multiple vectors and objects
+numbers <- 1:5
+characters <- c("a", "b", "c")
+lo <- TRUE
+ex.list <- list(numbers, characters, lo)
+ex.list
+# What kind of object?
+class(ex.list)
+# Data types for each element
+str(ex.list)
+# Number of list elements
+length(ex.list)
+# Name list elements
+names(ex.list) <- c("numbers", "characters", "logical")
+ex.list
+names(ex.list)
+```
+</details>
+
+
+<details>
+  <summary>List subsetting</summary>
+```{r}
+# See content above for ex.list object creation
+# 2nd element of list
+ex.list[[2]]
+# 2nd element of list, by name
+ex.list$characters
+# 3rd element of 2nd element of list
+ex.list[[2]][3]
+# 3rd element of 2nd element of list
+ex.list$characters[3]
+```
+</details>
