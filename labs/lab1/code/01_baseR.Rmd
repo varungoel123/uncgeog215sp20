@@ -1,0 +1,309 @@
+---
+title: 'GEOG 215: Lab 1'
+author:
+- R projects, data structures, and subsetting data frames
+- 100 points \newline
+- Introduction to Spatial Data Science \newline
+- Varun Goel
+output:
+  html_document:
+    theme: readable
+    highlight: kate
+    mathjax: null
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Lab Objectives 
+
+- **Understand and implement basic building blocks in R, especially the *peculiarities* associated with R**
+
+- **Learn how to organize files and make your documents more fool-proof**
+
+- **Understand how to examine the structure of a data set and interpret summaries**
+
+- **Learn how to index subset data frames**
+
+***
+
+# Helpful Resources for Lab
+
+- Cheat sheet for base R <https://rstudio.com/wp-content/uploads/2016/05/base-r.pdf>
+- Revise swirl modules as needed
+- Go through examples in in-class exercise in Class 2 <https://geog215-spds.rbind.io/lectures/02_datatypes_inclass.html>
+- Your instructor, TA, Piazza, office hours, Stack overflow
+
+***
+
+# General Marking Criteria {.tabset .tabset-fade .tabset-pills}
+
+Unless specified otherwise, I will mark your labs using the following rubric:
+
+- **0-20**: the code does not run and there is no documentation to follow it.
+- **20-40**: the code does not run, or runs but it does not produce the expected outcome. There is some documentation explaining - its logic.
+- **40-60**: the code runs and produces the expected output. There is some documentation explaining its logic.
+- **60-80**: the code runs and produces the expected output. There is good documentation explaining its logic.
+- **80-100**: the code runs and produces the expected output. There is extensive documentation, properly formatted, thoroughly explaining its logic.
+
+## Part 1: **Setup** 
+
+>"The only difference between a mob and a trained army is organization" - *Calvin Coolidge* 
+
+Just like all aspects of life, organizing your files in R can maximize effectiveness and reduce frustration. One way to achieve that is to organize all the bits and pieces of your data analysis into a folder on your computer that holds all files relevant to the particular piece of your assignment or data analysis.  Fortunately, R studio provides a very simple method to create a self-contained ***Project*** that helps achieve that functionality. Most Importantly, storing all your files in a project also ensures your code to work, even if you move your files around your computer or onto other computers.
+
+*Not Convinced*? Let's try out an example:
+
+### *Without organizing files in an R project*
+
+(***Please Follow all Directions carefully***)
+
+* Create a folder named `lab1` in any location where you are **NOT** planning to store your labs. (Note: we will delete this folder later)
+
+* Create two folders inside the `lab1` folder: `data` and `scripts`.
+
+* Download and unzip the data files from <https://geog215-spds.rbind.io/labs/lab1/data/lab1_data.zip> and save them (the unzipped files) in the `data` folder.
+
+* Open Rstudio
+
+* Set your working directory to the `lab1` folder. This is going to be your "parent" directory for the analysis (Hint: You can either do this by writing a command in the console, or you can use a command from the RStudio menubar). If you do not know how to do this you can check the "Set/change working directory" section in <http://www.sthda.com/english/wiki/running-rstudio-and-setting-up-your-working-directory-easy-r-programming>
+
+* You are now going to save all your commands in an R script. Create a new R script called `lab01_01_YOURLASTNAME.R` and store it in the `scripts` folder. (You can either do this writing a command in the console, or you can use a command from the RStudio menubar). If you choose to write a command in the console, open the script in Rstudio. (Note: The script will automatically open if you choose to create it through Rstudio's menu bar.)
+
+* To ensure that you are in the right directory everytime you run your R script, copy the executed command to set your working directory in your console to set your working directory into your script. Notice the file path, it is called an ***Absolute*** path because it contains all the sub-directories on your computer required to locate the file
+
+```{r eval =F}
+# Hint: In mac OSX it may look like
+setwd("~/path/to/my/directory")
+For Windows, the command might look like :
+setwd("c:/Documents/my/working/directory")
+```
+
+* Now type the following command in your script to read the `wdi_2018.csv` data file.
+
+```{r, eval=F, echo=T}
+wdi_2011 <- read.csv("./data/wdi_2011.csv")
+```
+* Notice the file path inside the read.csv command. Instead of an absolute path, we specified a ***relative*** path. This path tells us the location of the data file *relative* to the parent directory that you set as the working directory. The "." signifies the current directory that was set early on using the `setwd()` command. This is different from the *absolute* path, that tells us the actual location of the file on your computer. 
+
+* To ensure that your script works correctly, save it and restart your R session by navigating to <mark>Session -> Restart R</mark> in the Rstudio Menubar. Then, run the script and ensure you do not encounter any errors. 
+
+***
+
+Now imagine that while you were rejoicing in your working script, R on your compter decides to act funky and crashes. To get yout of the sticky situation,  you try to run your script on a UNC library desktop computer. It is also a likely possibility that you may have to switch from a mac to a windows computer or vice versa. Hence, you decide to copy your `lab1` folder on a pendrive and transfer it to the other computer. While we certainly knock-on-wood that this never happens, we want to safeguard against all possibilities. 
+
+* Hence, to test whether your R script will work well without any modifications in another location if ever needed, copy and paste the `lab1` folder to a location where you PLAN TO store your labs. For example, I store my labs in `classes -> geog215 -> labs`. and paste it to ***another*** location on your computer. ***Delete*** your original `lab1` folder. (Don't worry about losing any data since all of it is copied to the new folder)
+
+* Navigate to the new location and open your `lab01_01_YOURLASTNAME.R` script from there.
+
+***<u>Answer the Questions below:</u>*** *(Unless mentioned otherwise, please keep explanations to 1-2 sentences)*
+
+**1.1 Do you encounter any error(s)? If so, copy the error(s) from your console and place it in your script. Make sure that any text that should not be executed in your script should be *commented out* with a `#`** *(Hint: to comment out multiple lines at once, you can highlight the chunk of lines, and navigate to `Code -> Comment/Uncomment Lines`)*
+
+**1.2 If you did get any error(s), What do you think is the reason behind the error(s) you encountered in your script? Write in a way that third person not experienced with R coding can understand, too.**
+
+**1.3 If you encounter error(s), *comment out* the erroneous code, and type in the correct command in your script.** (Hint: You do not change `wdi_2011 <- read.csv("./data/wdi_2011.csv")` )
+
+**1.4 Do you still encounter any error with the command `wdi_2011 <- read.csv("./data/wdi_2011.csv")` ? Why or why not?**
+
+**1.5 Provide ONE reason why you may prefer either an absolute or a relative path**
+
+From the above example, you can start imagining all the problems that may be created due to the exclusivity of setting unique paths for each script for larger projects. For example, if you wanted to share your code back and forth with your team-mates, you will have to keep on setting your directory paths for each computer everytime you share your code. Or Imagine being a TA in this class, who will have to change the working directory for EVERY student's submission. This is big problem towards replicating and reproducing someone else's code. *Luckily RStudio has an elegant solution !*
+
+### *Oranizing files in an R project*
+
+Congratulations !!! You are now one step closer to learning the reproducible data science workflow and creating code that can be easily shared among other team members.
+
+* You will now convert your `lab1` folder to an Rproject. To do so, go to `File -> New Project`. Chose `Existing Directory` and navigate to your `lab1` folder and choose `create project`. More information can be found [here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects). 
+
+***<u>Answer the Question below:</u>*** *(Unless mentioned otherwise, please keep explanations to 1-2 sentences)*
+
+**1.6 What is the name of the new file that is created in your `lab1` folder after converting it into an R project?  This will tells R to execute your script from the current working directory regardless of the computer, user or a different Operating System.**
+
+* Also, make sure .Rdata files are not saved by default. To do this Navigate to `Tools -> Global Options`. Then in the General tab, change the options under Workspace.
+
+<img src="https://geog215-spds.rbind.io/labs/lab1/rdata_no.png" alt="changing rdata options" class = "center"  style="width:500px;"/>
+
+
+## Part 2: **Exploring Data Structure**
+
+Now you are all set to explore your data. As an aspiring spatial data scientist, it is important to 'get a feel' of the structure of your data before you dive right into the details. The world development indicators dataset <https://datacatalog.worldbank.org/dataset/world-development-indicators> is a publicly accessible data set that helps users find information related to all aspects of development, both historical and current, follow trends, and monitor progress towards sustainable development goals. The database is compiled from hundreds of officially-recognized sources and includes national, regional, and global estimates. This is the primary dataset that is used in one of the most iconic Ted Talks by the late Hans Rosling:
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/usdJgEwMinM" frameborder="0" allowfullscreen></iframe>
+
+
+The raw dataset itself contains 22.6 million records, that I processed (using tools that you will learn in the next lab) to produce a snapshot of some important development indicators in 2011 and 2001.
+
+>Whenever you're working with a new dataset, the first thing you should do is look at it! What is the format of the data? What are the dimensions? What are the variable names? How are the variables stored? Are there missing data? Are there any
+flaws in the data?
+
+* Let's begin by exploring the World development Indicators for 2011 (`wdi_2011.csv`).
+
+<u>**Answer the questions below**</u>
+
+**2.1** First, make sure that your data is loaded. One option is to view the RStudio global environment pane. There is however, a console command to check what objects are loaded in your R session. Write the console command in your script that you would use to *list all objects in your environment*.
+(Hint: Swirl R programming Module 2).
+
+**2.2** Now, once you are confident your data is loaded, lets get a sense of the overall structure of the data. Again, Rstudio makes it easy for you by expanding the data structure on clicking the loaded data in your environment. You can examine the structure of your data by either clicking the blue circle with a white play button next to the name of the data object, or by using `str()` function in the console. Write the command to examine the structure of your data using the str() function.
+
+Based on the structure of your data object:
+
+**2.3** What is the *data structure* of the object storing the wdi data? (provide the command and and a 1-2 line description)
+  
+**2.4** What is the size of the data? Hint: use the *object.size()* command - (provide the command and and a 1-2 line description)
+  
+**2.5** What are the dimensions of the object?(number of rows and columns) (provide the command and and a 1-2 line description)
+  
+**2.6** The data object itself consists of multiple columns. What data structure is each column? (Hint: even though some of the columns are of different ***data types***, they  are the same ***data structure***)
+  
+**2.7** What is the data type for the `country`, `region` and `Income.Group` columns? In one line describe the difference between the data type for these columns and character vectors. Will these data types be considered nominal, ordinal, interval or numeric variables?
+
+**2.8** Once you understand the structure of the data, you can quickly examine summary statistics for each column in the data. Use the summary() function to examine the summary statistics for each column. Type the command to display the summary statistics for the data set.
+
+Provide a 1-2 line of the following questions:
+
+**2.9** Which columns have the highest and the lowest number of missing values?
+
+**2.10** In one sentence mention what you think the summary values represent for the Region and Income.Group column? Why are they different from the summaries generated for all other columns (except Country.Name)?
+
+**2.11** Are there any flaws in the data (other than missing data), that you can find by looking at the summary? Hint: consult the codebook for the units of each column and check whether you see any unusual summary statistics? For example, if a column should only have positive numbers, the minimum value cannot be negative. Similarly, some columns may only make sense for a range of values, and not beyond those ranges. Glance through summary statistics for each column and if you find errors, mention ONE column, and 1 line description of what the flaw may be.
+
+By looking at the summary table, answer the following questions: (True/False)
+
+**2.12** The Average Life expectancy of the world is greater than 70 years 
+
+**2.13** On average, a larger percent of the population in the world lives in rural areas compared to urban areas 
+**2.14** There are more low and lower middle income countries as compared to high and upper middle income countries.
+
+Finally, before we start exploring the data in detail, it is generally a good idea to convert any factor columns to characters in a data frame. The simplest way is to change the default behavior of how to read in a data file in R. 
+
+**2.15** Use the R help to check the default arguments in the read.csv() function. You can get help by typing `?read.csv` or typing `help("read.csv")` ) and change the argument to read strings as cfactors to FALSE. Write the command that reads in the `wdi_2011.csv` dataset but does set the non-numeric data columns to a factor. Once you do that, mention the data type for the `country`, `region` and `Income.Group` columns.
+
+***
+
+## Part 3: **Subsetting a data frame**
+
+Great, you now know the skeleton of your data set. Lets perform some subsetting commands to ask some interesting questions of our data.
+
+<u>**Review**</u> : Let us recall the basics of subsetting a vector through an example: (Swirl module: R programming Lesson 6) [Dont type this code in your script, this is for review]
+
+```{r , echo = T}
+my_vect <- c(1,5,7,8,9,10,15,20)
+my_vect[c(1:3,6)] # positive indexing
+my_vect[-c(2,6)] # negative indexing
+my_vect[my_vect >=10] # logical indexing
+```
+
+#### Vector Subsetting
+
+Recall from Part 2 - since a data frame itself is composed of vectors (in the form of columns), we can perform vector subsetting on an individual column. Let us extract a vector for percentage of female enrollment from the data.
+Assign female net enrollment to a vector by typing the following code in your script:
+```{r eval = F, echo = T}
+f_enroll <- wdi_2011$f_net_enrollment # You can access any column as a vector in a data frame by using the `$` sign followed by the column name
+```
+**3.1**. How many countries have missing data on female enrollment? To get this answer, you can use the `length()` function on your vector containing the condition to count missing values
+```{r eval = F, echo = T}
+length(f_enroll[__ENTER_CODE_HERE__])
+```
+
+**3.2**. Subset the vector to include only values of female enrollment above 50% and assign it to f_enroll50above. 
+```{r eval = F, echo = T}
+f_enroll50above <- f_enroll[__type_in_your_condition_here]
+```
+Check the `f_enroll50above` vector. Did your get the expected output? If not, in one sentence provide the reason behind the unexpected behavior.
+
+**3.3**  If you have NAs in the f_enroll50above vector, remove NAs from the vector. Hint: you can update the values in an object by assigning it to itself.
+```{r eval = F, echo = T}
+f_enroll50above <- f_enroll50above[__ENTER_CODE_HERE__]
+```
+**3.4** Can you find a more efficient way to combine the conditions for enrollment above 50% *AND* No missing values?
+```{r eval = F, echo = T}
+f_enroll50above <- f_enroll[__type_in_your_condition_here] # remember the & and | operators?
+```
+**3.5** ***(Extra Credit)*** One way to not deal with the messy NAs while trying to subset vectors is to use the `which()` function as it only returns the TRUE indices (no Na's or False indices). Can you create the same f_enroll50above vector but using the which() command?
+```{r eval = F, echo = T}
+f_enroll50above <- f_enroll[__type_in_your_condition_here] #using which() command
+```
+
+#### Data Frame Subsetting
+
+- You will notice that although we can get the values for high female enrollment, we do not really know what countries are assigned to those high values. Hence, we need to start querying data in more than one dimension. This where data frame indexing becomes extremely useful:
+- Just like indexing a vector with numbers, a data frame can also be indexed, but on both the rows and columns. Hence the structure of a data frame (called df as an example) looks like  df[row_index, column_index]
+```{r eval = F, echo = T}
+df[1:3,c(4,6)] # positive indexing - subset row 1,2,3, and column 4,6
+df[-c(1:3),-c(4,6)] # negative indexing - subset ALL rows EXCEPT 1,2,3, and ALL columns EXCEPT 4,6
+df[,c(4,6)] # positive indexing - subset ALL rows and column 4,6
+df[1:3,] # positive indexing - subset row 1,2,3 and ALL columns
+df[1:3, c("Country.Name","rural_pop")] #named index on columns - returns rows 1,2,3 and columns with the given names
+```
+<u>**Answer the following on your wdi_2011 dataset**</u> [Type the commands in your script]
+
+**3.6** Subset rows 30 to 60, and columns from 15 to 25
+
+**3.7** Subset all even rows, and all odd columns (Hint: use the seq() command).
+```{r eval = F, echo = T}
+even_rows <- seq(__INSERTCODE__)
+odd_cols <- seq(__INSERTCODE__)
+wdi_2011[even_rows, odd_cols]
+```
+
+**3.8** Subset all rows EXCEPT rows 80 to 100, and row 150, 175 and 215. Subset ALL columns
+
+**3.9** Show the 1st,6th,11th,16th...36th,41st,46th countries with their name, continent, region, and female Life expectancy. Hint: use seq() for rows and named indexing for columns
+
+**3.10** Can you think of 1 way where one type of index may be better than another? Provide an example from your dataset.
+
+Now to add more realistic, but coomplicated scenarios, Lets say we are interested in doing analysis only on subset of  observations for countries with Non-Missing gini index values. To solve this, we first to need to calculate the row index **(NOT VALUES)** that contains non missing gini values in one of the two ways
+
+```{r eval = F, echo = T}
+## type these in your script
+gini_non_missing1 <- !is.na(wdi_2011$gini_index)
+# or
+gini_non_missing2 <- which(!is.na(wdi_2011$gini_index))
+```
+
+**3.11** What kind of data types are 2 resulting vectors? What is the difference between the 2?
+
+Next, Assign the vector to the row index and create a new object
+```{r eval = F, echo = T}
+## type these in your script
+wdi_gini_noNA <- wdi_2011[gini_non_missing1, ]
+## your answer will be the same if you ran wdi_gini_noNA <- wdi_2011[gini_non_missing2, ]
+```
+
+**3.12** What is data structure of wdi_gini_noNA ? is it a data frame or a vector
+
+**3.13** (Extra Credit)[True/False] - Subsetting a dataframe in R always returns a data frame
+
+**3.14** Look at the summary of the new table. What is the Median of the gini_index? You can also find the median by using the function `median()` such as `median(wdi_gini_noNA$gini_index)`
+
+Gini index is a measure of the economic inequality in a country. THe higher the number, higher the inequality. Hence a median of 34 suggests that countries above the median lie in the top 50% economically unequqal countries, and those below the median lie in the bottom 50% economically unequal countries.
+
+**3.15** Based on your Perception (YES/NO), Do you think economic inequality is related to levels of income in a country? IF so, what do you think might be the relationship between the two? (positive, negative, no relationship)
+
+**3.16** Create a new data frame called wdi_gini_high that cotains the countries with gini index EQUAL TO OR ABOVE THE median.
+```{r eval = F, echo = T}
+Type your code in the script
+## find median
+median_gini <- YOUR CODE HERE
+## subset rows above or equal to median
+wdi_gini_high <- wdi_gini_noNA[wdi_gini_noNA$gini_index >= median_gini, ]
+```
+
+**3.17** How many countries are in the new dataframe? Out of those how many countries are in the high income group and how many in the low income group?
+(Extra Credit - If you can type code to produce the numbers rather than looking at summary tables)
+
+**3.18** Do the numbers change your belief in your perception of the relationship between economic inequality and income levels? Why or why not? Answer in 1-2 sentences
+
+**3.19** Which country(ies) has the highest economic inequality? hint: similar to the median(), you can use max() and modify code from **3.15**
+
+**3.20** Which country(ies) has the lowest economic inequality? hint: you can use the min function  and follow modify code from 3.15
+
+**3.21** How much time did it take you to complete the lab?
+
+**3.22** On a scale of 1-5, how difficult did you find this lab? (1-piece of cake, 5- nerve wracking)
+
+**3.23** On a scale of 1-5, how useful did you find this lab? (1-did not learn anything, 5-learnt many new concepts related to R basics and exploring nuts and bolts of data)
+
