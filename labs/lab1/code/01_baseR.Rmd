@@ -37,7 +37,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ***
 
-# General Marking Criteria {.tabset .tabset-fade .tabset-pills}
+# General Marking Criteria 
 
 Unless specified otherwise, I will mark your labs using the following rubric:
 
@@ -46,6 +46,12 @@ Unless specified otherwise, I will mark your labs using the following rubric:
 - **40-60**: the code runs and produces the expected output. There is some documentation explaining its logic.
 - **60-80**: the code runs and produces the expected output. There is good documentation explaining its logic.
 - **80-100**: the code runs and produces the expected output. There is extensive documentation, properly formatted, thoroughly explaining its logic.
+
+# Deliverables {.tabset .tabset-fade .tabset-pills}
+
+* One single well commented and formatted R script named `lab01_01_YOURLASTNAME.R` on Sakai before the deadline
+
+***
 
 ## Part 1: **Setup** 
 
@@ -306,4 +312,6 @@ wdi_gini_high <- wdi_gini_noNA[wdi_gini_noNA$gini_index >= median_gini, ]
 **3.22** On a scale of 1-5, how difficult did you find this lab? (1-piece of cake, 5- nerve wracking)
 
 **3.23** On a scale of 1-5, how useful did you find this lab? (1-did not learn anything, 5-learnt many new concepts related to R basics and exploring nuts and bolts of data)
+
+* Save your Rscript and submit your script `lab01_01_YOURLASTNAME.R` on Sakai before the deadline.
 
