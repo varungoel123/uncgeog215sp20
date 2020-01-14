@@ -10,9 +10,11 @@ options(knitr.table.format = "html", knitr.kable.NA = '')
 knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE) 
 ```
 
-# Last Updated: `r format(Sys.time(), "%a %b %d %X")` {.tabset .tabset-fade .tabset-pills}
+### Last Updated: `r format(Sys.time(), "%a %b %d %X")` {.tabset .tabset-fade .tabset-pills}
 
-### Lab 1 : (Due Monday, Jan 20, 11:59 pm)
+***
+
+## Lab 1 : (Due Monday, Jan 20, 11:59 pm)
 
 **R projects, Data structures, subsetting data frames**: [link](labs/lab1/code/01_baseR.html){target="_blank"}
 
