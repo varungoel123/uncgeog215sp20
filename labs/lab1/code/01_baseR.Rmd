@@ -88,7 +88,7 @@ For Windows, the command might look like :
 setwd("c:/Documents/my/working/directory")
 ```
 
-* Now type the following command in your script to read the `wdi_2018.csv` data file.
+* Now type the following command in your script to read the `wdi_2011.csv` data file.
 
 ```{r, eval=F, echo=T}
 wdi_2011 <- read.csv("./data/wdi_2011.csv")
