@@ -3,13 +3,15 @@
 # Lab 1
 # Date
 
-# PART 1 ===================================
+# PART 1 ====================================
 
+setwd("~/path/to/my/directory")
+wdi_2011 <- read.csv("./data/wdi_2011.csv")
 # 1.1 ----------------------
 
-my_code <- c(1,6,7,8,9) # numeric vector
-
-# my_code containts 5 elements.
+# Yes there is an error after moving the folder
+# Error in setwd("~/path/to/my/directory") : 
+#   cannot change working directory
 
 # 1.2 ---------------------
 
