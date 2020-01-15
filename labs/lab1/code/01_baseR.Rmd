@@ -79,7 +79,7 @@ Just like all aspects of life, organizing your files in R can maximize effective
 
 * You are now going to save all your commands in an R script. Create a new R script called `lab01_01_YOURLASTNAME.R` and store it in the `scripts` folder. (You can either do this writing a command in the console, or you can use a command from the RStudio menubar). If you choose to write a command in the console, open the script in Rstudio. (Note: The script will automatically open if you choose to create it through Rstudio's menu bar.)
 
-* To ensure that you are in the right directory everytime you run your R script, copy the executed command to set your working directory in your console to set your working directory into your script. Notice the file path, it is called an ***Absolute*** path because it contains all the sub-directories on your computer required to locate the file
+* To ensure that you are in the right directory everytime you run your R script, copy the executed command to set your working directory in your console to **your script** to set your working directory into your script. Notice the file path, it is called an ***Absolute*** path because it contains all the sub-directories on your computer required to locate the file
 
 ```{r eval =F}
 # Hint: In mac OSX it may look like
