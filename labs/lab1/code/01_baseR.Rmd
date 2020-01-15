@@ -50,7 +50,7 @@ Unless specified otherwise, I will mark your labs using the following rubric:
 # Deliverables {.tabset .tabset-fade .tabset-pills}
 
 * One single well commented and formatted R script named `lab01_01_YOURLASTNAME.R` on Sakai before the deadline
-* Example of a script for this lab that you can use :[download](./lab01_01_goel.R){target="_blank"}
+* Example of a script for this lab that you can use to download at <https://geog215-spds.rbind.io/labs/lab1/code/lab01_01_goel.R>{target="_blank"}
 * More information about a useful style guide <http://adv-r.had.co.nz/Style.html>
 
 ***
