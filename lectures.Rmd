@@ -22,3 +22,5 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 
 **Jan 13: Introduction R and R Studio:** [pdf](lectures/02_Rbasics.pdf){target="_blank"} , [html](lectures/02_Rbasics/index.html){target="_blank"} , [in-class-excercise](lectures/02_datatypes_inclass.html){target="_blank"},
 [in-class-poll-everywhere](lectures/in_class_quiz.pdf){target="_blank"}
+
+**Jan 15: Introduction R Markdown and Literate programming:** [in-class-exercise](lectures/03_Rmarkdown/03_Rmarkdown_inclass.zip){target="_blank"}
