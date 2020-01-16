@@ -526,7 +526,7 @@ summary {
 <p><strong>1.1 Do you encounter any error(s)? If so, copy the error(s) from your console and place it in your script. Make sure that any text that should not be executed in your script should be <em>commented out</em> with a <code>#</code></strong> <em>(Hint: to comment out multiple lines at once, you can highlight the chunk of lines, and navigate to <code>Code -&gt; Comment/Uncomment Lines</code>)</em></p>
 <p><strong>1.2 If you did get any error(s), What do you think is the reason behind the error(s) you encountered in your script? Write in a way that third person not experienced with R coding can understand, too.</strong></p>
 <p><strong>1.3 If you encounter error(s), <em>comment out</em> the erroneous code, and type in the correct command in your script.</strong> (Hint: You do not change <code>wdi_2011 &lt;- read.csv(&quot;./data/wdi_2011.csv&quot;)</code> )</p>
-<p><strong>1.4 Do you still encounter any error with the command <code>wdi_2011 &lt;- read.csv(&quot;./data/wdi_2011.csv&quot;)</code> ? Why or why not?</strong></p>
+<p><strong>1.4 Run your script. Do you still encounter any error with the command <code>wdi_2011 &lt;- read.csv(&quot;./data/wdi_2011.csv&quot;)</code> ? Why or why not?</strong></p>
 <p><strong>1.5 Provide ONE reason why you may prefer either an absolute or a relative path</strong></p>
 <p>From the above example, you can start imagining all the problems that may be created due to the exclusivity of setting unique paths for each script for larger projects. For example, if you wanted to share your code back and forth with your team-mates, you will have to keep on setting your directory paths for each computer everytime you share your code. Or Imagine being a TA in this class, who will have to change the working directory for EVERY student’s submission. This is big problem towards replicating and reproducing someone else’s code. <em>Luckily RStudio has an elegant solution !</em></p>
 </div>
@@ -537,7 +537,7 @@ summary {
 <li>You will now convert your <code>lab1</code> folder to an Rproject. To do so, go to <code>File -&gt; New Project</code>. Chose <code>Existing Directory</code> and navigate to your <code>lab1</code> folder and choose <code>create project</code>. More information can be found <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">here</a>.</li>
 </ul>
 <p><strong><em><u>Answer the Question below:</u></em></strong> <em>(Unless mentioned otherwise, please keep explanations to 1-2 sentences)</em></p>
-<p><strong>1.6 What is the name of the new file that is created in your <code>lab1</code> folder after converting it into an R project? This will tells R to execute your script from the current working directory regardless of the computer, user or a different Operating System.</strong></p>
+<p><strong>1.6 What is the name (full name with extension) of the new file that is created in your <code>lab1</code> folder after converting it into an R project? This will tells R to execute your script from the current working directory regardless of the computer, user or a different Operating System.</strong></p>
 <ul>
 <li>Also, make sure .Rdata files are not saved by default. To do this Navigate to <code>Tools -&gt; Global Options</code>. Then in the General tab, change the options under Workspace.</li>
 </ul>
@@ -564,7 +564,7 @@ summary {
 <p><strong>2.4</strong> What is the size of the data? Hint: use the <em>object.size()</em> command - (provide the command and and a 1-2 line description)</p>
 <p><strong>2.5</strong> What are the dimensions of the object?(number of rows and columns) (provide the command and and a 1-2 line description)</p>
 <p><strong>2.6</strong> The data object itself consists of multiple columns. What data structure is each column? (Hint: even though some of the columns are of different <strong><em>data types</em></strong>, they are the same <strong><em>data structure</em></strong>)</p>
-<p><strong>2.7</strong> What is the data type for the <code>country</code>, <code>region</code> and <code>Income.Group</code> columns? In one line describe the difference between the data type for these columns and character vectors. Will these data types be considered nominal, ordinal, interval or numeric variables?</p>
+<p><strong>2.7</strong> What is the data type for the <code>country</code>, <code>region</code> and <code>Income.Group</code> columns? In one line describe the difference between the data type for these columns and character vectors. Will these data types be considered nominal, ordinal, interval or ratio variables?</p>
 <p><strong>2.8</strong> Once you understand the structure of the data, you can quickly examine summary statistics for each column in the data. Use the summary() function to examine the summary statistics for each column. Type the command to display the summary statistics for the data set.</p>
 <p>Provide a 1-2 line of the following questions:</p>
 <p><strong>2.9</strong> Which columns have the highest and the lowest number of missing values?</p>
