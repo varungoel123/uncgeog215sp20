@@ -187,7 +187,7 @@ By looking at the summary table, answer the following questions: (True/False)
 
 Finally, before we start exploring the data in detail, it is generally a good idea to convert any factor columns to characters in a data frame. The simplest way is to change the default behavior of how to read in a data file in R. 
 
-**2.15** Use the R help to check the default arguments in the read.csv() function. You can get help by typing `?read.csv` or typing `help("read.csv")` ) and change the argument to read strings as cfactors to FALSE. Write the command that reads in the `wdi_2011.csv` dataset but does set the non-numeric data columns to a factor. Once you do that, mention the data type for the `country`, `region` and `Income.Group` columns.
+**2.15** Use the R help to check the default arguments in the read.csv() function. You can get help by typing `?read.csv` or typing `help("read.csv")` and change the argument to read strings as factors (called **`stringsAsFactors`**) to FALSE. Write the command that reads in the `wdi_2011.csv` dataset but does not set the non-numeric data columns to a factor. Once you do that, mention the data type for the `country`, `region` and `Income.Group` columns.
 
 ***
 
