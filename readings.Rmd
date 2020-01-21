@@ -40,5 +40,5 @@ You need to register with your unc email address. I will use this survey to help
 ## Week 3 :  Doing Data Science: Introduction to TidyVerse
 
 1. Read the 2 articles on the Australian Bushfires by the New York Times and BBC
-  - <https://www.nytimes.com/interactive/2020/01/02/climate/australia-fires-map.html>
-  - <https://www.bbc.com/news/world-australia-50951043>
+  - <https://www.nytimes.com/interactive/2020/01/02/climate/australia-fires-map.html>**[Recommended]**
+  - <https://www.bbc.com/news/world-australia-50951043>**[Recommended]**
