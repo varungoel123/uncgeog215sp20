@@ -54,7 +54,7 @@ You need to register with your unc email address. I will use this survey to help
 
 4. [Geospatial Analysis, Chapter 2.1.3. Objects](http://www.spatialanalysisonline.com/HTML/index.html?objects.htm){target="_blank"}**[required]**
 
-5. [Geospatial Analysis, Chapter 2.1.9. Detail, resolution, and scale](http://www.spatialanalysisonline.com/HTML/index.html?detail__resolution__and_scale.html){target="_blank"}**[required]**
+5. [Geospatial Analysis, Chapter 2.1.9. Detail, resolution, and scale](http://www.spatialanalysisonline.com/HTML/index.html?detail__resolution__and_scale.htm){target="_blank"}**[required]**
 
 6. [Geocomputation with R, Chapter 7. Geographic data I/O (7 - 7.5) ](https://geocompr.robinlovelace.net/read-write.html){target="_blank"}**[required]**
 
