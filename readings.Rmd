@@ -42,3 +42,22 @@ You need to register with your unc email address. I will use this survey to help
 1. Read the 2 articles on the Australian Bushfires by the New York Times and BBC
   - <https://www.nytimes.com/interactive/2020/01/02/climate/australia-fires-map.html>**[Recommended]**
   - <https://www.bbc.com/news/world-australia-50951043>**[Recommended]**
+
+
+## Week 4 : Spatial Data: Principles and Representation
+
+1. [Geospatial Analysis, Chapter 2.1.2. Attributes](http://www.spatialanalysisonline.com/HTML/index.html?attributes.htm){target="_blank"}**[required]**
+
+2. [Intro to GIS and Spatial Analysis, Chapter 9. Coordinate Systems](https://mgimond.github.io/Spatial/coordinate-systems.html){target="_blank"}**[required]**
+
+3. [Intro to GIS and Spatial Analysis, Chapter 2. Feature Representation](https://mgimond.github.io/Spatial/feature-representation.html){target="_blank"}**[required]**
+
+4. [Geospatial Analysis, Chapter 2.1.3. Objects](http://www.spatialanalysisonline.com/HTML/index.html?objects.htm){target="_blank"}**[required]**
+
+5. [Geospatial Analysis, Chapter 2.1.9. Detail, resolution, and scale](http://www.spatialanalysisonline.com/HTML/index.html?detail__resolution__and_scale.html){target="_blank"}**[required]**
+
+6. [Geocomputation with R, Chapter 7. Geographic data I/O (7 - 7.5) ](https://geocompr.robinlovelace.net/read-write.html){target="_blank"}**[required]**
+
+7. [Geocomputation with R, Chapter 2. Geographic data in R](https://geocompr.robinlovelace.net/spatial-class.html){target="_blank"}**[recommended]**
+
+8. [6 minute video onWhy spatial data is Special](https://www.coursera.org/lecture/spatial-data-science/1-4-why-is-spatial-special-iii-a-data-perspective-rz1QT){target="_blank"}**[recommended]**
