@@ -26,3 +26,7 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 **Jan 15: Introduction R Markdown and Literate programming:** [pdf](lectures/03_RMarkdown.pdf){target="_blank"}, 
 [html](lectures/03_RMarkdown/index.html){target="_blank"}, 
 [in-class-exercise](lectures/03_Rmarkdown_inclass/03_inclass_exercise.zip){target="_blank"}
+
+# Week 3: Doing Data Science
+
+**Jan 13: Introduction to Tidyverse:** [pdf](lectures/04_tidyverse.pdf){target="_blank"} , [html](lectures/04_tidyverse/index.html){target="_blank"}
