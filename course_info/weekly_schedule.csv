@@ -4,27 +4,27 @@ Order,wknum,topic,deliverables
 2.2,2,Introduction to RMarkdown,
 3.1,3,NO CLASS (MLK day),Lab 1
 3.2,3,Tidy data: Intro to Tidyverse,
-4.1,4,Representing location and space,Lab 2
-4.2,4,Collecting spatial data,
-5.1,5,Acquiring spatial data,Lab 3
-5.2,5,Handling spatial data,
-6.1,6,Principles of reproducible research,Lab 4
-6.2,6,Data wrangling I,
-7.1,7,Data wrangling II,Lab 5
-7.2,7,Data visualization I,
-8.1,8,Data visualization II,"Lab 6, HW1"
+4.1,4,Representing location and space,
+4.2,4,Handling spatial data,
+5.1,5,Collecting spatial data,Lab 2
+5.2,5,Data visualization I,
+6.1,6,Data visualization II,
+6.2,6,Data wrangling 1,
+7.1,7,Data wrangling 2,Lab 3
+7.2,7,Practice Day: Asking Spatial Questions,
+8.1,8,Principles of Reproducible Research,HW1
 8.2,8,Review for Exam 1,
 9.1,9,Intro to exploratory spatial data analysis (ESDA),
 9.2,9,Mapping spatial data,
 10.1,10,NO CLASS (Spring Break),
 10.2,10,NO CLASS (Spring Break),
-11.1,11,Descriptive spatial statistics,"Lab 7, Project Proposal"
+11.1,11,Descriptive spatial statistics,"Lab 4, Project Proposal"
 11.2,11,Interpreting spatial patterns,
-12.1,12,Wrangling with spatial data,Lab 8
+12.1,12,Wrangling with spatial data,
 12.2,12,Spatial weights,
-13.1,13,Spatial autocorrelation I,"Lab 9, HW2"
+13.1,13,Spatial autocorrelation I,HW2
 13.2,13,Spatial autocorrelation II,
-14.1,14,Spatial clustering,Lab 10
+14.1,14,Spatial clustering,Lab 5
 14.2,14,Review for Exam 2,
 15.1,15,Advance topics in spatial data science,
 15.2,15,Data science in action (guest lecture),
