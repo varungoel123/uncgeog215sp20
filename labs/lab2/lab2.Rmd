@@ -1,0 +1,60 @@
+---
+title: "Lab 2"
+subtitle: "Analyzing Australian Bushfires Using Tidyverse"
+author: "Varun Goel"
+date: "1/27/2020"
+output: html_document
+---
+<style>
+
+strong {
+     color: Maroon;
+     font-size: 16px;
+}
+
+</style>
+
+## Summary
+
+In this Lab, you will use introductory yet powerful tidyverse commands to analyze a current real world dataset of Australian Bushfires. This huge and messy dataset has already been cleaned for you, and the focus of this lab will be to apply and solidify what you have learnt in your data camp modules. In addition, the purpose of this lab is to push you and provide you practice in interpreting, communicating and publishing your analysis in a readable and reproducible way
+
+***Replace the summary text with 3-5 sentences about what you learn about the current Australian Bushfires from this analysis. Complete this step after you finish the lab analysis***
+
+## Preparations
+First of all, as we learnt in lab1, we cant to create an R project for lab2 to keep all our code together. As we did earlier in lab1, either create a project in a new directory called *lab2* or create a directory called lab2 and and create the project in an existing directory. If you dont remember,
+you can get a [refresher on projects](https://r4ds.had.co.nz/workflow-projects.html). Section 8.4 has the instructions on how to create a new project.
+
+Before you start working in RMarkdown, you need to make sure you have the necessary R packages installed:
+
+**Run the R code in your console to install the "rmarkdown" and "tidyverse". Remove the check_packages chunk once your packages are installed.**
+```{r check_packages, message=FALSE, warning=FALSE}
+# This code will install required packages if they are not already installed
+# ALWAYS INSTALL YOUR PACKAGES LIKE THIS!
+packageList <- c("rmarkdown","tidyverse")
+for(p in packageList){
+  if (!requireNamespace(p)) {
+    install.packages(p)
+  }
+}
+```
+
+Now, load your relevant R packages
+
+**In the following chunk (load_packages), avoid printing the messages about attachments and conflicts by setting the chunk options `message` and `warnings` to `FALSE`. This has already been done for you in the check_packages chunk. You can replicate the same for the load_packages chunk**
+```{r load_packages}
+library(tidyverse)
+```
+
+## Analysis
+
+### Data
+
+Now, you will import the Bushfire data using the read_csv() function. read_csv() is a tidyverse function do import the data, that is smarter and faster than the base R read.csv() function.
+Here, you will read the directly from a website address, also called a *URL* (Universal record locator)
+
+```{r data}
+fires_raw <- read_csv("")
+```
+
+
+
