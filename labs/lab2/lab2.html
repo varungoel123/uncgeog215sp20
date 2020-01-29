@@ -1706,7 +1706,7 @@ padding: 10px 10px 3px 10px;
   arrange(desc(____)) # desc sorts in decreasing order
 
 print(perc_missing_fires) # prints the first few rows neatly</code></pre>
-<p><strong>Q.6) By glancing at the printed output, are there any years with 100% missing values? Luckily, we know the reason why. The data documentation tells us that the years the fires started getting recorded by satellite. Go to <a href="https://firms.modaps.eosdis.nasa.gov/download/" class="uri">https://firms.modaps.eosdis.nasa.gov/download/</a>, check the Temporal coverage for <em>MODIS Collection 6</em> and explain when the coverage started</strong>.</p>
+<p><strong>Q.6) By glancing at the printed output, are there any years with 100% missing values in the <code>n_fires</code> column? Luckily, we know the reason why. The data documentation tells us that the years the fires started getting recorded by satellite. Go to <a href="https://firms.modaps.eosdis.nasa.gov/download/" class="uri">https://firms.modaps.eosdis.nasa.gov/download/</a>, check the Temporal coverage for <em>MODIS Collection 6</em> and explain when the coverage started</strong>.</p>
 <p><strong>Q.7) Now, that we know the cause of the missingness, create a clean bushfires data by using <code>filter()</code> to remove years with 100 % missing bushfires data. (fill in the blanks _____)</strong></p>
 <pre class="r"><code># first we need to know what years are completely missing
 # you can subset using what you learnt in lab1 as displayed here
