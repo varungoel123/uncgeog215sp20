@@ -21,5 +21,8 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 ## Lab 2 : (Due Tuesday, Feb 4, 11:59 pm)
 
 **Introduction to tidyverse and RMarkdown**: [link](labs/lab2/lab2.html){target="_blank"}
+Helpful reference links:
+<https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf>{target="_blank"}
+
 
   
