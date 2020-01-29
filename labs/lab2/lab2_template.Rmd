@@ -1,0 +1,202 @@
+---
+title: "GEOG 215: Lab 2"
+subtitle: "Analyzing Australian Bushfires Using Tidyverse"
+author: "YOUR NAME"
+date: "Due Feb 4, 11:59 PM" 
+output: 
+  html_document:
+    number_sections: true
+    code_folding: show
+    toc: true
+    toc_float:
+      collapsed: TRUE
+      smooth_scroll: TRUE
+
+---
+
+# Summary
+
+YOUR SUMMARY TEXT
+
+# Preparations
+
+```{r load_packages}
+# library(tidyverse)
+```
+
+# Analysis
+
+## Data
+
+```{r data_load}
+# fires_raw <- read_csv("https://geog215-spds.rbind.io/labs/lab2/aus_fires.csv")
+```
+
+```{r data_overview}
+#glimpse command
+#print command
+#summary command
+```
+
+1. Your answer here
+
+2. Your answer here and so on
+
+
+## Check for missing data on Bushfires
+
+```{r missing_data1, message=FALSE, warning=FALSE}
+# perc_missing_fires <- fires_raw %>% group_by(____) %>%
+#   summarize(total_na = sum(is.na(____)),
+#             total_observations = n()) %>% # n() calculates total observations by group (in this case, year)
+#   mutate(perc_na = total_na/total_observations*100) %>%
+#   arrange(desc(____)) # desc sorts in decreasing order
+# 
+# print(perc_missing_fires) # prints the first few rows neatly
+```
+
+
+```{r fires_noNa1, message=FALSE, warning=FALSE}
+# # first we need to know what years are completely missing
+# # you can subset using what you learnt in lab1 as displayed here
+# years_missing100 <- perc_missing_fires$year[perc_missing_fires$perc_na == 100]
+# ## A tidyverse way of doing this is below: it is more readable
+# years_missing100 <- perc_missing_fires %>% filter(perc_na == 100) %>%
+#   .$year
+# # Now we can filter only those that are NOT in 100% missing years: remember filter() equates to subsetting.
+# # %in% is a very useful operator that tells you to whether year is "in" any of the values of years stored in the years_missing100 vector.
+# # Also, since the the "Australian Capital Territory" does not have many fires , we will remove that from analysis too.
+# fires_noNa <- fires_raw %>% filter(!(year %in% years_missing100)) %>%
+#   filter(_______________________)
+```
+
+
+```{r miss_check1}
+# cat("There are",sum(is.na(fires_noNa$n_fires)),"missing n_fires values")
+# 
+# ## add code for Extra credit here
+```
+
+
+```{r fires_noNa2, message=FALSE, warning=FALSE}
+# # The tidyr package in tidyverse has a handy replace_NA function
+# fires_noNa$n_fires <- fires_noNa$n_fires %>% replace_na(0)
+#   
+# ## check if there are any more missing values
+# cat("There are",sum(is.na(fires_noNa$n_fires)),"missing n_fires values")
+```
+
+******
+
+## Where and When?
+
+```{r}
+# fires_noNa %>% group_by(_________) %>%
+#   summarize(fires = sum(______)) %>%
+#   arrange(desc(_______)) %>% top_n(n=5)
+```
+
+
+```{r}
+#Execute the command yourself (use piping)
+```
+
+```{r}
+#Execute the command yourself (use piping)
+```
+
+
+```{r}
+#Execute the command yourself
+# There are multiple ways to get the answer: I suggest using select() to select the required columns and then arrange() and then top_n()
+```
+
+```{r ec1}
+# Execute the Extra Credit code yourself
+```
+
+## Visualize Bushfires
+
+### Histograms of Bushfires
+
+
+```{r hist_fire_overall, fig.align="centre",fig.height=3,fig.width=8}
+# fires_noNa %>% ggplot() + 
+#   geom_histogram(aes(x = n_fires), binwidth = 100, col = "white") + 
+#   xlab("Number of fires") + ggtitle("Distribution of All fires across Australia") +
+#   theme_bw()
+```
+
+
+```{r hist_fire_state, fig.align="centre"}
+# fires_noNa %>% ggplot() + 
+#   geom_histogram(aes(x = n_fires), col = "white") + 
+#   facet_wrap(~state_name) + # create histograms by each state
+#   xlab("Number of fires") + # xlab gives nice labels to x-axis
+#   ggtitle("Distribution of All fires across Australia") +
+#   theme_bw() # this gives an elegant simple theme to graphs
+```
+
+
+### Bar Plots
+
+
+```{r bar_fire_year_y, fig.align="centre"}
+# fires_noNa %>% group_by(year) %>% 
+#   summarize(n_fires = sum(n_fires)) %>% 
+#   ungroup() %>%
+#   ggplot() + 
+#   geom_bar(aes(x = year,y=n_fires), stat="identity", col = "white") + 
+#   ylab("Number of fires") + xlab("year") + 
+#   ggtitle("Yearly Distribution of All fires across Australia") +
+#   theme_bw()
+```
+
+
+```{r bar_fire_m, fig.align="centre"}
+# fires_noNa %>% group_by(year) %>% 
+#   summarize(n_fires = sum(n_fires)) %>% 
+#   ungroup() %>%
+#   ggplot() + 
+#   geom_bar(aes(x = year,y=n_fires), stat="identity", col = "white") + 
+#   ylab("Number of fires") + xlab("year") +
+#   ggtitle("Yearly Distribution of All fires across Australia") +
+#   theme_bw()
+```
+
+
+### Scatter plots
+
+
+```{r scatter_temp_mean_fire, fig.align="centre"}
+# fires_noNa %>%
+#   ggplot(aes(y = log(n_fires),x=temp_mean)) + #fires on long scale
+#   ylab("log Number of fires") + xlab("mean temperature (Celcius)") +
+#   ggtitle("Relationship between fires and mean temperature") +
+#   geom_point() + # add scatter plot
+#   geom_smooth() + # add trend line
+#   theme_bw()
+```
+
+
+```{r scatter_temp_mean_state_fire, fig.align="centre"}
+# fires_noNa %>%
+#   ggplot(aes(y = log(n_fires),x=temp_mean)) + 
+#   ylab("log Number of fires") + xlab("mean temperature (Celcius)") +
+#   ggtitle("Relationship between fires and mean temperature") +
+#   geom_point() + geom_smooth() + 
+#     facet_wrap(~state_name, scales = "free") + #stratify by state
+#   theme_bw()
+```
+
+### EXTRA CREDIT FOR YOU TO TRY (Worth 10 points)**
+
+```{r ec3}
+
+```
+
+
+## Feedback
+
+Your feedback
+
