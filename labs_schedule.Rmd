@@ -18,4 +18,8 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 
 **R projects, Data structures, subsetting data frames**: [link](labs/lab1/code/01_baseR.html){target="_blank"}
 
+## Lab 2 : (Due Tuesday, Feb 4, 11:59 pm)
+
+**Introduction to tidyverse and RMarkdown**: [link](labs/lab2/lab2.html){target="_blank"}
+
   
