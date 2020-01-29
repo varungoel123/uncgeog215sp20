@@ -29,4 +29,8 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 
 # Week 3: Doing Data Science
 
-**Jan 13: Introduction to Tidyverse:** [pdf](lectures/04_tidyverse.pdf){target="_blank"} , [html](lectures/04_tidyverse/index.html){target="_blank"}
+**Jan 22: Introduction to Tidyverse:** [pdf](lectures/04_tidyverse.pdf){target="_blank"} , [html](lectures/04_tidyverse/index.html){target="_blank"}
+
+# Week 4: Representing and Handling Spatial Data
+
+**Jan 27: Introduction to Tidyverse:** [pdf](lectures/05_locCoordSystems.pdf){target="_blank"} , [html](lectures/05_locCoordSystems/index.html){target="_blank"}
