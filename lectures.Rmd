@@ -33,4 +33,4 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 
 # Week 4: Representing and Handling Spatial Data
 
-**Jan 27: Introduction to Tidyverse:** [pdf](lectures/05_locCoordSystems.pdf){target="_blank"} , [html](lectures/05_locCoordSystems/index.html){target="_blank"}
+**Jan 27: Locations and Coordinate Systems:** [pdf](lectures/05_locCoordSystems.pdf){target="_blank"} , [html](lectures/05_locCoordSystems/index.html){target="_blank"}
