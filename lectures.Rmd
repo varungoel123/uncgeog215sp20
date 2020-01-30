@@ -1,6 +1,8 @@
 ---
 title: "Lecture Slides"
-output: html_document
+output: 
+  html_document:
+    toc: TRUE
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -10,15 +12,13 @@ options(knitr.table.format = "html", knitr.kable.NA = '')
 knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE) 
 ```
 
-## Last Updated: `r format(Sys.time(), "%a %b %d %X")` {.tabset .tabset-fade .tabset-pills}
-
 ---
 
-# Week 1: Introduction
+### Week 1: Introduction
 
 **Jan 7: Introduction, Spatial Data and Geographic Information:** [pdf](lectures/01_introduction.pdf){target="_blank"} , [html](lectures/01_introduction/index.html){target="_blank"}
 
-# Week 2: R basics and R Markdown
+### Week 2: R basics and R Markdown
 
 **Jan 13: Introduction R and R Studio:** [pdf](lectures/02_Rbasics.pdf){target="_blank"} , [html](lectures/02_Rbasics/index.html){target="_blank"} , [in-class-excercise](lectures/02_datatypes_inclass.html){target="_blank"},
 [in-class-poll-everywhere](lectures/in_class_quiz.pdf){target="_blank"}
@@ -27,10 +27,12 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 [html](lectures/03_RMarkdown/index.html){target="_blank"}, 
 [in-class-exercise](lectures/03_Rmarkdown_inclass/03_inclass_exercise.zip){target="_blank"}
 
-# Week 3: Doing Data Science
+### Week 3: Doing Data Science
 
 **Jan 22: Introduction to Tidyverse:** [pdf](lectures/04_tidyverse.pdf){target="_blank"} , [html](lectures/04_tidyverse/index.html){target="_blank"}
 
-# Week 4: Representing and Handling Spatial Data
+### Week 4: Representing and Handling Spatial Data
 
 **Jan 27: Locations and Coordinate Systems:** [pdf](lectures/05_locCoordSystems.pdf){target="_blank"} , [html](lectures/05_locCoordSystems/index.html){target="_blank"}
+
+**Jan 29: Spatial Data Types:** [pdf](lectures/06_spatial_datatypes.pdf){target="_blank"}
