@@ -61,3 +61,14 @@ You need to register with your unc email address. I will use this survey to help
 7. [Geocomputation with R, Chapter 2. Geographic data in R](https://geocompr.robinlovelace.net/spatial-class.html){target="_blank"}**[recommended]**
 
 8. [6 minute video onWhy spatial data is Special](https://www.coursera.org/lecture/spatial-data-science/1-4-why-is-spatial-special-iii-a-data-perspective-rz1QT){target="_blank"}**[recommended]**
+
+
+## Week 5 : Finding, Acquiring and importing spatial data in R
+
+1. [Geocomputation with R, Chapter 2. Geographic data in R](https://geocompr.robinlovelace.net/spatial-class.html){target="_blank"}**[required]**
+
+
+1. [Geocomputation with R, Chapter 7. Geographic data I/O (7 - 7.5) ](https://geocompr.robinlovelace.net/read-write.html){target="_blank"}**[recommended]**
+
+2. [UNC Spatial Data portal](https://guides.lib.unc.edu/spatialdata/getting-started){target="_blank"}**[recommended]** >> Click on and follow a few links to get a sense of the freely available spatial data out there
+
