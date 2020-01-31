@@ -37,6 +37,9 @@ navbar:
   - text: Syllabus
     icon: fa-info-circle
     href: syllabus_v1.html
+  - text: DataCamp
+    icon: fa-brain
+    href: "http://datacamp.com"
   - text: Help
     icon: fa-question
     href: course_info/faq.html
