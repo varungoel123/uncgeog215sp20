@@ -1676,7 +1676,7 @@ padding: 10px 10px 3px 10px;
 <ul>
 <li><strong>Q.4) By looking at the output of the summary command, fill in the blanks or in the data description below</strong></li>
 </ul>
-<p>The data measures the number of bushfires at a _______ (daily/monthly/yearly) scale for six major states in ______ (country) from _____ (start-year) to _______ (end-year). In addition the data contains information about ______ , _____, and _____ (mention the 3 ratio variables the data has). The variable _______ contains ______ missing values and the variable ______ contains _____ missing values.</p>
+<p>The data measures the number of bushfires at a _______ (daily/monthly/yearly) scale for six major states in ______ (country) from _____ (start-year) to _______ (end-year). In addition the data contains information about ______ , _____, and _____ (mention the 2 ratio variables the data has). The variable _______ contains ______ missing values and the variable ______ contains _____ missing values.</p>
 <hr />
 <div class="blue">
 <p>you will notice that summary of <code>state_name</code> does not really tell us anything. In this case, storing them as factors may have given us more information about the different number of states. We will revisit this in detail in a few weeks.</p>
@@ -1785,7 +1785,7 @@ cat(&quot;There are&quot;,sum(is.na(fires_noNa$n_fires)),&quot;missing n_fires v
 <div class="blue">
 <p>The amazing part about piping is that you can transform your data <em>on the fly</em> and feed it to the <code>ggplot()</code> using piping. Dont worry, this lab will not test you on that, but this is something useful to know for later.</p>
 </div>
-<p>Run the code below to generate a bar plot and answer Q 13).</p>
+<p>Run the code below to generate a bar plot and answer Q 13). (Ignore any warnings about removing missing values, we will learn how to deal with such warnings later)</p>
 <pre class="r"><code>fires_noNa %&gt;% group_by(year) %&gt;% 
   summarize(n_fires = sum(n_fires)) %&gt;% 
   ungroup() %&gt;%
@@ -1819,7 +1819,7 @@ cat(&quot;There are&quot;,sum(is.na(fires_noNa$n_fires)),&quot;missing n_fires v
   geom_smooth() + # add trend line
   theme_bw()</code></pre>
 <p><strong>Q.15) Is there a relationship between temperature and number of fires? If, so is it positive or negative? How strong do you think the relationship is? Is it a linear relationship, i.e is the trend line a straight line or is it curved? Did you expect to see this relationship? Answer based on your interpretation in 2-3 sentences</strong></p>
-<p>Now, run the following plot:</p>
+<p>Now, run the following plot: (Ignore any warnings about removing missing values, we will learn how to deal with such warnings later)</p>
 <pre class="r"><code>fires_noNa %&gt;%
   ggplot(aes(y = log(n_fires),x=temp_mean)) + 
   ylab(&quot;log Number of fires&quot;) + xlab(&quot;mean temperature (Celcius)&quot;) +
