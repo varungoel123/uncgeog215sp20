@@ -3,9 +3,6 @@ output_dir: "."
 navbar:
   title: "GEOG 215"
   left:
-  - text: Announcements
-    icon: fa-bullhorn
-    href: announcements.html
   - text: Schedule
     icon: fa-calendar
     href: schedule_v1.html
@@ -33,6 +30,9 @@ navbar:
     - text: "Software resources"
       icon: fa-desktop
       href: software_resources.html
+    - text: "Data resources"
+      icon: fa-database
+      href: data_resources.html
   right:
   - text: Syllabus
     icon: fa-info-circle
