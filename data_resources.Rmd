@@ -1,0 +1,73 @@
+---
+title: "Data Resources"
+author: 
+- GEOG215, Introduction to Spatial Data Science \newline
+- Varun Goel (adapted from Dr. Paul Delamater, UNC)
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+***
+
+This document contains a number of resources that will (hopefully) assist you in locating data.  Finding useable data is not always easy, but hopefully this will serve as a useful launching point for you.
+
+***
+## UNC
+
+* [Phil McDaniel, GIS Librarian](https://guides.lib.unc.edu/philipmcdaniel)  
+* [Matt Jansen, Data Analysis Librarian](https://guides.lib.unc.edu/mattjansen)
+* [Michelle Hayslett, Librarian for Numeric Data Service & Data Management](https://guides.lib.unc.edu/michelehayslett)
+* [Census Data Resources](https://guides.lib.unc.edu/census)
+* [Census Spatial Data](https://guides.lib.unc.edu/census/spatial)
+* [Online Spatial Data Resources](https://guides.lib.unc.edu/spatialdata/getting-started)
+* [Statistical Databases](https://guides.lib.unc.edu/az.php?s=1099)
+ 
+***
+
+## Foundation, Demographic, Socioeconomic, Environmental Spatial Data Resources
+
+Please note that I have not worked with data from all of these sources, so I might not be able to offer much help with troubleshooting any issues you encounter when searching or downloading from some of the websites listed.
+
+<details>
+  <summary>Click here for list</summary>
+
+* [Datasets for Data Mining and Data Science](https://www.kdnuggets.com/datasets/index.html) (a lot of links here!)  
+* [Data: Government, State, City, Local and Public](https://www.kdnuggets.com/datasets/government-local-public.html) (numerous links here!)  
+* [Data: APIs, Hubs, Marketplaces, and Platforms](https://www.kdnuggets.com/datasets/api-hub-marketplace-platform.html) (numerous links here!)  
+* [US	Census (Census and American Community Survey data joined to spatial	data [TIGER]](https://www.census.gov/geo/maps-data/data/tiger-data.html)  
+* [National	Historical Geographic Information System (NHGIS)](https://www.nhgis.org/) (great resource for current and historical census-based data for the US, includes both tabular and spatial data)  
+* [USGS National Map (Environmental data, infrastructure data, and aerial imagery)](https://viewer.nationalmap.gov/basic/)  
+* [USGS National Map FTP site](ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/) (enter as guest if prompted)  
+* [USGS Earth Explorer](https://earthexplorer.usgs.gov/) (Digital orthorectified aerial photos, Landsat satellite data, Digital Elevation Models [DEM], this site is a bit clunky to use, but a great resource)  
+* [Adding	data from ArcGIS Online](http://desktop.arcgis.com/en/arcmap/latest/map/working-with-arcmap/adding-data-from-arcgis-online.htm) (data are not always “downloadable”)  
+* [US	National Land Cover Database](https://www.mrlc.gov/nlcd2011.php)
+* [US	Data from Data.gov](https://www.data.gov/) (A lot of data, but spatial data can be a bit difficult locate)
+* [US	SSURGO (soils) and Hydrography](https://datagateway.nrcs.usda.gov/GDGHome_DirectDownLoad.aspx)
+* [PRISM climate data](http://prism.oregonstate.edu/)
+* [Climate Data Online from NOAA](https://www.ncdc.noaa.gov/cdo-web/)
+* [Data	from USDA](https://www.nrcs.usda.gov/wps/portal/nrcs/main/national/technical/nra/dma/) (includes climate, natural resources inventory, watersheds, easements, and more)
+* [Wiki
+	Page for downloading data from OpenStreetMap](https://wiki.openstreetmap.org/wiki/Downloading_data)
+* [Global	Administrative Boundaries](http://www.gadm.org/) (multiple
+	levels of administrative bounds for most countries)
+* [DIVA	GIS](http://www.diva-gis.org/gdata) (administrative, infrastructure, natural, and population data for most countries)
+* [LandScan	Gridded Population data](http://web.ornl.gov/sci/landscan/landscan_data_avail.shtml) (work with UNC library to download)
+* [Gridded Population of the World](http://sedac.ciesin.columbia.edu/data/collection/gpw-v3)
+* [Air Quality System (AQS) Ambient Air Pollution data](https://www.epa.gov/outdoor-air-quality-data)
+</details>
+
+***
+
+## Google Search Tips For Spatial Data 
+
+If you're trying to find spatial data, try a search string that is extremely detailed such as, `study area gis data download`. One semi-important observation that I have made is the importance of including the word `download` in your search string.  For example, you could search for, **`botswana gis data download`**.  
+
+If you've already found spatial data and are trying to locate tabular data for a particular subject, use a search string with the word table and the geographic resolution (unit) of your spatial data included, e.g.,  study area topic unit   table.  For example, you could search for, **`england vaccination local authorities table`**. 
+
+#### [Google Dataset Search (link)](https://toolbox.google.com/datasetsearch)
+
+

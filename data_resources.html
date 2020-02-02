@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="GEOG215, Introduction to Spatial Data Science" />
+<meta name="author" content="Varun Goel (adapted from Dr. Paul Delamater, UNC)" />
+
+<meta name="date" content="2020-02-02" />
+
+<title>Data Resources</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css/custom_css.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GEOG 215</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="schedule_v1.html">
+    <span class="fa fa-calendar"></span>
+     
+    Schedule
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-folder-open"></span>
+     
+    Materials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="lectures.html">
+        <span class="fa fa-laptop"></span>
+         
+        Lecture slides
+      </a>
+    </li>
+    <li>
+      <a href="readings.html">
+        <span class="fa fa-file-alt"></span>
+         
+        Readings
+      </a>
+    </li>
+    <li>
+      <a href="labs_schedule.html">
+        <span class="fa fa-flask"></span>
+         
+        Labs
+      </a>
+    </li>
+    <li>
+      <a href="homeworks.html">
+        <span class="fa fa-clipboard-list"></span>
+         
+        Homework
+      </a>
+    </li>
+    <li>
+      <a href="project.html">
+        <span class="fa fa-file-powerpoint"></span>
+         
+        Project
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-book-open"></span>
+     
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="software_resources.html">
+        <span class="fa fa-desktop"></span>
+         
+        Software resources
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="syllabus_v1.html">
+    <span class="fa fa-info-circle"></span>
+     
+    Syllabus
+  </a>
+</li>
+<li>
+  <a href="http://datacamp.com">
+    <span class="fa fa-brain"></span>
+     
+    DataCamp
+  </a>
+</li>
+<li>
+  <a href="course_info/faq.html">
+    <span class="fa fa-question"></span>
+     
+    Help
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Data Resources</h1>
+<h4 class="author">GEOG215, Introduction to Spatial Data Science</h4>
+<h4 class="author">Varun Goel (adapted from Dr. Paul Delamater, UNC)</h4>
+<h4 class="date">February 02, 2020</h4>
+
+</div>
+
+
+<hr />
+<p>This document contains a number of resources that will (hopefully) assist you in locating data. Finding useable data is not always easy, but hopefully this will serve as a useful launching point for you.</p>
+<hr />
+<div id="unc" class="section level2">
+<h2>UNC</h2>
+<ul>
+<li><a href="https://guides.lib.unc.edu/philipmcdaniel">Phil McDaniel, GIS Librarian</a><br />
+</li>
+<li><a href="https://guides.lib.unc.edu/mattjansen">Matt Jansen, Data Analysis Librarian</a></li>
+<li><a href="https://guides.lib.unc.edu/michelehayslett">Michelle Hayslett, Librarian for Numeric Data Service &amp; Data Management</a></li>
+<li><a href="https://guides.lib.unc.edu/census">Census Data Resources</a></li>
+<li><a href="https://guides.lib.unc.edu/census/spatial">Census Spatial Data</a></li>
+<li><a href="https://guides.lib.unc.edu/spatialdata/getting-started">Online Spatial Data Resources</a></li>
+<li><a href="https://guides.lib.unc.edu/az.php?s=1099">Statistical Databases</a></li>
+</ul>
+<hr />
+</div>
+<div id="foundation-demographic-socioeconomic-environmental-spatial-data-resources" class="section level2">
+<h2>Foundation, Demographic, Socioeconomic, Environmental Spatial Data Resources</h2>
+<p>Please note that I have not worked with data from all of these sources, so I might not be able to offer much help with troubleshooting any issues you encounter when searching or downloading from some of the websites listed.</p>
+<details>
+<p><summary>Click here for list</summary></p>
+<ul>
+<li><a href="https://www.kdnuggets.com/datasets/index.html">Datasets for Data Mining and Data Science</a> (a lot of links here!)<br />
+</li>
+<li><a href="https://www.kdnuggets.com/datasets/government-local-public.html">Data: Government, State, City, Local and Public</a> (numerous links here!)<br />
+</li>
+<li><a href="https://www.kdnuggets.com/datasets/api-hub-marketplace-platform.html">Data: APIs, Hubs, Marketplaces, and Platforms</a> (numerous links here!)<br />
+</li>
+<li><a href="https://www.census.gov/geo/maps-data/data/tiger-data.html">US Census (Census and American Community Survey data joined to spatial data [TIGER]</a><br />
+</li>
+<li><a href="https://www.nhgis.org/">National Historical Geographic Information System (NHGIS)</a> (great resource for current and historical census-based data for the US, includes both tabular and spatial data)<br />
+</li>
+<li><a href="https://viewer.nationalmap.gov/basic/">USGS National Map (Environmental data, infrastructure data, and aerial imagery)</a><br />
+</li>
+<li><a href="ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/">USGS National Map FTP site</a> (enter as guest if prompted)<br />
+</li>
+<li><a href="https://earthexplorer.usgs.gov/">USGS Earth Explorer</a> (Digital orthorectified aerial photos, Landsat satellite data, Digital Elevation Models [DEM], this site is a bit clunky to use, but a great resource)<br />
+</li>
+<li><a href="http://desktop.arcgis.com/en/arcmap/latest/map/working-with-arcmap/adding-data-from-arcgis-online.htm">Adding data from ArcGIS Online</a> (data are not always “downloadable”)<br />
+</li>
+<li><a href="https://www.mrlc.gov/nlcd2011.php">US National Land Cover Database</a></li>
+<li><a href="https://www.data.gov/">US Data from Data.gov</a> (A lot of data, but spatial data can be a bit difficult locate)</li>
+<li><a href="https://datagateway.nrcs.usda.gov/GDGHome_DirectDownLoad.aspx">US SSURGO (soils) and Hydrography</a></li>
+<li><a href="http://prism.oregonstate.edu/">PRISM climate data</a></li>
+<li><a href="https://www.ncdc.noaa.gov/cdo-web/">Climate Data Online from NOAA</a></li>
+<li><a href="https://www.nrcs.usda.gov/wps/portal/nrcs/main/national/technical/nra/dma/">Data from USDA</a> (includes climate, natural resources inventory, watersheds, easements, and more)</li>
+<li><a href="https://wiki.openstreetmap.org/wiki/Downloading_data">Wiki Page for downloading data from OpenStreetMap</a></li>
+<li><a href="http://www.gadm.org/">Global Administrative Boundaries</a> (multiple levels of administrative bounds for most countries)</li>
+<li><a href="http://www.diva-gis.org/gdata">DIVA GIS</a> (administrative, infrastructure, natural, and population data for most countries)</li>
+<li><a href="http://web.ornl.gov/sci/landscan/landscan_data_avail.shtml">LandScan Gridded Population data</a> (work with UNC library to download)</li>
+<li><a href="http://sedac.ciesin.columbia.edu/data/collection/gpw-v3">Gridded Population of the World</a></li>
+<li><a href="https://www.epa.gov/outdoor-air-quality-data">Air Quality System (AQS) Ambient Air Pollution data</a></li>
+</ul>
+</details>
+<hr />
+</div>
+<div id="google-search-tips-for-spatial-data" class="section level2">
+<h2>Google Search Tips For Spatial Data</h2>
+<p>If you’re trying to find spatial data, try a search string that is extremely detailed such as, <code>study area gis data download</code>. One semi-important observation that I have made is the importance of including the word <code>download</code> in your search string. For example, you could search for, <strong><code>botswana gis data download</code></strong>.</p>
+<p>If you’ve already found spatial data and are trying to locate tabular data for a particular subject, use a search string with the word table and the geographic resolution (unit) of your spatial data included, e.g., study area topic unit table. For example, you could search for, <strong><code>england vaccination local authorities table</code></strong>.</p>
+<div id="google-dataset-search-link" class="section level4">
+<h4><a href="https://toolbox.google.com/datasetsearch">Google Dataset Search (link)</a></h4>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
