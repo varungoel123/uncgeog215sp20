@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Finding and Acquiring Spatial Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Class #7 | Geog 215" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Finding and Acquiring Spatial Data
+### Class #7 | Geog 215
+### Introduction to Spatial Data Science
+### Spring 2020
+
+---
+
+
+
+
+
+class: center, middle
+
+&gt; # *If I cease searching, then, woe is me, I am lost. That is how I look at it - keep going, keep going come what may* - Vincent Van Gogh
+---
+
+# What have we covered so far
+
+- ### R introduction and basic commands
+- ### How to execute R commands and communicate results
+  - #### Console : Experimentation ***(Cooking)***
+  - #### Scripts : Storing what works ***(Recipe for internal use)***
+  - #### RMarkdown : Communicating to others ***(Cookbook)***
+- ### Tidyverse in Action (Bushfires example)
+- ### Representing Location and spatial data
+  
+---
+class: center, middle
+
+# Where is the Spatial Data at ?
+
+--
+
+# How to do I Acquire / get Access to it?
+
+--
+
+# How to I import it in R and work with it?
+
+---
+# Data, Data, Data
+
+## Foundation data 
+- ### “background” spatial data used as reference
+- ### Also referred to as “base map” data
+  - ### For display, a key linkage among features on a map is their relative position
+  - #### Location relative to a “known” set of features e.g., a map of cities overlaid on a state map
+- ### May also be used in analysis!
+
+---
+.pull-left[
+# Foundation Data
+## Vector format
+### Administrative boundaries/locations
+#### States, cities, counties
+### Enumeration units
+#### Tracts, Block Groups, Blocks
+### Natural (physical) features
+#### Lakes, rivers
+### Transportation (or other) infrastructure
+#### Roads, trails, railways
+]
+.pull-right[
+![admin](nc_county_tracts.png)
+![enumerate](nc_bg.png)
+![rivers](nc_rivers.png)
+![transport](nc_interstate.png)
+]
+
+
+---
+.pull-left[
+# Foundation Data
+## Raster (usually)
+### Imagery
+#### Aerial photos, satellite imagery
+### Elevation/terrain
+#### Digital Elevation Model
+### Land cover/use
+]
+.pull-right[
+![map](nc_map.png)
+![satellite](nc_satellite.png)
+&lt;img src="nc_dem.png" width="200px" height="`150px" /&gt;
+![Land Cover](nc_landcover.png)
+]
+
+---
+# Foundation Data
+## Creating and/or developing spatial data requires a large amount of time, effort,and money
+- ### ***Good news***: a large amount of foundation data has already been created and is freely available on the Internet
+- ### ***Bad news***: the availability and quality of this data varies signifcantly from place to place
+
+---
+# Demographic Data
+## Population attributes
+- ### Counts
+- ### Age, gender, race/ethnicity, etc.
+
+## Census/survey data
+- ### Data resolution and availability will vary
+  - #### Generally, higher spatial resolution = less detailed data
+  
+---
+# Socioeconomic Data
+## Population attributes
+- ### Education, Income, Employment, etc
+  - #### Often, used as a proxy for health or health-related behaviors 
+  - #### Often, used to assign neighborhood attributes
+  
+## Census/survey data
+- ### Data resolution and availability will vary
+  - #### Generally, higher spatial resolution = less detailed data
+  
+---
+# Environ/Neighborhood Data
+## Neighborhood attributes
+- ### Environmental hazards
+  - #### Air pollution, water pollution, etc.
+  
+- ### Environmental conditions
+  - #### Temperature, precipitation, humidity
+  
+- ### Disease transmission
+  - ####Vector distribution (and/or habitat)
+  
+- ### Amenities
+  - #### Neighborhood features
+      - ##### Parks, produce stores, etc.
+    
+---
+# Health-related Data
+## Vital statistics
+- ### Births and deaths
+
+## Morbidity Data
+- ### Data about the “health” or “health conditions” in the population
+ 
+## Health care providers
+- ### Locations of hospitals, physicians, emergency services, clinics, etc.
+
+##Often, is non-spatial data
+
+---
+# Data and information
+## Authoritative information
+- ### Accuracy/documentation standards and protocols Metadata provided
+
+## Asserted information
+- ### Accuracies are undocumented
+- ### No metadata
+- ### Data about popular places tend to be more accurate
+- ### Accuracy can be higher than legacy authoritative data
+  
+---
+
+# For Example
+
+.pull-left[
+![](osm_haiti_before.png)
+]
+
+--
+
+.pull-right[
+![](osm_haiti_after.png)
+]
+
+---
+
+# For Example
+![](north_korea_comparison.png)
+
+---
+# Other Examples
+
+---
+# Types of Assertive Communication
+![](types_of_assertive.png)
+
+---
+
+# Questions to consider when choosing geospatial data
+
+- ### Where is the data coming from?
+- ### Does the data cover the geographic extent I need?
+- ### Is the information current?
+- ### Is the scale of the data consistent with my other data?
+- ### How accurate is the data?
+- ### What types of attribute data are available with the data?
+
+.footnote[*Source:*&lt;https://campusguides.lib.utah.edu/c.php?g=160707&amp;p=1052129&gt;]
+---
+# Questions to consider when choosing geospatial data
+
+- ### How large are the data files?
+- ### Is the data properly formatted to open using geospatial software?
+- ### Is the data consistently projected?
+- ### What metadata accompanies the data?
+- ### The major question: Are there any use restrictions for using or accessing the data?
+
+.footnote[*Source:*&lt;https://campusguides.lib.utah.edu/c.php?g=160707&amp;p=1052129&gt;]
+
+---
+# Data Acquisition
+
+## Data access and sharing
+- ### In the past, data was highly guarded
+- ### Movement towards making sharing data via open availability and unrestrictive use arguments
+
+## From secondary sources
+- ### Data format
+- ### Modes of access
+
+---
+# Data Acquisition
+
+## Data Format
+- ### Consider whether you can work with data
+
+## Modes of Access
+- ### Actual steps to acquire the data
+- ### Examples
+  - #### Web GIS (Must manually point/click)
+  - #### Web links (must manually point/click)
+  - #### FTP site (can manually point/click or use automation)
+  - #### API (request / response approach)
+  - #### Web Scraping / Crawling
+
+---
+# Finding Data
+
+## Very important to remember...
+
+- ### Data “existing” in some repository or on the internet is not always analysis-ready
+  - #### Often, needs substantial formatting and cleaning before it can be used in an analysis
+
+---
+
+# Finding Data
+
+## The data you want may not be available:
+- ### For download via the internet (send an email, make a phone call, file a FIOA) Digitally (paper maps)
+- ### At the extent or resolution you need
+- ### As spatial data (tabular → join to spatial data)
+- ### In a directly useable format (aerial photos / imagery → landcover)
+
+---
+# Finding Data
+## Like many other tasks...
+- ### Explore options 
+- ### Be resourceful!
+---
+
+# Next Class
+
+## Importing Spatial Data in R using different methods
+## Mining and Mapping Twitter Data!
+## Complete Data Camp Exercises/ Lab 2
+## Complete Poll Everywhere Poll
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
