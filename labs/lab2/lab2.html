@@ -1754,7 +1754,9 @@ cat(&quot;There are&quot;,sum(is.na(fires_noNa$n_fires)),&quot;missing n_fires v
 <pre class="r"><code>#Execute the command yourself (use piping)</code></pre>
 <p><strong>Q.11) When and where was the worst period (defined as the month and year) for fires in Australia? Note: the answer will be 1 row containing the state_name, month, year and n_fires</strong></p>
 <pre class="r"><code>#Execute the command yourself
-# There are multiple ways to get the answer: I suggest using select() to select the required columns and then arrange() and then top_n()</code></pre>
+# There are multiple ways to get the answer: I suggest using select() to select the required columns and then arrange() and then top_n()
+# IMPORTANT If you use group_by() with more than one variable, followed by one variable,please follow up with an ungroup(), otherwise R will think that any operation you run later should also  be grouped. eg:
+#group_by(variable1, variable2) %&gt;$ summarize(&quot;YOUR CODE&quot;) %&gt;% ungroup()</code></pre>
 <p><strong>(EXTRA CREDIT (5 points)) What were the top 10 worst periods? This is important as it helps us gauge whether a disaster is part of a cycle, or an anomaly, and helps inform disaster management response. Your output will be 10 rows: state_name, month, year and n_fires arranged by time(from latest to earliest). Does the severity of the fires increase/decrease with time or is there no clear pattern? What months do the worst disasters generally take place in? What states are most effected? Execute code and write 1-2 sentences</strong></p>
 <pre class="r"><code># Execute the code yourself</code></pre>
 </div>
@@ -1827,7 +1829,7 @@ cat(&quot;There are&quot;,sum(is.na(fires_noNa$n_fires)),&quot;missing n_fires v
   geom_point() + geom_smooth() + 
     facet_wrap(~state_name, scales = &quot;free&quot;) + #stratify by state
   theme_bw()</code></pre>
-<p><strong>Q.16) Do all states represent a similar relationship between temperature and precipitation as the overall trend in the previous graph? Which state(s) according to you do not follow the trend. Are you surprised by any of the trends? Answer in 2-3 sentences to the best of your ability</strong> Dont worry about the different scales, we are more interested in the relationship rather than absolute values.</p>
+<p><strong>Q.16) Do all states represent a similar relationship between temperature and bushfires as the overall trend in the previous graph? Which state(s) according to you do not follow the trend. Are you surprised by any of the trends? Answer in 2-3 sentences to the best of your ability</strong> Dont worry about the different scales, we are more interested in the relationship rather than absolute values.</p>
 <hr />
 <div class="blue">
 <p>This shows that it is important to <em>dissect</em> your data into smaller pieces as <em>local</em> trends may be different than <em>global</em> trends. This is infact one of the cornerstones of spatial analysis. We will learn those techniques in details in Part 2 of the course</p>
