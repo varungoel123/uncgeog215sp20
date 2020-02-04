@@ -36,3 +36,8 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 **Jan 27: Locations and Coordinate Systems:** [pdf](lectures/05_locCoordSystems.pdf){target="_blank"} , [html](lectures/05_locCoordSystems/index.html){target="_blank"}
 
 **Jan 29: Spatial Data Types:** [pdf](lectures/06_spatial_datatypes.pdf){target="_blank"}
+
+### Week 4: Representing and Handling Spatial Data
+
+**Feb 3: Finding, Acquiring and Importing Spatial Data:** [pdf](lectures/lecture7/sp_findHandle.pdf){target="_blank"}
+[html](lectures/lecture7/sp_findHandle.html){target="_blank"}
