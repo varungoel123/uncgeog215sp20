@@ -41,3 +41,7 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 
 **Feb 3: Finding, Acquiring and Importing Spatial Data:** [pdf](lectures/lecture7/sp_findHandle.pdf){target="_blank"}
 [html](lectures/lecture7/sp_findHandle.html){target="_blank"}
+
+**Feb 4: Importing and reading Spatial Data:** 
+[html](lectures/lecture8/sp_import.html){target="_blank"}
+[twitter-exercise](lectures/lecture8/GEOG215-Twitter-API_varun.html){target="_blank"}

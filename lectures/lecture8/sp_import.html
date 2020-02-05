@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Importing and Reading Spatial (and non-spatial) Data in R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Class #8 | Geog 215" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Importing and Reading Spatial (and non-spatial) Data in R
+### Class #8 | Geog 215
+### Introduction to Spatial Data Science
+### Spring 2020
+
+---
+
+
+
+
+
+class: center, middle
+
+&gt; # *Getting information off the Internet is like taking a drink from a firehose*.
+- Mitchell Kapor
+---
+
+
+---
+# Spatial Data Packages in R
+
+## `sf` package
+- ### `sf` stands for simple features
+  - #### describes how objects in the real world can be represented in computers, with emphasis on the spatial geometry of these objects
+- ### Implements a commonly used formal standard to describe and store geospatial objects
+- ### Imports, exports, manipulate **Vector** Data
+
+---
+
+# Spatial Data Packages in R
+
+## `raster` package
+- ### workhorse for importing, exporting and processing **Raster** data in R
+- ### Fast and memory efficient
+- ### Commonly used in a lot of environmental analysis
+
+---
+## Common spatial formats available on the Web
+
+![](common_spatial_formats.png)
+---
+
+# Importing Vector data using `sf`
+
+## From a shapefile on your local disk
+
+
+```r
+nc_geo &lt;- st_read(dsn = "shapefiles/nc.shp", 
+                  stringsAsFactors = FALSE)
+```
+
+--
+
+
+```
+## Reading layer `nc' from data source `/Users/wanderlust/Documents/unc/classes/spring2020/geog215/uncgeog215sp20/lectures/lecture8/shapefiles/nc.shp' using driver `ESRI Shapefile'
+## Simple feature collection with 100 features and 14 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+## epsg (SRID):    4267
+## proj4string:    +proj=longlat +datum=NAD27 +no_defs
+```
+
+---
+
+# Importing Vector data using `sf`
+
+## structure of vector file in R
+
+
+```r
+str(nc_geo)
+```
+--
+
+```
+## Classes 'sf' and 'data.frame':	100 obs. of  15 variables:
+##  $ AREA     : num  0.114 0.061 0.143 0.07 0.153 0.097 0.062 0.091 0.118 0.124 ...
+##  $ PERIMETER: num  1.44 1.23 1.63 2.97 2.21 ...
+##  $ CNTY_    : num  1825 1827 1828 1831 1832 ...
+##  $ CNTY_ID  : num  1825 1827 1828 1831 1832 ...
+##  $ NAME     : chr  "Ashe" "Alleghany" "Surry" "Currituck" ...
+##  $ FIPS     : chr  "37009" "37005" "37171" "37053" ...
+##  $ FIPSNO   : num  37009 37005 37171 37053 37131 ...
+##  $ CRESS_ID : int  5 3 86 27 66 46 15 37 93 85 ...
+##  $ BIR74    : num  1091 487 3188 508 1421 ...
+##  $ SID74    : num  1 0 5 1 9 7 0 0 4 1 ...
+##  $ NWBIR74  : num  10 10 208 123 1066 ...
+##  $ BIR79    : num  1364 542 3616 830 1606 ...
+##  $ SID79    : num  0 3 6 2 3 5 2 2 2 5 ...
+##  $ NWBIR79  : num  19 12 260 145 1197 ...
+##  $ geometry :sfc_MULTIPOLYGON of length 100; first list element: List of 1
+##   ..$ :List of 1
+##   .. ..$ : num [1:27, 1:2] -81.5 -81.5 -81.6 -81.6 -81.7 ...
+##   ..- attr(*, "class")= chr  "XY" "MULTIPOLYGON" "sfg"
+##  - attr(*, "sf_column")= chr "geometry"
+##  - attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA NA NA NA NA NA NA NA NA ...
+##   ..- attr(*, "names")= chr  "AREA" "PERIMETER" "CNTY_" "CNTY_ID" ...
+```
+
+
+
+---
+# Importing Vector data using `sf`
+
+## Downloading, unzipping and loading file using code in R
+
+
+```r
+#download.file(url = "http://nrdata.nps.gov/programs/lands/nps_boundary.zip",
+#              destfile = "nps_boundary.zip")
+#unzip(zipfile = "nps_boundary.zip")
+usa_parks = st_read(dsn = "temp/Current_Shapes/Data_Store/06-06-12_Posting/nps_boundary.shp")
+```
+--
+
+
+```
+## Reading layer `nps_boundary' from data source `/Users/wanderlust/Documents/unc/classes/spring2020/geog215/uncgeog215sp20/lectures/lecture8/temp/Current_Shapes/Data_Store/06-06-12_Posting/nps_boundary.shp' using driver `ESRI Shapefile'
+## Simple feature collection with 495 features and 10 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: -170.7285 ymin: -14.28558 xmax: 144.7342 ymax: 68.65538
+## epsg (SRID):    4269
+## proj4string:    +proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs
+```
+
+---
+# Importing Vector data using `sf`
+
+## Loading from pre-existing R packages
+
+
+```r
+library(rnaturalearth)
+usa = ne_countries(country = "United States of America") # United States
+class(usa)
+```
+
+```
+## [1] "SpatialPolygonsDataFrame"
+## attr(,"package")
+## [1] "sp"
+```
+--
+
+```r
+usa_sf = st_as_sf(usa)
+class(usa)
+```
+
+```
+## [1] "SpatialPolygonsDataFrame"
+## attr(,"package")
+## [1] "sp"
+```
+---
+# Dissecting how vectors are stored
+
+![](common_sf_output.png)
+
+---
+# Different types of SF geometries
+
+![:scale 75%](sf_geometries.png)
+
+---
+
+# Importing Raster Data
+
+## Importing a single raster file with 1 Layer
+
+```r
+library(raster)
+```
+
+```
+## Loading required package: sp
+```
+
+```r
+new_raster &lt;- raster("srtm.tif")
+```
+--
+
+
+```r
+new_raster
+```
+
+```
+## class      : RasterLayer 
+## dimensions : 457, 465, 212505  (nrow, ncol, ncell)
+## resolution : 0.0008333333, 0.0008333333  (x, y)
+## extent     : -113.2396, -112.8521, 37.13208, 37.51292  (xmin, xmax, ymin, ymax)
+## crs        : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## source     : /Users/wanderlust/Documents/unc/classes/spring2020/geog215/uncgeog215sp20/lectures/lecture8/srtm.tif 
+## names      : srtm 
+## values     : 1024, 2892  (min, max)
+```
+---
+# Importing Raster Data
+
+## Importing a multi-layer raster file
+
+- ### Raster Bricks
+
+```r
+r_brick = brick("landsat.tif")
+```
+
+
+```r
+r_brick
+```
+
+```
+## class      : RasterBrick 
+## dimensions : 1428, 1128, 1610784, 4  (nrow, ncol, ncell, nlayers)
+## resolution : 30, 30  (x, y)
+## extent     : 301905, 335745, 4111245, 4154085  (xmin, xmax, ymin, ymax)
+## crs        : +proj=utm +zone=12 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## source     : /Users/wanderlust/Documents/unc/classes/spring2020/geog215/uncgeog215sp20/lectures/lecture8/landsat.tif 
+## names      : landsat.1, landsat.2, landsat.3, landsat.4 
+## min values :      7550,      6404,      5678,      5252 
+## max values :     19071,     22051,     25780,     31961
+```
+---
+# Importing Raster Data
+
+## Importing a multi-layer raster file
+
+- ### Raster Bricks
+
+```r
+nlayers(r_brick)
+```
+
+```
+## [1] 4
+```
+# Importing only 1 band
+
+```r
+band3 &lt;- raster("landsat.tif", band = 3)
+```
+
+---
+
+# Importing Raster Data
+
+## Importing a multiple raster files with same extent and resolution
+
+  - ### Raster Stacks
+
+```r
+tmin_files &lt;- list.files(path = "wc2.0_10m_tmin/", pattern='\\.tif$',full.names = T)
+r_stack = stack(tmin_files)
+```
+---
+
+# Importing Raster Data
+
+## Importing a multiple raster files with same extent and resolution
+
+  - ### Raster Stacks
+
+```r
+r_stack
+```
+
+```
+## class      : RasterStack 
+## dimensions : 1080, 2160, 2332800, 12  (nrow, ncol, ncell, nlayers)
+## resolution : 0.1666667, 0.1666667  (x, y)
+## extent     : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
+## crs        : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## names      : wc2.0_10m_tmin_01, wc2.0_10m_tmin_02, wc2.0_10m_tmin_03, wc2.0_10m_tmin_04, wc2.0_10m_tmin_05, wc2.0_10m_tmin_06, wc2.0_10m_tmin_07, wc2.0_10m_tmin_08, wc2.0_10m_tmin_09, wc2.0_10m_tmin_10, wc2.0_10m_tmin_11, wc2.0_10m_tmin_12 
+## min values :         -54.22750,         -50.52500,         -60.52625,         -66.39000,         -66.94900,         -66.60025,         -71.80150,         -70.14000,         -67.51600,         -59.55575,         -47.20000,         -50.17575 
+## max values :          27.80900,          27.60000,          28.62231,          29.10400,          30.56025,          31.58200,          32.98000,          32.33425,          30.25000,          27.96750,          27.40000,          27.80000
+```
+
+---
+
+# Creating non-spatial (tabular) data into spatial data
+
+## In-class-exercises
+
+### scraping and mapping twitter data
+
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

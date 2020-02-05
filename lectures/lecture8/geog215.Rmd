@@ -1,0 +1,100 @@
+---
+title: "Download tweets using Twitter API"
+author: 
+- GEOG215, Introduction to Spatial Data Science \newline
+- Varun Goel
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: 
+   tufte::tufte_html: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This document contains a walkthrough of the steps needed to use Twitter's API in R to search Twitter using keywords, download tweets, and do some simple processing and analysis.
+
+# Twitter account
+
+[Sign up for a Twitter account](https://twitter.com)  
+
+**Send me your twitter handle/username either as a private message on piazza or on email**. You will shortly receive a message on your registered email to access the Twitter developer account.
+
+[Navigate to the Twitter developer account](https://developer.twitter.com/), and login with your credentials.
+
+******
+ 
+# Create a new App on Twitter
+
+Follow the instructions here at<https://cran.r-project.org/web/packages/rtweet/vignettes/auth.html>.  
+For mine, I used the following:  
+- *App name:* geog215-coronavirus 
+
+- *Application description:* This is an app that I need to create for a class I am teaching I can access tweets via R  
+
+- *Website URL:* https://geog215-spds.rbind.io
+
+- *Tell us how this app will be used*: (Write 100 characters or more) You can mention that in your own words that you are using it for the GEOG 215 class to learn how to mine tweets via twitter, lean them, analyze them and map them for spatial and social analysis.
+******
+ 
+# Access tweets from R 
+
+You will need the following packages to run the code in this document. Install them if you have not already done so. The `rtweet` package is the one that allows you to access the Twitter API. The others are used for processing and displaying the data.
+
+```{r, message=FALSE}
+library(rtweet)
+library(maps)
+library(tidytext)
+library(dplyr) # this should already be installed
+library(stringr)
+library(wordcloud2)
+library(ggplot2) # this should already be installed 2
+library(sf)
+```
+
+******
+ 
+## Get token information
+
+[Follow the instructions here](https://cran.r-project.org/web/packages/rtweet/vignettes/auth.html) to retrieve the access tokens for Twitter. I am using the second approach provided at this source, which **does not require interacting with twitter via a web browser to authenticate**. I recommend you use this one too] This function is basically what lets your computer (and R) to communicate with Twitter's servers.
+
+Use the following command, but substitute the information from your App/key/token/secret.
+
+```{r include=FALSE}
+token <- create_token(
+  app = "geog215-coronavirus",
+  consumer_key = "4UJa8OYqSNwyZqfTtNMNQj03D",
+  consumer_secret = "kxI3PCwm08aVPp9rnYhrKs3TshNn6GcafmE7jo0UdwTjjiEG1X",
+  access_token = "727055786-rU9vSEQsmWT3npnNWurU1Cf48zwaphDTa04d9n0U",
+  access_secret = "sun9nRG4e0CZZ4grQkZlIvZ3w2HscrwpHezUMgzWxDZJC")
+```
+
+
+```{r eval=FALSE}
+token <- create_token(
+  app = "Your app name",
+  consumer_key = "your consumer api key",
+  consumer_secret = "your consumer api secret",
+  access_token = "your access token",
+  access_secret = "your access secret")
+```
+
+******
+ 
+The next few commands search tweets in english for the words "coronavirus" or "ncov" or "2019-ncov" (and other variants of these words), retrieves up to the first 5,000^[the limit that can be returned in a single query is 18,000. Twitter limits 18000 queries for every 15 mins, so i suggest retrieving only 5000 the first time]) tweets that are not retweets, and then provides summary information about the data.
+
+```{r}
+# Get tweets
+ncov_tw <- search_tweets(q = "coronavirus OR ncov OR 2019-ncov", n = 5000, include_rts = FALSE, lang = "en")
+```
+
+******
+
+However this raw twitter data is really messy and needs to be cleaned for unneeded punctuations and words. Use the following code to get rid of some of the unnecessary words.
+
+
+```{r}
+ncov_tw <- ncov_tw %>%
+  mutate(stripped_text = text %>% gsub("http.*","",.)) %>%
+  mutate(stripped_text = stripped_text %>% gsub("https.*","",.))
+```
