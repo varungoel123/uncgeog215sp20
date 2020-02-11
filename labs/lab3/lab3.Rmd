@@ -1,8 +1,8 @@
 ---
 title: "GEOG 215: Lab 3"
 subtitle: "Taming Mighty Census with TidyCensus"
-author: "100 points"
-date: "Due Feb 4, 11:59 PM" 
+author: "105 points"
+date: "Due Feb 17, 03:35 PM" 
 output: 
   html_document:
     number_sections: true
