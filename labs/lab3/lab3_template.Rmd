@@ -1,0 +1,116 @@
+---
+title: "GEOG 215: Lab 3"
+subtitle: "Taming Mighty Census with TidyCensus"
+author: "YOUR NAME"
+output: 
+  html_document:
+    number_sections: true
+    code_folding: hide
+    toc: true
+    toc_float:
+      collapsed: TRUE
+      smooth_scroll: TRUE
+
+---
+
+******
+
+
+```{r check_packages, include = FALSE}
+  # This code will install required packages if they are not already installed
+  # ALWAYS INSTALL YOUR PACKAGES LIKE THIS!
+  packageList <- c("tidycensus","sf","janitor")
+  for(p in packageList){
+    if (!requireNamespace(p)) {
+      install.packages(p)
+    }
+  }
+```
+
+
+# Preparations
+
+## Load required Packages
+
+```{r load_packages}
+##This is a named chunk called load_packages
+library(tidyverse)
+library(sf)
+library(janitor)
+library(tidycensus)
+```
+
+## Obtain and set Api Key
+```{r}
+# this is an unnamed code chunk. Both are fine. Named chunks are easier to debug.
+## Type your api command here
+#Similarly you need to create your own rcode chunks wherever you need to write code
+```
+
+
+
+# Analysis
+
+
+## Get List of variables
+
+
+
+## Import Census Data from tidycensus api based on list of variables
+
+
+
+## Tame Data
+
+### Remove Unnecessary Columns
+
+### Clean Variable Names
+
+### Creating new variables of interest
+
+### Rearrange columns
+
+
+
+
+## Tidy Your Data
+
+
+
+
+
+
+## Transform Data
+
+
+
+
+
+## Data Visualization Part 1
+
+
+
+### Histograms (Plotting 1 continuous variable)
+
+
+### Boxplots (Plotting 1 continuous 1 categorical variable)
+
+### Point plot
+
+
+
+
+##  Data Viz Part 2: Adding Spatial Data
+
+### Downloading and Importing Spatial Data
+
+### Join your data
+
+### Plot maps
+
+
+
+
+
+# Feedback
+
