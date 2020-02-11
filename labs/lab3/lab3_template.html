@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="105 points" />
+<meta name="author" content="YOUR NAME" />
 
 
 <title>GEOG 215: Lab 3</title>
@@ -1582,449 +1582,99 @@ div.tocify {
 
 <h1 class="title toc-ignore">GEOG 215: Lab 3</h1>
 <h3 class="subtitle">Taming Mighty Census with TidyCensus</h3>
-<h4 class="author">105 points</h4>
-<h4 class="date">Due Feb 17, 03:35 PM</h4>
+<h4 class="author">YOUR NAME</h4>
 
 </div>
 
 
-<style>
-
-strong {
-     color: Maroon;
-     font-size: 12px;
-}
-
-p {
-    font-size: 12px;
-}
-
-h1 {
-    font-size: 24px;
-  color: DarkBlue;
-}
-
-h2 {
-    font-size: 20px;
-  color: DarkBlue;
-}
-
-h3 {
-    font-size: 16px;
-}
-
-div.blue { 
-background-color:#ffdad2; 
-padding: 10px 10px 3px 10px;
-}
-
-</style>
 <hr />
-<hr />
-<div id="summary" class="section level1">
-<h1><span class="header-section-number">1</span> Summary</h1>
-<p>In this lab, You will learn implement and solidify your data importing skills and those that you learnt in the datacamp course: “Working with data in the tidyverse”. In addition you will also learn how to import, clean and analyze the US census data in R. The US census is a comprehensive resourceful repository of data that can help explore and answer all sorts of powerful spatial questions. It is a fundamental <em>foundation</em> dataset and provides reliable social and demographic information at multiple administrative units for all of the US</p>
-<p>By the end of the lab you should have a good idea of:</p>
-<ol style="list-style-type: decimal">
-<li>Importing excel and spatial data programatically in R, including how to download within R.</li>
-<li>Using the tidycensus API to download the census/community survey data</li>
-<li>Some important commands and workflows to tame your data</li>
-<li>Differentiating between tidy and non-tidy data and tidying data for your own use.</li>
-<li>Transforming data using common commands, including joining with another (spatial) dataset.</li>
-<li>Visualizing tidy and non-tidy data for exploratory purposes.</li>
-<li>Basic commands for mapping spatial data</li>
-</ol>
-<hr />
-</div>
 <div id="preparations" class="section level1">
-<h1><span class="header-section-number">2</span> Preparations</h1>
-<div id="create-project" class="section level2">
-<h2><span class="header-section-number">2.1</span> Create Project</h2>
-<p>First of all, as we learnt in lab1, we want to create an R project for lab2 to keep all our code together. Now that we will interact with multiple data files, we want to me more organized to avoid losing track of all the moving peieces. As we did earlier in lab1/lab2 , either create a project in a new directory called <em>lab3</em> or create a directory called lab3 and create the project in an existing directory. If you dont remember, you can get a <a href="https://r4ds.had.co.nz/workflow-projects.html">refresher on projects</a>. Section 8.4 has the instructions on how to create a new project.</p>
-<hr />
-</div>
-<div id="install-required-packages" class="section level2">
-<h2><span class="header-section-number">2.2</span> Install Required Packages</h2>
-<p>Before you start working in RMarkdown, you need to make sure you have the necessary R packages installed:</p>
-<p>Run the R code in your console to install the <code>&quot;tidycensus&quot;</code>, <code>&quot;sf&quot;</code> and <code>&quot;janitor&quot;</code> packages.**</p>
-<pre class="r"><code>  # This code will install required packages if they are not already installed
-  # ALWAYS INSTALL YOUR PACKAGES LIKE THIS!
-  packageList &lt;- c(&quot;tidycensus&quot;,&quot;sf&quot;,&quot;janitor&quot;)
-  for(p in packageList){
-    if (!requireNamespace(p)) {
-      install.packages(p)
-    }
-  }</code></pre>
-<hr />
-</div>
-<div id="download-template-file" class="section level2">
-<h2><span class="header-section-number">2.3</span> Download Template File</h2>
-<p>Download the template .Rmd file for your use at <a href="https://geog215-spds.rbind.io/labs/lab3/lab3_template.Rmd" target="_blank">https://geog215-spds.rbind.io/labs/lab3/lab3_template.Rmd</a></p>
-<p>Once downloaded, rename or duplicate the file as <code>lab03_YOURLASTNAME.Rmd</code> and save it in your lab3 folder that should now be an Rproject directory</p>
-<hr />
-</div>
+<h1><span class="header-section-number">1</span> Preparations</h1>
 <div id="load-required-packages" class="section level2">
-<h2><span class="header-section-number">2.4</span> Load required Packages</h2>
-<p>Now Load the following packages:</p>
-<pre class="r"><code>library(tidyverse)
-library(readxl) #this already gets installed with tidyverse. However if you had issue installing tidyverse, you can also install this packages separately
-library(sf)
-library(janitor)
-library(tidycensus)</code></pre>
-<hr />
-<div class="blue">
-<p><strong>Did you know: Automated Data Importing</strong> As we discussed earlier, wherever possible, it is best to automate data importing for analysis compared to manually pointing, clicking and downloading files. It is even better if there is an available API to use since we can then just retrieve whatever data we need programmatically from a server, without the hassle of navigating through cumbersome interfaces and downloading full files. The census api helps us do that. As you might remember with the twitter api, we first need a unique <em>token</em> or a <em>key</em> to interface with the census api. Luckily, this a simple process:</p>
+<h2><span class="header-section-number">1.1</span> Load required Packages</h2>
+<pre class="r"><code>##This is a named chunk called load_packages
+library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.0.9000     ✓ purrr   0.3.3     
+## ✓ tibble  2.1.3          ✓ dplyr   0.8.3     
+## ✓ tidyr   1.0.0          ✓ stringr 1.4.0     
+## ✓ readr   1.3.1          ✓ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(sf)</code></pre>
+<pre><code>## Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 5.2.0</code></pre>
+<pre class="r"><code>library(janitor)</code></pre>
+<pre><code>## 
+## Attaching package: 'janitor'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     chisq.test, fisher.test</code></pre>
+<pre class="r"><code>library(tidycensus)</code></pre>
 </div>
-<hr />
-</div>
-<div id="obtain-and-set-census-api-key" class="section level2">
-<h2><span class="header-section-number">2.5</span> Obtain and Set Census API key</h2>
-<p>Obtain your census API key from <a href="http://api.census.gov/data/key_signup.html" class="uri">http://api.census.gov/data/key_signup.html</a>. Put <code>UNC Chapel Hill</code> as your Organization Name and your unc email address as your email. Submit the key request.</p>
-<p>Once you receive your key, set it in the following code below:</p>
-<pre class="r"><code>#census_api_key(key = &quot;YOUR API KEY GOES HERE&quot;, install = TRUE)</code></pre>
-<p>Now that your census key is set, you are ready to interface with the census API. The tidyCensus packaged has been developed to help use the census api in R and import census data in a very user friendly format. The documentation for using the package is available here <a href="https://walkerke.github.io/tidycensus/articles/basic-usage.html" class="uri">https://walkerke.github.io/tidycensus/articles/basic-usage.html</a>. It is a very useful documentation, and will help you with aspects of both the lab and the HW1.</p>
+<div id="obtain-and-set-api-key" class="section level2">
+<h2><span class="header-section-number">1.2</span> Obtain and set Api Key</h2>
+<pre class="r"><code># this is an unnamed code chunk. Both are fine. Named chunks are easier to debug.
+## Type your api command here
+#Similarly you need to create your own rcode chunks wherever you need to write code</code></pre>
 </div>
 </div>
 <div id="analysis" class="section level1">
-<h1><span class="header-section-number">3</span> Analysis</h1>
+<h1><span class="header-section-number">2</span> Analysis</h1>
 <div id="get-list-of-variables" class="section level2">
-<h2><span class="header-section-number">3.1</span> Get List of variables</h2>
-<hr />
-<div class="blue">
-<p><strong>Important</strong> You can use the census API to get either versions of the more comprehensive, accurate but non-frequent dicennial census or the American Community Survey, that is an estimate of the population estimated at more frequent time-scales. The census counts EVERYONE in the population and is accurate for measuring exact counts at a particular snapshot in time. The American Community Survey (ACS) is an <em>estimate</em> of the population, and hence is subject to some margin of error. Hence, you should avoid using ACS for measuring counts. However, because of its frequent yearly duration, ACS can be used to <em>compare</em> population characteristics over time or geographies.</p>
-</div>
-<hr />
-<p>In this case, we will get most recent and available data using the 5 year 2014-2018 American Community Survey. In order to do that, first we need to specify the geography and the variables we need the data for from the census. We can do that by interacting with the API and getting a full list of the variables to select from.</p>
-<p>Write the following code to get the full variable list and display a few rows:</p>
-<pre class="r"><code>v17 &lt;- load_variables(2018, &quot;acs5&quot;, cache = TRUE) # stores the list in memory so that it loads quickly on a re0run
-head(v17)</code></pre>
-<p>Now unless you are a census expert, and know codes on top of your head, it may take a lot of time to decode the American Community Survey codebook containing a whopping 26996 variables.</p>
-<hr />
-<div class="blue">
-<p><strong>Important</strong> In this lab we are interested in mapping race and income. Note that, since we are using the American community Survey and not the CENSUS, the counts of different races are estimates, and subject to some error. Hence, we are more interested in relative comparisons among different race compositions across North Carolina as compared to exact counts.</p>
-</div>
-<hr />
-<p>Type in the following code:</p>
-<pre class="r"><code>pop_cols &lt;- v17 %&gt;% filter(concept %&gt;% str_detect(&quot;TOTAL POPULATION&quot;))
-head(pop_cols)</code></pre>
-<p><strong>Q.1) Answer in 1 sentence each:</strong></p>
-<ul>
-<li><strong>a) What does the str_detect() function do? </strong></li>
-<li><strong>b) On what criteria were the rows filtered? Mention in a way that a layman can understand</strong></li>
-</ul>
-<p>Now run the following code:</p>
-<pre class="r"><code>pop_cols &lt;- v17 %&gt;% filter(concept %&gt;% str_detect(&quot;^TOTAL POPULATION$&quot;))
-head(pop_cols)</code></pre>
-<p><strong>Q.2) What do you think is the difference in the output within this filter query and the previous one? WHY are the number of rows different here? Answer in 1 sentence. (Hint: read the Did you know text on Regular Expressions)</strong></p>
-<hr />
-<div class="blue">
-<p><strong>Did You Know: Regular Expressions</strong> String detection and matching is an integral and powerful part of data science. The <code>^</code> and <code>$</code> are referred to as <code>wildcards</code> and are part of a large sequence of characters called <em>regular expression</em> or <em>regex</em> that define a search pattern. Here <code>^</code> searches for strings that <strong>begin</strong> with the corresponding word, and <code>$</code> searches for strings that <strong>end</strong> with the preceding word.</p>
-</div>
-<hr />
-<p>Now, we can similarly narrow down our query for other columns on race and ethnicity using string detection.</p>
-<p>Run the following code below:</p>
-<pre class="r"><code># Detect Not hispanic or latino
-hisp_cols &lt;- v17 %&gt;% filter(concept %&gt;% str_detect(&quot;HISPANIC OR LATINO&quot;)) %&gt;%
-  filter(concept %&gt;% str_detect(&quot;RACE&quot;)) %&gt;% 
-  filter(label %&gt;% str_detect(fixed(&quot;not hispanic or latino&quot;,ignore_case = T)))
-# Detect Median Household Income
-inc_cols &lt;- v17 %&gt;% filter(concept %&gt;% str_detect(&quot;MEDIAN HOUSEHOLD INCOME&quot;))
-
-# Find the code for Total Population (in the name column of pop_cols)
-pop_tot_col &lt;- pop_cols$name
-
-# Give it a reasonable column name)
-pop_total_colname &lt;- &quot;Total Population&quot;
-# Manually assign race column codes from the filtered hisp_cols df
-race_col &lt;- c(&quot;B03002_002&quot;,&quot;B03002_003&quot;,&quot;B03002_004&quot;,&quot;B03002_005&quot;)
-# Provide Reasonable column name
-race_colname &lt;-c(&quot;Not Hispanic&quot;,&quot;White&quot;,&quot;Black&quot;,&quot;Native Americans&quot;)
-
-# Manually assign race column codes from the filtered inccols df
-inc_col &lt;- &quot;B19013_001&quot;
-# Provide Reasonable column name
-inc_colname &lt;- &quot;Med HH income&quot;</code></pre>
-<hr />
+<h2><span class="header-section-number">2.1</span> Get List of variables</h2>
 </div>
 <div id="import-census-data-from-tidycensus-api-based-on-list-of-variables" class="section level2">
-<h2><span class="header-section-number">3.2</span> Import Census Data from tidycensus api based on list of variables</h2>
-<p>We can use the <code>get_acs()</code> query to get data from the American Community Survey. Here we write a query to get data at the <code>county</code> level, for the variables stored in <code>pop_tot_col</code>, <code>race_col</code>, and <code>inc_col</code>, for <code>North Carolina</code> , for the ending year <code>2018</code> in a <code>wide</code> format.</p>
-<p><strong>Q.3) The query below is incomplete. Fill in the blanks to input the vectors that store the variables for population, race, and income.</strong></p>
-<pre class="r"><code>#Q.3 Fill in the blanks
-nc_raw &lt;- get_acs(geography = &quot;county&quot;, 
-              variables = c(_______________________),
-              state = &quot;NC&quot;, 
-              year = 2018,
-                output = &quot;wide&quot;)</code></pre>
-<p>This dataset is in a ‘wide’ format. Although it is relatively clean, we still need to make some adjustments before we can start analyzing our data.</p>
-<hr />
+<h2><span class="header-section-number">2.2</span> Import Census Data from tidycensus api based on list of variables</h2>
 </div>
 <div id="tame-data" class="section level2">
-<h2><span class="header-section-number">3.3</span> Tame Data</h2>
+<h2><span class="header-section-number">2.3</span> Tame Data</h2>
 <div id="remove-unnecessary-columns" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> Remove Unnecessary Columns</h3>
-<p>First, we need remove all unnecessary columns. We can remove ALL the columns ending with <code>M</code>. These columns store the margin or error for each variable. Because our data is at a county level, the margin of error is really small, and hence we dont need to worry about it in our analysis and can safely remove all columns measuring margin of error.</p>
-<p><strong>Q.4) Remove all the columns in <code>nc_raw</code> that end with an <code>m</code> by filling the <code>select</code> query below. Hint: you can use of the very useful helper functions that can be used with select(). <a href="https://dplyr.tidyverse.org/reference/select.html" class="uri">https://dplyr.tidyverse.org/reference/select.html</a></strong></p>
-<pre class="r"><code>#Q.4 fill in the blanks below
-nc_wide &lt;- nc_raw %&gt;% select(_____________)
-glimpse(nc_wide)</code></pre>
+<h3><span class="header-section-number">2.3.1</span> Remove Unnecessary Columns</h3>
 </div>
 <div id="clean-variable-names" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Clean Variable Names</h3>
-<p>We can clean variable names by using the <code>clean_names</code> function in the <code>janitor</code> package. Here we clean up the column names to make sure that all the cases are consistent and that there is no space or other non alphanumeric character in the column names. Generally, it is recommended you use <code>_</code> to separate words in a column name.</p>
-<p>Type in the code below:</p>
-<pre class="r"><code>colnames(nc_wide)
-colnames(nc_wide)[3:8] &lt;- c(pop_total_colname,race_colname,inc_colname)
-nc_wide &lt;- nc_wide %&gt;% clean_names(case =&quot;snake&quot;) # snake case makes evverything lower case and replaces spaces with `_`
-colnames(nc_wide)</code></pre>
+<h3><span class="header-section-number">2.3.2</span> Clean Variable Names</h3>
 </div>
 <div id="creating-new-variables-of-interest" class="section level3">
-<h3><span class="header-section-number">3.3.3</span> Creating new variables of interest</h3>
-<p>We still need to create a few more columns for race. Being <code>Hispanic or Latino</code> is considered ethnicity, and not race in the census. One could have <code>Hispanic or Latino</code> ethnicity and identify as one or more race. We have already considered non-Hispanic Whites, Blacks, and Native Americans. Additionally, we create 3 more columns: for number of Hispanics in each county, the total number of persons of color (poc), and categorical variable telling us whether the majority of the county is <code>white</code> or <code>hispanic</code>. For the purpose of this lab, however, we will consider those as two more categories of race.</p>
-<hr />
-<div class="blue">
-<p><strong>IMPORTANT</strong> Taming, Tidying and Transforming are all circular and not strictly in any one order. In this case, since we apriori know that we want to create a few derived variables from the census category, we <code>transform</code> our data before tidying too. We could have done this later too, if we wished though.</p>
-</div>
-<hr />
-<p><strong>Q.5) Create 2 new columns by filling in the blanks below. The first column <code>hispanic</code> is defined as <code>everyone except not hispanic</code>. The 2nd column <code>poc</code> is defined as <code>everyone except whites</code>. Then, remove the <code>not_hispanic</code> column in the same piped command</strong></p>
-<pre class="r"><code>#Q.5 Fill in the blanks below
-nc_wide &lt;- nc_wide %&gt;% _____(hispanic = ___________,
-                             poc = t________________) %&gt;%
-  white_majority = ifelse(white &gt; poc, 1,0) %&gt;% 
-                                recode_factor(`1` = 'white',
-                                                          `0` = 'poc')) %&gt;%
-  _______(-not_hispanic)</code></pre>
+<h3><span class="header-section-number">2.3.3</span> Creating new variables of interest</h3>
 </div>
 <div id="rearrange-columns" class="section level3">
-<h3><span class="header-section-number">3.3.4</span> Rearrange columns</h3>
-<p>We are 1 step away from having a good enough <em>tamed</em> dataset.</p>
-<hr />
-<div class="blue">
-<p><strong>IMPORTANT</strong> Rearranging columns can help us be more organized and make fewer mistakes. Also, by keeping similar type of columns together (either data type, or in this case thematic type), we can make use of helper functions or sequencing that make typing less cumbersome and help during tidying and transformation. You will see an example below:</p>
-</div>
-<hr />
-<p>Lets rearrange the dataset so that we have:</p>
-<ul>
-<li>the identification variables together at the beginning</li>
-<li>followed by race <em>numeric</em> variables</li>
-<li>followed by race <em>factor</em> variable</li>
-<li>followed by total population</li>
-<li>followed by median household income</li>
-</ul>
-<p><strong>Q.6) fill in the blanks below to get the correct order of columns</strong></p>
-<pre class="r"><code>#Q.6 Fill in blanks below to add the remaining columns in the correct order
-nc_wide &lt;- nc_wide %&gt;% select(geoid,name,white:native_americans,
-                              ______________________________,
-                              med_hh_income)
-glimpse(nc_wide)
-## You can also use column numbers instead of colnames but names are preferable here. Also, you can make use of the ':' operator just like in vectors for columnames that are next to each other</code></pre>
-<hr />
+<h3><span class="header-section-number">2.3.4</span> Rearrange columns</h3>
 </div>
 </div>
 <div id="tidy-your-data" class="section level2">
-<h2><span class="header-section-number">3.4</span> Tidy Your Data</h2>
-<p>The decision to tidy a data depends on our objective. There are three interrelated rules which make a dataset tidy:</p>
-<ol style="list-style-type: decimal">
-<li>Each variable must have its own column.</li>
-<li>Each observation must have its own row.</li>
-<li>Each value must have its own cell.</li>
-</ol>
-<p>I recommend that you understand these in more details at <a href="https://r4ds.had.co.nz/tidy-data.html" class="uri">https://r4ds.had.co.nz/tidy-data.html</a>.</p>
-<p>You can see that based on these rules - we need to know what our variables and what each observation is. Compare our current <code>nc_wide</code> dataset. You could say that Each observation here is a county ( one county per row), each column is its own variable, and that each value is in its own cell.</p>
-<p>However, at the one level, I can say that each variable is actually a socio-demographic feature of a county, and that should be its own variable: <code>features</code>. Similary there should be corresponding variable: <code>values</code></p>
-<p>Lets “tidy” the <code>nc_wide</code> data based on that concept:</p>
-<p>Try entering the code below (after uncommenting) in your <em>console AND NOT in your Rmarkdown since it should give an error</em></p>
-<pre class="r"><code># nc_tidy1 &lt;- nc_wide %&gt;% pivot_longer(names_to = &quot;feature&quot;,
-#                               values_to = &quot;values&quot;,
-#                               cols = white:med_hh_income)
-# # we dont add geoid and name since they are already tidy (their own column). In general we never tidy any identifier variable
-# glimpse(nc_tidy1)</code></pre>
-<p>Thankfully, it does give an error since we are trying to add both numeric variables, and factors (yes/no for the <code>white_majority</code>) variable in the same column.</p>
-<p>Hence, that should give us one rule of thumb: <em>You cannot combine variables with different data types in the same column</em>. Hence, <code>white_majority</code> should be its own variable. Additionally, even though <code>med_hh_income</code> is numeric, its unit is dollars, while the unit for other numeric variables is the number of people.</p>
-<p>Hence, more strictly: <em>&quot;You should combine variables with different UNITS in the same column (unless they are converted to the same unit)</em></p>
-<p>Finally, although <code>total_population</code> and other race columns are all counting th number of people, total_population is more of a summary variable since it is composef of the multiple race variables. Hence, we can say that even if *variables have the same unit, they should not be in one column if they measure different scales (individual race vs total population)</p>
-<p>Hence our new tidy should have the following columns: <code>geoid</code>, <code>name</code>, <code>white_majority</code>, <code>total_population</code>, <code>med_hh_income</code>, and then the 2 tidied columns called <code>race</code> (which contains the type of each race), and <code>race_count</code> (which counts people in each race per county)</p>
-<p>Type the command below:</p>
-<pre class="r"><code>nc_tidy1 &lt;- nc_wide %&gt;% pivot_longer(names_to = &quot;race&quot;,
-                              values_to = &quot;race_count&quot;,
-                              cols = white:poc) 
-# We do not specify any column that is ALREADY TIDY. In general we never tidy any identifier variable. THe Rearrangement of columns helps make the use of &quot;:&quot;operator possible. We could have also specified columns with &quot;-&quot; sign to tidy ALL columns except those preceded by the &quot;-&quot;.
-glimpse(nc_tidy1)</code></pre>
-<p>This “tidy” data gives us some advantage with regards to using tidyverse functions. Remember, that the whole purpose of “tidying” data is to make analysis in a computer easier, and not necessarily easier on the eye! There could also have been other “tidy” versions, such as putting total_population and median household income in separate datasets altogether since they are not really measuring racial composition. We will slowly get an intuition of what works best when after practice.</p>
-<p>Lets transform data to see how “tidying” data helps make our data science process smoother. ***</p>
+<h2><span class="header-section-number">2.4</span> Tidy Your Data</h2>
 </div>
 <div id="transform-data" class="section level2">
-<h2><span class="header-section-number">3.5</span> Transform Data</h2>
-<p>To make comparisons more meaningful, Lets <em>transform</em> our data to create a new variable called <code>race_pct</code> that calculates percentage of population of a particular race in a particular county</p>
-<p><strong>Q.7) Fill in the blank to create a new variable in <code>nc_tidy</code> <code>race_pct</code> based on the above description</strong></p>
-<pre class="r"><code># Q.7)
-nc_tidy1 &lt;- nc_tidy1 %&gt;% ___________(race_pct = ____________________________)
-glimpse(nc_tidy1)</code></pre>
-<hr />
-<div class="blue">
-<p><strong>IMPORTANT</strong> Because of the way our data is, we were easily able to calculate race_pct for each racial category. If you wanted to mutate on the <code>nc_wide</code> dataframe, you would have had to mutate for each racial category in your dataframe. Hence, you would have had to use 5 repetitive mutate commands!.</p>
-</div>
-<hr />
-<p>Finally, lets quickly remove some more repetitive information from our County Names and start visualizing.</p>
-<p>Type the code below:</p>
-<pre class="r"><code>nc_tidy1$name %&gt;% head
-nc_tidy1$name &lt;- nc_tidy1$name %&gt;% str_replace(pattern = &quot; County, North Carolina&quot;, replacement = &quot;&quot;)
-nc_tidy1$name %&gt;% head</code></pre>
-<p><strong>Q.8) Answer in 1 sentence: What does the str_replace() function do here to the name string?</strong></p>
-<hr />
+<h2><span class="header-section-number">2.5</span> Transform Data</h2>
 </div>
 <div id="data-visualization-part-1" class="section level2">
-<h2><span class="header-section-number">3.6</span> Data Visualization Part 1</h2>
-<p>Tidy data gives a lot of control over easy visualizations for multiple aspects of data.</p>
+<h2><span class="header-section-number">2.6</span> Data Visualization Part 1</h2>
 <div id="histograms-plotting-1-continuous-variable" class="section level3">
-<h3><span class="header-section-number">3.6.1</span> Histograms (Plotting 1 continuous variable)</h3>
-<p>Lets explore the distribution of our continuous data. Knowing the distribution of data is important for statistical modeling and for looking at variation in data. For example, if the data does not look like a normal distribution, it might violate statistical tests, or may be too narrowly variable to be of any use to prediction.</p>
-<p>Type in the code below:</p>
-<pre class="r"><code>nc_tidy1 %&gt;%
-  ggplot(aes(x = race_pct)) + 
-  geom_histogram(binwidth = 5 ,col = &quot;white&quot;)  + geom_rug() +
-  facet_wrap(~ race) + scale_x_continuous(breaks = seq(0, 100, 5))+
-  theme_bw()</code></pre>
-<p><strong>Q.9) Based on the plot- you describe the shape of the percentages of different race variables. Here is one resource to help interpret a histogram. <a href="https://statisticsbyjim.com/basics/histograms/" class="uri">https://statisticsbyjim.com/basics/histograms/</a> Skim through it and answer the following</strong></p>
-<ul>
-<li><strong>a. Visually, are there any groups with a normal distribution?</strong></li>
-<li><strong>b. Visually, which group has the most concentrated values (narrowest histogram)?</strong></li>
-<li><strong>c. Across North Carolina at the county level, comparing black vs hispanic, which group has larger spread? (Look at which group has larger variation)?</strong></li>
-<li><strong>d. What do you think the black ticks below each bar of the histogram indicate (They are called rug plots)</strong></li>
-</ul>
-<p>You can see that because we had “tidy” data, we are able to compare histograms of all race related variables in one plot command, and on one consistent scale.</p>
-<p><strong>EC 1: 5 points) Can you guess how many plots would you need to plot all the race variables if we used <code>nc_wide</code> instead? which dataframe (<code>nc_wide</code> or <code>nc_tidy</code>) would be better and why? Provide 2-3 sentences </strong></p>
-<p>Now, your turn:</p>
-<p><strong>Q.10) Complete the fill in the blanks to create a histogram for only whites and blacks. Use the <code>%in%</code> operator to subset the race categories.(example at: <a href="http://www.datasciencemadesimple.com/in-operator-in-r/" class="uri">http://www.datasciencemadesimple.com/in-operator-in-r/</a></strong></p>
-<pre class="r"><code># Q.9) Fill blanks
-nc_tidy1 %&gt;% ______(_____ %in% c(________________)) %&gt;% 
-  ggplot(aes(x = race_pct, fill = race)) + 
-  geom_histogram(binwidth = 5 ,col = &quot;white&quot;,
-                 alpha = 0.3,position = &quot;identity&quot;) + 
-  scale_x_continuous(breaks = seq(0, 100, 5))+
-  theme_bw()</code></pre>
-<p><strong>Q.11) Based on the plot - Is there a significant overlap between whites and blacks? In a sentence, write what you think that might tell you about your data? Full points for trying ernestly.</strong></p>
-<hr />
-<div class="blue">
-<p><strong>Did you know</strong> You just created a plot by <em>transforming</em> your dataframe <em>on the fly</em>. That is a very useful and quick way of exploring your data since you dont have to keep on creating new data frames for each plot. You can also see that it is easy to use pipes and operations such as filter in tidy data to achieve your desired data</p>
-</div>
-<hr />
+<h3><span class="header-section-number">2.6.1</span> Histograms (Plotting 1 continuous variable)</h3>
 </div>
 <div id="boxplots-plotting-1-continuous-1-categorical-variable" class="section level3">
-<h3><span class="header-section-number">3.6.2</span> Boxplots (Plotting 1 continuous 1 categorical variable)</h3>
-<p>Type in the following code below: Here we create a boxplot. The other advantage of ggplot2 is that we can actually store the plot in an object (<code>boxp</code> in our case) nad then add more layers to our box plot.</p>
-<pre class="r"><code>## create an unlabelled boxplot
-boxp &lt;- nc_tidy1 %&gt;%
-  ggplot(aes(x = white_majority,y=med_hh_income)) + 
-  geom_boxplot()  +
-  theme_minimal()
-boxp
-
-## aad a text layer to boxp to create labels 
-boxp + geom_text(aes(label=name), check_overlap = T, 
-                 size = 2.5,color = &quot;blue&quot;,
-                 position = position_nudge(x = 0.2,y=0.2)) +
-  labs(x = &quot;Majority Racial composition&quot;,
-       y = &quot;Median Household Income&quot;,
-       title = &quot;Distirbution of Median HH Income among white and PoC majority counties&quot;)</code></pre>
-<p><strong>Q.12) Based on the plot - Describe in 1-2, the differences between Median Household Income among Majority White vs Majority PoC counties. Which counties are outliers in Majority white and Poc counties? Here is a resource to interpret boxplots <a href="https://flowingdata.com/2008/02/15/how-to-read-and-use-a-box-and-whisker-plot/" class="uri">https://flowingdata.com/2008/02/15/how-to-read-and-use-a-box-and-whisker-plot/</a></strong></p>
+<h3><span class="header-section-number">2.6.2</span> Boxplots (Plotting 1 continuous 1 categorical variable)</h3>
 </div>
 <div id="point-plot" class="section level3">
-<h3><span class="header-section-number">3.6.3</span> Point plot</h3>
-<p>Finally plot a cleaner variation of a bar plot using the code below. Here we plot Median Household Income for each County. However, since our “tidy” data has repeated observations of median household income for each county, it might be better to use our nc_wide dataframe for this.</p>
-<pre class="r"><code>nc_wide %&gt;% mutate(name = name %&gt;% str_replace(&quot; County, North Carolina&quot;,&quot;&quot;)) %&gt;%
-  ggplot(aes(y = reorder(name,med_hh_income),x=med_hh_income)) + 
-  geom_point(color = &quot;maroon&quot;) + labs(x = &quot;Median Household Income&quot;,
-                      y = &quot;County Names&quot;,
-                      title = &quot;Median HH Income by County&quot;) +
-  theme_minimal() + theme(axis.text.y = element_text(size = 6))</code></pre>
-<hr />
+<h3><span class="header-section-number">2.6.3</span> Point plot</h3>
 </div>
 </div>
 <div id="data-viz-part-2-adding-spatial-data" class="section level2">
-<h2><span class="header-section-number">3.7</span> Data Viz Part 2: Adding Spatial Data</h2>
-<p>Now, finally we create a couple of MAPS. But first, we need to download the spatial data.</p>
+<h2><span class="header-section-number">2.7</span> Data Viz Part 2: Adding Spatial Data</h2>
 <div id="downloading-and-importing-spatial-data" class="section level3">
-<h3><span class="header-section-number">3.7.1</span> Downloading and Importing Spatial Data</h3>
-<p>In this case, just like before, we automate downloading and importing of the spatial data.</p>
-<hr />
-<div class="blue">
-<p><strong>Did you know</strong> You can even <em>unzip</em> your files in R using the <code>unzip()</code> function.</p>
-</div>
-<hr />
-<p>Type the code below to download, unzip, and read in a geospatial file of NC counties.</p>
-<pre class="r"><code>if(!file.exists(&quot;data/NC_Counties.zip&quot;)){
-  print(&quot;NC_Counties.zip does not exist, fetching zip file from the source&quot;)
-  download.file(url = &quot;https://opendata.arcgis.com/datasets/34acbf4a26784f189c9528c1cf317193_0.zip?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D&quot;,
-                destfile = &quot;data/NC_Counties.zip&quot;)
-}
-
-print(&quot;NC_counties.zip exists at '.data/NC_Counties.zip'&quot;)
-
-if(!file.exists(&quot;data/NC_Counties/NC_Counties.shp&quot;)){
-  print(&quot;unzipped folder and shp not detected, unzipping 'NC_Counties.zip' to '.data/NC_counties'&quot;)
-unzip(&quot;data/NC_Counties.zip&quot;,exdir = &quot;data/NC_Counties&quot;,overwrite = T)
-}
-
-nc_shp &lt;- st_read(&quot;./data/NC_Counties/NC_Counties.shp&quot;,stringsAsFactors =F)
-nc_shp &lt;- nc_shp %&gt;% clean_names(case = &quot;snake&quot;)</code></pre>
-<p><strong>Q.13) Based on the printed output when you execute st_read(), Answer True or False</strong></p>
-<ul>
-<li><strong>a. The file has 9 rows and 100 columns</strong></li>
-<li><strong>b. It is polygon vector shapefile</strong></li>
-<li><strong>c. It is in a projected coordinate system (as opposed to a geographic coordinate system)</strong></li>
-</ul>
+<h3><span class="header-section-number">2.7.1</span> Downloading and Importing Spatial Data</h3>
 </div>
 <div id="join-your-data" class="section level3">
-<h3><span class="header-section-number">3.7.2</span> Join your data</h3>
-<p>Before we can make a map, we have to join the geographical data to our <code>nc_wide</code> and <code>nc_tidy</code> dataset.</p>
-<p><strong>Q.14) Fill in the blanks below and execute that keeps the renamed <code>name</code> column and the the <code>geometry</code> column only. The <code>co_name</code> column should be renamed to <code>name</code>. Hint: This can be done within the select function itself.</strong></p>
-<pre class="r"><code>nc_shp &lt;- nc_shp %&gt;% select(name = co_name, geometry) %&gt;%
-  mutate(name = name %&gt;% str_to_title())
-
-# join to tidy data
-nc_tidy_geo &lt;- nc_tidy1 %&gt;% left_join(nc_shp, by = &quot;name&quot;) %&gt;% st_sf()
-# join to wide data
-nc_wide_geo &lt;- nc_wide %&gt;% mutate(name = name %&gt;% str_replace(&quot; County, North Carolina&quot;,&quot;&quot;)) %&gt;% left_join(nc_shp, by = &quot;name&quot;) %&gt;% st_sf()</code></pre>
-<hr />
-<div class="blue">
-<p><strong>Did you know</strong> There are several other ways in which you can join the data. <code>leftjoin()</code> ensures that all rows in the first dataframe are kept, even if all of them dont match. There are several other ways to join the data too. &lt; <a href="https://dplyr.tidyverse.org/reference/join.html" class="uri">https://dplyr.tidyverse.org/reference/join.html</a>&gt;</p>
-</div>
-<hr />
+<h3><span class="header-section-number">2.7.2</span> Join your data</h3>
 </div>
 <div id="plot-maps" class="section level3">
-<h3><span class="header-section-number">3.7.3</span> Plot maps</h3>
-<p>Now plot your first map using the code below:</p>
-<pre class="r"><code>nc_wide_geo %&gt;% 
-ggplot(aes(fill=med_hh_income)) + geom_sf(color=NA) +
-  scale_fill_viridis_c() + theme_minimal() + 
-  labs(title = &quot; Distribution of Median Household Income ($) in NC&quot;)</code></pre>
-<p>Lets plot another map that instead maps the factor variable <code>white_majority</code></p>
-<pre class="r"><code>nc_wide_geo %&gt;% 
-ggplot(aes(fill=white_majority)) + geom_sf(color=&quot;white&quot;) + labs(title = &quot; Distribution of White VS PoC Majority Counties in NC&quot;) + theme_bw()</code></pre>
-<p><strong>Q.15) Based on the map, Do PoC counties cluster together? In other words, according to you, are PoC majority counties more likely to be surrounded by other PoC Counties? </strong></p>
-<p>Now finally just like we facetted for non-spatial graphics, We will map the spatial distribution of each racial composition using facetting. In this case, we will use the <code>nc_tidy_geo</code> dataset and provide some bins to classify our data.</p>
-<p>Execute the code below to create facetted maps: <strong>Note:</strong> - this might take 1-3 minutes to render, stretch your legs and get a cup of coffee)</p>
-<pre class="r"><code>library(RColorBrewer)
-pct_breaks &lt;- c(0,10,25,50,75,100)
-nc_tidy_geo %&gt;%
-  mutate(n_breaks = cut(race_pct,breaks = pct_breaks, include.lowest = T,
-                        right = F)) %&gt;% 
-  ggplot(aes(fill=n_breaks)) + geom_sf() +
-  facet_wrap(~ race) +
-  scale_fill_brewer(type = &quot;seq&quot;,palette = &quot;Oranges&quot;) + theme_bw()</code></pre>
-<hr />
+<h3><span class="header-section-number">2.7.3</span> Plot maps</h3>
 </div>
 </div>
-<div id="deliverables" class="section level2">
-<h2><span class="header-section-number">3.8</span> Deliverables</h2>
-<p>**Knit your file to html and upload both your <code>.html</code> and <code>.Rmd</code> file. make sure to save your <code>.Rmd</code> file as <code>lab03_YOURLASTNAME.Rmd</code>. Then it will automatically save the html with same name when knitted.</p>
-<hr />
 </div>
-<div id="feedback" class="section level2">
-<h2><span class="header-section-number">3.9</span> Feedback</h2>
-<p>Let me know how much time you spent, how useful the lab was (scale 1-5), and how difficult did you find it (scale 1-5). And any other feedback you have for me or the lab. Your private feedback is confidential and will only be available to me.</p>
-</div>
+<div id="feedback" class="section level1">
+<h1><span class="header-section-number">3</span> Feedback</h1>
 </div>
 
 
@@ -2064,7 +1714,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeCodeFolding("show" === "show");
+  window.initializeCodeFolding("hide" === "show");
 });
 </script>
 

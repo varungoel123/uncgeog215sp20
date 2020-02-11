@@ -501,7 +501,7 @@ nc_wide %>% mutate(name = name %>% str_replace(" County, North Carolina","")) %>
 ***
 
 
-## Adding Spatial Data
+## Data Viz Part 2: Adding Spatial Data
 
 Now, finally we create a couple of MAPS. But first, we need to download the spatial data.
 
@@ -567,7 +567,7 @@ There are several other ways in which you can join the data. `leftjoin()` ensure
 </div>
 ***
 
-## Plot maps
+### Plot maps
 
 Now plot your first map using the code below:
 
