@@ -1,0 +1,224 @@
+---
+title: "GEOG 215: Homework 1"
+subtitle: "Investigating CAFOs, People and  Health Outcomes in North Carolina"
+author: "100 points (10 Points Extra Credit)" 
+date: "Due Feb 24, 11:59 PM" 
+output: 
+  html_document:
+    number_sections: true
+    code_folding: show
+    toc: true
+    toc_float:
+      collapsed: TRUE
+      smooth_scroll: TRUE
+---
+
+<style>
+
+strong {
+     color: Maroon;
+     font-size: 12px;
+}
+
+p {
+    font-size: 12px;
+}
+
+h1 {
+    font-size: 24px;
+  color: DarkBlue;
+}
+
+h2 {
+    font-size: 20px;
+  color: DarkBlue;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+div.blue { 
+background-color:#ffdad2; 
+padding: 10px 10px 3px 10px;
+}
+
+</style>
+
+******
+
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(eval = FALSE)
+```
+
+# Background Reading
+
+- <https://ehp.niehs.nih.gov/doi/10.1289/ehp.121-a182>
+- <https://www.nytimes.com/2018/09/19/climate/florence-hog-farms.html>
+- <https://ncejn.org/cafos/>
+- <http://www.ncmedicaljournal.com/content/79/5/278.full>
+- <http://www.ncpolicywatch.com/wp-content/uploads/2014/09/UNC-Report.pdf>
+  
+*******
+
+# Datasets Needed
+
+- <https://files.nc.gov/ncdeq/List_Of%20Permitted_Animal_Facilities2019-11-06.xls>
+
+- <https://www.countyhealthrankings.org/sites/default/files/media/document/state/downloads/2018%20County%20Health%20Rankings%20North%20Carolina%20Data%20-%20v3.xls>
+
+- <https://opendata.arcgis.com/datasets/34acbf4a26784f189c9528c1cf317193_0.zip?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D>
+
+- Census data will be imported directly into R from the `tidycensus` api
+
+# Required Packages
+
+Install them first if needed. You might have to install `readxl`, but in most cases it should have been installed as part of tidyverse. You are welcome to use packages outside the ones suggested if you wish.
+
+```{r load_packages, eval = F}
+library(tidyverse)
+library(tidycensus)
+library(readxl)
+library(janitor)
+library(sf)
+```
+
+
+# Your Tasks
+
+
+******
+<div class = "blue">
+**Data Science: 2 approaches to consider**
+
+Often, a data science project involves `coming across` a potential stream of data, taming, tidying, transforming and visualizing to see trends and patterns, forming questions and hypothesis, and then using models to answer them. This can be considered a **data-driven** approach, where you let the data do the talking, and help you think about questions you want to test. The focus is here to collect as much data as possible, and then formulate theory.
+
+Another approach, , is the **theory-based** approach, where you already have an apriori theory/question, and you then only collect data that helps answer an empirical question on whether the theory is true or not.
+
+Science, and asking good questions in general, is neither completely data-driven or theory driven. Generally, you have some apriori questions or theory, that helps you narrow down the kind of empirical data. Then you perform different exploratory analysis (taming,tidying, transforming, visualizing, modelling) to look at patterns and form interesting questions. Some of these questions may conform to your apriori beliefs and some may update those beliefs. Based on your updated belief, you create and test hypotheses - which is an educated guess or proposed explanation that you then test through careful modeling and experimentation.
+</div>
+********
+
+In this homework, you will conduct an exploratory analysis that explores relationships between the location of CAFOs, people living around CAFOs, and health outcomes. Write up an analysis in RMarkdown with the following components:
+
+## Background 
+
+Read the background articles to understand the topic of CAFOs. Based on those articles, mention **atleast 3** questions that might be worth investigating.
+
+## Preparation
+
+In this section you will make sure to load all your packages using the `library()` function. Make sure you install your packages in R before you can load them.
+
+## Analysis
+
+You should divide your analysis under the following sub-headings. You can have more sub-headings or sub-sub headings but you should have atleast the ones mentioned below at a minimum.
+
+### Data
+
+Here you will import all the raw data. Ideally,  you want to make sure that you download or read any data programmatically from the internet source, rather than downloading manually on your computer and then importing. I will take your .Rmd file and knit it, assuming that I have no data saved on my computer, and that your code should be able to download it for me.
+
+Hint: the commands are provided in **lab3**.
+
+For reading in microsoft excel files, you will use the `readxl` package. Once you install and load the package in R, you can use the following command to read in the cafo and county health files file. The `sheet` argument tells excel what sheet to use since there can be multiple sheets in excel. The `skip` argument tells R to skip n number of rows and then read in the data. This is used here because both files contain rows at the top that extraneous information. You can check why we do that if you open the excel files you downloaded in Microsoft excel.
+
+```{r, eval = F}
+your_CAFO_data <-read_excel("your_CAFO_destfile", sheet = 1, skip = 2)
+
+your_COUNTYHEALTH_Data <-read_excel("your_COUNTYHEALTH_file", sheet = 4,skip = 1)
+### You can also load sheets 2,3 separately
+# Sheet 2 is an overall measure of Health
+# sheet 3 is broken into broad sub categories
+# Sheet 4 is brokern into individual categories
+# You can use either the z score or rankings. Read the introduction in sheet 1 to know what the variables mean.
+
+# You can load your census data through the API and the shapefile through automated downloaded using the same code that we have in lab3. You can just download the same variables from the census, as in lab3.
+```
+
+### Data Wrangling
+
+This category is broadly defined. Once you have all your raw data in R in the previous section, you can use this section to tame, tidy and transform your data.
+
+This is where you will clean your data for missing values etc., and bring it into a "tidy" format. Mainly this is where you will have your data (you will likely have more than one data frame in all likelihood) in a good enough format to create visualizations and other summary tables.
+
+You are free to use whatever command you want to clean your tidy. We have covered all the commands needed to clean and tidy your data. I recommend you either comment or write in words in markdown, your reasoning behind your code. You are also welcome to have as many variables as you need to be able to answer the questions that you mentioned in the `background` section. However, you are required to have atleast a minimum number of variables based on the criteria below.
+
+1. CAFO file - **atleast 1** variable out of the following - Count of swine CAFOs per county, total number of allowable swine counts  in a county, average number of allowable swine counts per CAFO per county`(allowable count/number of Cafos).
+
+2. Census data - **atleast 2** race/ethnicity categories `(% of race/ethnicity in each county)` out of non-hispanic white, non-hispanic black, hispanic, and persons of color. 
+
+3. Count Health Rankings - **atleast 3** variables from sheet 3 or 4 (recommended). These variables are called **measures** in sheet 1 (which contains the descriptions). Use only the z-score columns. I recommend using atleast 3 measures from sheet 3 or 4. But if you wanted you can also look at the overall health score in addition.
+
+4. NC county geospatial file - You will have to use this file anyway to join the spatial boundaries.
+
+In addition, here are a few suggestions that might help:
+
+1) Tame all your raw datasets individually. Do not combine them till you have the correct variable names, taken care of missing values etc. Ofcourse, you might figure out that you need to add or delete more variables as you are working with your homework. Rememeber that you can just re-run your script with the new code. If you need to create new variables or summaries that involve variables from more than 1 cokumn, then you WILL have to join them first.
+
+2) Same goes for summarized datasets: Once you tame your data, then summarize it. Otherwise you might suffer the garbage in garbage out problem. For example, The Cafo file has individual cafos, but our analysis is at the County level. Hence you will likely have to group_by and summarize to find the number of cafos in each county, or the number allowable animals (`allowable count column`) etc. If you have some duplicates or NAs in the individual file, they will propage to your summary file, unless you are careful.
+
+3) Following up, if you create summaries using functions such as `mean()` or `sum()`, you can add the argument `na.rm=T`, to remove NAs from the calculations.
+
+4) I recommend that you join spatial data at the end, and have separate data frames for those with spatial data. For example, if you have a dataframe with columns such as number of CAFOs, income, percentage race for each county, you dont need spatial data to plot non-spatial graphs. When you want to plot maps, you can then create a new data frame with the joined spatial data, and use that to make maps. 
+
+### Exploratory Results
+
+In this section, you will create and display any graphs, maps or summary tables to explore your data. 
+
+1. You should have a **minimum of 5** graphics - including *atleast 2* maps. **Please briefly describe what your observations are for each graphics**. I will grade them NOT on aesthetic but based how useful the graph is to your investigation. I recommend that you use combinations of visualizations (such as histograms, barplots, scatter plots, boxplots or any other that we have learnt). For example, If you want to look at the histogram of more than 1 variable (eg, for each % race composition for each race), you can use facetting to show that information in 1 graph. If you make 5 separate graphs instead, I will count them as 1, unless they really add to a story in a different way.
+
+2.  You can also tables. They count as visualizations too, but in most cases, visualizations are more impactful than tables for exploratory analysis.
+
+### Discussion
+
+In this section you will write about the following. There is no word limit or paragraph limit. Your write-up should atleast include the following.
+
+1. Summarize the trends or patterns you observe based on your exploratory results. Mention what are the possible questions/hypothesis that your investigation raises. For example, if you notice a detectable relationship between the number of CAFOs and increasing percentage of people of color in a county, explain what you notice. Based on the relationship, your hypothesis could be to investigate whether there are more CAFOs in counties with PoC majority as compared to white majority counties.
+
+2. Mention whether and how the results solidified/changed your perceptions/questions/beliefs as compared to those you had before you analysed the data (based on your previous knowledge of the issue if any, and based on background readings)
+
+3. What could be possible explanations for the trends/patterns you observe? Propose atleast 2 possible explanations that may test as a budding scientist. 
+
+******
+
+<div class = "blue">
+**Exploration VS Explanation**
+Note that since we are only conducting exploratory analysis, we cannot make any conclusions. We can only explore the patterns, and range of possible explanatations/questions/hypotheses/ that may be explaining the process underlying the pattern that you see. To actually test whether a particular cause/process is associated with or responsible for the patterns that you see, you use explanatory analysis through careful experimentation and investigation. For example, if your exploratory suggested a correlation between CAFOs and persons of color, as one of the many other possible correlations, you can choose a particular hypothesis about CAFOs and persons of color. THen you will carefully conduct an analysis to weigh your evidence and decide whether to reject your hypothesis or not.
+</div>
+*****
+
+### Feedback
+
+Give your feedback here -
+
+1) What parts of the HW did you struggle with?
+2) How much time did you take?
+3) What parts of the HW did you like?
+4) Any other feedback
+
+## Grading
+
+I will grade your homework using the following rubric
+
+- Background: **10 points**
+- Preparation: **5 points**
+- Analysis
+
+  - Data: **20 points**
+  - Data Wrangling: **20** points
+  - Exploratory Results: **20** points
+- Discussion: **10 points**
+- Feedback: **5 points**
+- Your file Knits successfully and is readable: **10 points**
+
+### Extra Credit (10 points)
+
+I will grant Extra Credit based on the quality of your homework. This can range anywhere from adding extra variables than required, making effective visualizations, writing clean and well formatted code, giving good thorough explainations, asking good effective questions etc. These will be up to my discretion, but you will be rewarded based on your effort and sincerity on the homework.
+
+## Helpful Resources
+
+- Labs (especially lab2 and lab3)
+- Lectures
+- Data Camp exercises
+- R cheatsheets (data import, data visualization, data transformation, Rmarkdown) <https://rstudio.com/resources/cheatsheets/>
+
