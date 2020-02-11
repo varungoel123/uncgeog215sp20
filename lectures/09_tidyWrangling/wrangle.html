@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Taming and Tidying your Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Intro To Spatial Data Science" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/5235085b15.js"></script>
+    <link rel="stylesheet" href="css/my-theme_nologo.css" type="text/css" />
+    <link rel="stylesheet" href="css/my-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Taming and Tidying your Data
+## Class #9 | GEOG 215
+### Intro To Spatial Data Science
+
+---
+
+
+
+# Today's Class
+
+--
+
+## The Fun Part
+
+---
+
+# Today's Class
+
+## The Fun Part (Almost)
+
+- ### Taming --&gt; Tidying --&gt; Transforming
+
+--
+## Next class
+- #### Visualize
+- #### Explore
+- #### Repeat
+
+---
+class:middle, inverse, center
+
+&lt;img src="img/tidyverse_wrangle.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+# Taming Your Data
+
+### Parsing/Casting your columns
+- #### Making sure data is in the correct format
+  - Categories are factors/character
+  - Quantititative variables are numeric
+  - Dates are dates
+  
+- #### Commands from `readr` package
+  - parse eg. `parse_number()`
+  - casting eg. `col_number()`
+
+---
+# Taming Your Data
+
+### Recoding Values
+- #### Making sure values in columns are correct
+  - eg. Yes = 1, No = 0
+- #### Switch from continuous to discrete
+  - eg. Changing Income values to high,medium,low
+- #### Useful to create dummy variables (0,1) (absence/presence)
+
+- #### Commands from `dplyr` package
+  - parse eg. `recode` to factor using `recode_factor()`
+  - frequently within `mutate`
+  
+---
+# Taming Your Data
+
+### Selecting columns
+- #### Making sure only relevant columns are included in dataset
+  - eg. drop irrelevant/intermediate columns
+- #### Make sure columns are in correct order
+  - eg. Eg - all grouping columns together, all thematic columns together
+- #### Useful to create dummy variables (0,1) (absence/presence)
+
+- #### Commands from `dplyr` package
+  - select eg. `select` function 
+  - reorder variables using `select` and helper functions
+
+---
+# Taming Your Data
+
+### Reformatting and Renaming Variable Names
+- #### Makes sure variable names make sense
+  - eg. Total cases of disease vs percent of population with disease is reflected in column names
+- #### variable names are consistent
+  - eg. No foreign characters, consistent cases, no spaces etc
+
+- #### Commands from `dplyr` and `janitor` package
+  - clean variable names using `clean_names` from `janitor` package
+  - rename using `rename` from `dplyr`. often used with `select` for reordering and keeping new variables 
+  
+---
+class: middle, inverse, center
+
+&lt;img src="img/tidyverse_wrangle.png" width="70%" style="display: block; margin: auto;" /&gt;
+--
+
+#tame data `\(\neq\)` .shout[tidy data]
+
+---
+# Tidy Data
+
+&gt; “Happy families are all alike; every unhappy family is unhappy in its own way.” –– Leo Tolstoy
+
+--
+
+&gt; “Tidy datasets are all alike, but every messy dataset is messy in its own way.” –– Hadley Wickham (inventor of Tidyverse)
+
+--
+### Three Cardinal Rules of a tidy dataset
+- Each variable must be its own column
+- Each observation must have its own row
+- Each value must have its own cell
+
+---
+class: middle, inverse, center
+
+&lt;img src="img/tidy_data.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+--
+
+### Put each dataset in a tibble (or data frame)
+### Put each variable in a column
+
+---
+class: inverse 
+# Which one out of these is tidy:
+
+.pull-left[
+&lt;img src="img/tidy1.png" width="70%" style="display: block; margin: auto;" /&gt;&lt;img src="img/tidy2.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="img/tidy3.png" width="70%" style="display: block; margin: auto;" /&gt;&lt;img src="img/tidy4.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Making data Tidy
+
+## `pivot_longer()`
+ - Wide format to long format
+ - succeeds `gather()`
+
+
+```r
+table4a %&gt;% 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
+```
+
+&lt;img src="img/tidy_long.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+# Making data Tidy
+
+## `pivot_wider()`
+ - long format to wide format
+ - succeeds `spread()`
+
+
+```r
+table4a %&gt;% 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
+```
+
+&lt;img src="img/tidy_wide.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+# Making data Tidy
+
+## `separate()`
+ - *break up* *single* column to *multiple* columns
+ - To ensure that each value is its *own* cell
+
+
+```r
+table3 %&gt;% 
+  separate(rate, into = c("cases", "population"), convert = TRUE)
+```
+
+&lt;img src="img/tidy_separate.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse
+# Another untidy table
+
+&lt;img src="img/table5.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+# Making data Tidy
+
+## `unite()`
+ - *Combines* *multiple* columns into a *single* column
+ - To ensure that each value is its *own* cell
+
+
+```r
+table5 %&gt;% 
+  unite(new, century, year, sep = "")
+```
+
+&lt;img src="img/tidy_unite.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+# Tidy Data Tips
+
+### Tidy data is the start of your data wrangling journey, not the end
+  - There is not a single “tidy” version of a dataset
+
+### Not all non-tidy is incorrect, bad, or not-useful
+  - May have better space or performance advantages
+    - Eg. Big issue with spatial data (sometimes)
+  - Some fields/data have their own useful conventions
+  - All data can be fit in rectangular structures
+      - genomic data
+      - Corpus of texts
+       - Network/graph datasets
+---
+
+class: middle, inverse, center
+
+&lt;img src="img/tidyverse_wrangle.png" width="70%" style="display: block; margin: auto;" /&gt;
+# TRANSFORMING DATA
+
+---
+## The `famous 5` verbs of `dplyr`
+
+- `arrange`
+- `select`
+- `filter`
+- `mutate`
+- `summarize`
+
+### Other important transformation variables
+
+- #### group_by() , ungroup
+  - often used with the famous 5
+- #### join commands
+  - combining multiple datasets/tables
+
+---
+
+class: middle, inverse, center
+# Use cheatsheets often
+
+&lt;https://rstudio.com/resources/cheatsheets/&gt;
+
+
+---
+# Next Class
+
+- #### Data Visualization (spatial and non-spatial)
+  - email a few visualizations, we will scrutinize them
+- #### Lab 3/HW 1 doubts
+- #### Fill in polleverywhere Area of interest survey (LAST CHANCE)
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
