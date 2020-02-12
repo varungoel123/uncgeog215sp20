@@ -1667,7 +1667,6 @@ padding: 10px 10px 3px 10px;
 <h2><span class="header-section-number">2.4</span> Load required Packages</h2>
 <p>Now Load the following packages:</p>
 <pre class="r"><code>library(tidyverse)
-library(readxl) #this already gets installed with tidyverse. However if you had issue installing tidyverse, you can also install this packages separately
 library(sf)
 library(janitor)
 library(tidycensus)</code></pre>
@@ -1953,20 +1952,20 @@ boxp + geom_text(aes(label=name), check_overlap = T,
 </div>
 <hr />
 <p>Type the code below to download, unzip, and read in a geospatial file of NC counties.</p>
-<pre class="r"><code>if(!file.exists(&quot;data/NC_Counties.zip&quot;)){
+<pre class="r"><code>if(!file.exists(&quot;./NC_Counties.zip&quot;)){
   print(&quot;NC_Counties.zip does not exist, fetching zip file from the source&quot;)
   download.file(url = &quot;https://opendata.arcgis.com/datasets/34acbf4a26784f189c9528c1cf317193_0.zip?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D&quot;,
-                destfile = &quot;data/NC_Counties.zip&quot;)
+                destfile = &quot;./NC_Counties.zip&quot;)
 }
 
-print(&quot;NC_counties.zip exists at '.data/NC_Counties.zip'&quot;)
+print(&quot;NC_counties.zip exists at './NC_Counties.zip'&quot;)
 
-if(!file.exists(&quot;data/NC_Counties/NC_Counties.shp&quot;)){
-  print(&quot;unzipped folder and shp not detected, unzipping 'NC_Counties.zip' to '.data/NC_counties'&quot;)
-unzip(&quot;data/NC_Counties.zip&quot;,exdir = &quot;data/NC_Counties&quot;,overwrite = T)
+if(!file.exists(&quot;./NC_Counties/NC_Counties.shp&quot;)){
+  print(&quot;unzipped folder and shp not detected, unzipping 'NC_Counties.zip' to './NC_counties'&quot;)
+unzip(&quot;./NC_Counties.zip&quot;,exdir = &quot;./NC_Counties&quot;,overwrite = T)
 }
 
-nc_shp &lt;- st_read(&quot;./data/NC_Counties/NC_Counties.shp&quot;,stringsAsFactors =F)
+nc_shp &lt;- st_read(&quot;./NC_Counties/NC_Counties.shp&quot;,stringsAsFactors =F)
 nc_shp &lt;- nc_shp %&gt;% clean_names(case = &quot;snake&quot;)</code></pre>
 <p><strong>Q.13) Based on the printed output when you execute st_read(), Answer True or False</strong></p>
 <ul>
