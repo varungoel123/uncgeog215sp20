@@ -127,7 +127,7 @@ Obtain your census API key from <http://api.census.gov/data/key_signup.html>. Pu
 Once you receive your key, set it in the following code below:
 
 ```{r}
-#census_api_key(key = "YOUR API KEY GOES HERE", install = TRUE, overwrite = "TRUE")
+#census_api_key(key = "YOUR API KEY GOES HERE", install = TRUE, overwrite = TRUE)
 ```
 
 Now that your census key is set, you are ready to interface with the census API. The tidyCensus package has been developed to help use the census api in R and import census data in a very user friendly format. The documentation for using the package is available here <https://walkerke.github.io/tidycensus/articles/basic-usage.html>. It is a very useful documentation, and will help you with aspects of both the lab and the HW1.
