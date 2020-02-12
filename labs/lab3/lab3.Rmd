@@ -277,16 +277,17 @@ Taming, Tidying and Transforming are all circular and not strictly in any one or
 </div>
 ***
 
-**Q.5) Create 2 new columns by filling in the blanks below. The first column `hispanic` is defined as ` everyone except not hispanic`. The 2nd column `poc` is defined as `everyone except whites`. Then, remove the `not_hispanic` column in the same piped command**
+**Q.5) Create 2 new columns by filling in the blanks below. The first column `hispanic` is defined as ` everyone except not hispanic`. The 2nd column `poc` is defined as `everyone except whites`. A 3rd column `white_majority` is created for you. It craetes a factor variable based on whether a county is majority white or majority PoC. Finally, remove the `not_hispanic` column in the same piped command**
 
 ```{r}
 #Q.5 Fill in the blanks below
-nc_wide <- nc_wide %>% _____(hispanic = ___________,
-                             poc = ________________) %>%
-  white_majority = ifelse(white > poc, 1,0) %>% 
+nc_wide <- nc_wide %>% ______(hispanic = _________________,
+                             poc = ______________________,
+                             white_majority = ifelse(white > poc, 1,0) %>% 
                                 recode_factor(`1` = 'white',
                                                           `0` = 'poc')) %>%
-  _______(-not_hispanic)
+  ___________(-not_hispanic)
+glimpse(nc_wide)
 ```
 
 ### Rearrange columns

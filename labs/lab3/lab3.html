@@ -1785,14 +1785,15 @@ colnames(nc_wide)</code></pre>
 <p><strong>IMPORTANT</strong> Taming, Tidying and Transforming are all circular and not strictly in any one order. In this case, since we apriori know that we want to create a few derived variables from the census category, we <code>transform</code> our data before tidying too. We could have done this later too, if we wished though.</p>
 </div>
 <hr />
-<p><strong>Q.5) Create 2 new columns by filling in the blanks below. The first column <code>hispanic</code> is defined as <code>everyone except not hispanic</code>. The 2nd column <code>poc</code> is defined as <code>everyone except whites</code>. Then, remove the <code>not_hispanic</code> column in the same piped command</strong></p>
+<p><strong>Q.5) Create 2 new columns by filling in the blanks below. The first column <code>hispanic</code> is defined as <code>everyone except not hispanic</code>. The 2nd column <code>poc</code> is defined as <code>everyone except whites</code>. A 3rd column <code>white_majority</code> is created for you. It craetes a factor variable based on whether a county is majority white or majority PoC. Finally, remove the <code>not_hispanic</code> column in the same piped command</strong></p>
 <pre class="r"><code>#Q.5 Fill in the blanks below
-nc_wide &lt;- nc_wide %&gt;% _____(hispanic = ___________,
-                             poc = ________________) %&gt;%
-  white_majority = ifelse(white &gt; poc, 1,0) %&gt;% 
+nc_wide &lt;- nc_wide %&gt;% ______(hispanic = _________________,
+                             poc = ______________________,
+                             white_majority = ifelse(white &gt; poc, 1,0) %&gt;% 
                                 recode_factor(`1` = 'white',
                                                           `0` = 'poc')) %&gt;%
-  _______(-not_hispanic)</code></pre>
+  ___________(-not_hispanic)
+glimpse(nc_wide)</code></pre>
 </div>
 <div id="rearrange-columns" class="section level3">
 <h3><span class="header-section-number">3.3.4</span> Rearrange columns</h3>
