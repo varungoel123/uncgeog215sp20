@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="105 points" />
+<meta name="author" content="100 points (plus 5 points Extra Credit)" />
 
 
 <title>GEOG 215: Lab 3</title>
@@ -1582,7 +1582,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">GEOG 215: Lab 3</h1>
 <h3 class="subtitle">Taming Mighty Census with TidyCensus</h3>
-<h4 class="author">105 points</h4>
+<h4 class="author">100 points (plus 5 points Extra Credit)</h4>
 <h4 class="date">Due Feb 17, 03:35 PM</h4>
 
 </div>
@@ -1623,7 +1623,7 @@ padding: 10px 10px 3px 10px;
 <hr />
 <div id="summary" class="section level1">
 <h1><span class="header-section-number">1</span> Summary</h1>
-<p>In this lab, You will learn implement and solidify your data importing skills and those that you learnt in the datacamp course: “Working with data in the tidyverse”. In addition you will also learn how to import, clean and analyze the US census data in R. The US census is a comprehensive resourceful repository of data that can help explore and answer all sorts of powerful spatial questions. It is a fundamental <em>foundation</em> dataset and provides reliable social and demographic information at multiple administrative units for all of the US</p>
+<p>In this lab, You will learn to implement and solidify your data importing skills and those that you learnt in the datacamp course: “Working with data in the tidyverse”. In addition you will also learn how to import, clean and analyze the US census data in R. The US census is a comprehensive resourceful repository of data that can help explore and answer all sorts of powerful spatial questions. It is a fundamental <em>foundation</em> dataset and provides reliable social and demographic information at multiple administrative units for all of the US</p>
 <p>By the end of the lab you should have a good idea of:</p>
 <ol style="list-style-type: decimal">
 <li>Importing excel and spatial data programatically in R, including how to download within R.</li>
@@ -1640,7 +1640,7 @@ padding: 10px 10px 3px 10px;
 <h1><span class="header-section-number">2</span> Preparations</h1>
 <div id="create-project" class="section level2">
 <h2><span class="header-section-number">2.1</span> Create Project</h2>
-<p>First of all, as we learnt in lab1, we want to create an R project for lab2 to keep all our code together. Now that we will interact with multiple data files, we want to me more organized to avoid losing track of all the moving peieces. As we did earlier in lab1/lab2 , either create a project in a new directory called <em>lab3</em> or create a directory called lab3 and create the project in an existing directory. If you dont remember, you can get a <a href="https://r4ds.had.co.nz/workflow-projects.html">refresher on projects</a>. Section 8.4 has the instructions on how to create a new project.</p>
+<p>First of all, as we learnt in lab1, we want to create an R project for lab2 to keep all our code together. Now that we will interact with multiple data files, we want to me more organized to avoid losing track of all the moving pieces. As we did earlier in lab1/lab2 , either create a project in a new directory called <em>lab3</em> or create a directory called lab3 and create the project in an existing directory. If you dont remember, you can get a <a href="https://r4ds.had.co.nz/workflow-projects.html">refresher on projects</a>. Section 8.4 has the instructions on how to create a new project.</p>
 <hr />
 </div>
 <div id="install-required-packages" class="section level2">
@@ -1680,8 +1680,8 @@ library(tidycensus)</code></pre>
 <h2><span class="header-section-number">2.5</span> Obtain and Set Census API key</h2>
 <p>Obtain your census API key from <a href="http://api.census.gov/data/key_signup.html" class="uri">http://api.census.gov/data/key_signup.html</a>. Put <code>UNC Chapel Hill</code> as your Organization Name and your unc email address as your email. Submit the key request.</p>
 <p>Once you receive your key, set it in the following code below:</p>
-<pre class="r"><code>#census_api_key(key = &quot;YOUR API KEY GOES HERE&quot;, install = TRUE)</code></pre>
-<p>Now that your census key is set, you are ready to interface with the census API. The tidyCensus packaged has been developed to help use the census api in R and import census data in a very user friendly format. The documentation for using the package is available here <a href="https://walkerke.github.io/tidycensus/articles/basic-usage.html" class="uri">https://walkerke.github.io/tidycensus/articles/basic-usage.html</a>. It is a very useful documentation, and will help you with aspects of both the lab and the HW1.</p>
+<pre class="r"><code>#census_api_key(key = &quot;YOUR API KEY GOES HERE&quot;, install = TRUE, overwrite = &quot;TRUE&quot;)</code></pre>
+<p>Now that your census key is set, you are ready to interface with the census API. The tidyCensus package has been developed to help use the census api in R and import census data in a very user friendly format. The documentation for using the package is available here <a href="https://walkerke.github.io/tidycensus/articles/basic-usage.html" class="uri">https://walkerke.github.io/tidycensus/articles/basic-usage.html</a>. It is a very useful documentation, and will help you with aspects of both the lab and the HW1.</p>
 </div>
 </div>
 <div id="analysis" class="section level1">
@@ -1762,7 +1762,7 @@ nc_raw &lt;- get_acs(geography = &quot;county&quot;,
 <h2><span class="header-section-number">3.3</span> Tame Data</h2>
 <div id="remove-unnecessary-columns" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> Remove Unnecessary Columns</h3>
-<p>First, we need remove all unnecessary columns. We can remove ALL the columns ending with <code>M</code>. These columns store the margin or error for each variable. Because our data is at a county level, the margin of error is really small, and hence we dont need to worry about it in our analysis and can safely remove all columns measuring margin of error.</p>
+<p>First, we need to remove all unnecessary columns. We can remove ALL the columns ending with <code>M</code>. These columns store the margin or error for each variable. Because our data is at a county level, the margin of error is really small, and hence we dont need to worry about it in our analysis and can safely remove all columns measuring margin of error.</p>
 <p><strong>Q.4) Remove all the columns in <code>nc_raw</code> that end with an <code>m</code> by filling the <code>select</code> query below. Hint: you can use of the very useful helper functions that can be used with select(). <a href="https://dplyr.tidyverse.org/reference/select.html" class="uri">https://dplyr.tidyverse.org/reference/select.html</a></strong></p>
 <pre class="r"><code>#Q.4 fill in the blanks below
 nc_wide &lt;- nc_raw %&gt;% select(_____________)
@@ -1779,7 +1779,7 @@ colnames(nc_wide)</code></pre>
 </div>
 <div id="creating-new-variables-of-interest" class="section level3">
 <h3><span class="header-section-number">3.3.3</span> Creating new variables of interest</h3>
-<p>We still need to create a few more columns for race. Being <code>Hispanic or Latino</code> is considered ethnicity, and not race in the census. One could have <code>Hispanic or Latino</code> ethnicity and identify as one or more race. We have already considered non-Hispanic Whites, Blacks, and Native Americans. Additionally, we create 3 more columns: for number of Hispanics in each county, the total number of persons of color (poc), and categorical variable telling us whether the majority of the county is <code>white</code> or <code>hispanic</code>. For the purpose of this lab, however, we will consider those as two more categories of race.</p>
+<p>We still need to create a few more columns for race. Being <code>Hispanic or Latino</code> is considered ethnicity, and not race in the census. One could have <code>Hispanic or Latino</code> ethnicity and identify as one or more race. We have already considered non-Hispanic Whites, Blacks, and Native Americans. Additionally, we create 3 more columns: for number of Hispanics in each county, the total number of persons of color <code>poc</code>, and categorical variable telling us whether the majority of the county is <code>white</code> or <code>hispanic</code>. For the purpose of this lab, however, we will consider those as two more categories of race.</p>
 <hr />
 <div class="blue">
 <p><strong>IMPORTANT</strong> Taming, Tidying and Transforming are all circular and not strictly in any one order. In this case, since we apriori know that we want to create a few derived variables from the census category, we <code>transform</code> our data before tidying too. We could have done this later too, if we wished though.</p>
@@ -1788,7 +1788,7 @@ colnames(nc_wide)</code></pre>
 <p><strong>Q.5) Create 2 new columns by filling in the blanks below. The first column <code>hispanic</code> is defined as <code>everyone except not hispanic</code>. The 2nd column <code>poc</code> is defined as <code>everyone except whites</code>. Then, remove the <code>not_hispanic</code> column in the same piped command</strong></p>
 <pre class="r"><code>#Q.5 Fill in the blanks below
 nc_wide &lt;- nc_wide %&gt;% _____(hispanic = ___________,
-                             poc = t________________) %&gt;%
+                             poc = ________________) %&gt;%
   white_majority = ifelse(white &gt; poc, 1,0) %&gt;% 
                                 recode_factor(`1` = 'white',
                                                           `0` = 'poc')) %&gt;%
@@ -1840,8 +1840,8 @@ glimpse(nc_wide)
 # glimpse(nc_tidy1)</code></pre>
 <p>Thankfully, it does give an error since we are trying to add both numeric variables, and factors (yes/no for the <code>white_majority</code>) variable in the same column.</p>
 <p>Hence, that should give us one rule of thumb: <em>You cannot combine variables with different data types in the same column</em>. Hence, <code>white_majority</code> should be its own variable. Additionally, even though <code>med_hh_income</code> is numeric, its unit is dollars, while the unit for other numeric variables is the number of people.</p>
-<p>Hence, more strictly: <em>&quot;You should combine variables with different UNITS in the same column (unless they are converted to the same unit)</em></p>
-<p>Finally, although <code>total_population</code> and other race columns are all counting th number of people, total_population is more of a summary variable since it is composef of the multiple race variables. Hence, we can say that even if *variables have the same unit, they should not be in one column if they measure different scales (individual race vs total population)</p>
+<p>Hence, more strictly: <em>You should combine variables with different UNITS in the same column (unless they are converted to the same unit)</em></p>
+<p>Finally, although <code>total_population</code> and other race columns are all counting the number of people, total_population is more of a summary variable since it is composed of the multiple race variables. Hence, we can say that even if variables have the same unit, they should not be in one column if they measure different scales (individual race vs total population)</p>
 <p>Hence our new tidy should have the following columns: <code>geoid</code>, <code>name</code>, <code>white_majority</code>, <code>total_population</code>, <code>med_hh_income</code>, and then the 2 tidied columns called <code>race</code> (which contains the type of each race), and <code>race_count</code> (which counts people in each race per county)</p>
 <p>Type the command below:</p>
 <pre class="r"><code>nc_tidy1 &lt;- nc_wide %&gt;% pivot_longer(names_to = &quot;race&quot;,
@@ -1855,7 +1855,7 @@ glimpse(nc_tidy1)</code></pre>
 <div id="transform-data" class="section level2">
 <h2><span class="header-section-number">3.5</span> Transform Data</h2>
 <p>To make comparisons more meaningful, Lets <em>transform</em> our data to create a new variable called <code>race_pct</code> that calculates percentage of population of a particular race in a particular county</p>
-<p><strong>Q.7) Fill in the blank to create a new variable in <code>nc_tidy</code> <code>race_pct</code> based on the above description</strong></p>
+<p><strong>Q.7) Fill in the blank to create a new variable called <code>race_pct</code> in the <code>nc_tidy</code> dataframe based on the above description</strong></p>
 <pre class="r"><code># Q.7)
 nc_tidy1 &lt;- nc_tidy1 %&gt;% ___________(race_pct = ____________________________)
 glimpse(nc_tidy1)</code></pre>
@@ -1869,7 +1869,7 @@ glimpse(nc_tidy1)</code></pre>
 <pre class="r"><code>nc_tidy1$name %&gt;% head
 nc_tidy1$name &lt;- nc_tidy1$name %&gt;% str_replace(pattern = &quot; County, North Carolina&quot;, replacement = &quot;&quot;)
 nc_tidy1$name %&gt;% head</code></pre>
-<p><strong>Q.8) Answer in 1 sentence: What does the str_replace() function do here to the name string?</strong></p>
+<p><strong>Q.8) Answer in 1 sentence: What does the str_replace() function do here to the strings in the <code>name</code> column?</strong></p>
 <hr />
 </div>
 <div id="data-visualization-part-1" class="section level2">
@@ -1877,7 +1877,7 @@ nc_tidy1$name %&gt;% head</code></pre>
 <p>Tidy data gives a lot of control over easy visualizations for multiple aspects of data.</p>
 <div id="histograms-plotting-1-continuous-variable" class="section level3">
 <h3><span class="header-section-number">3.6.1</span> Histograms (Plotting 1 continuous variable)</h3>
-<p>Lets explore the distribution of our continuous data. Knowing the distribution of data is important for statistical modeling and for looking at variation in data. For example, if the data does not look like a normal distribution, it might violate statistical tests, or may be too narrowly variable to be of any use to prediction.</p>
+<p>Lets explore the distribution of our continuous data. Knowing the distribution of data is important for statistical modeling and for looking at variation in data. For example, if the data does not look like a normal distribution, it might violate statistical tests. Similarly, the data may not have enough variation to be of any use in prediction models.</p>
 <p>Type in the code below:</p>
 <pre class="r"><code>nc_tidy1 %&gt;%
   ggplot(aes(x = race_pct)) + 
@@ -1911,7 +1911,7 @@ nc_tidy1 %&gt;% ______(_____ %in% c(________________)) %&gt;%
 </div>
 <div id="boxplots-plotting-1-continuous-1-categorical-variable" class="section level3">
 <h3><span class="header-section-number">3.6.2</span> Boxplots (Plotting 1 continuous 1 categorical variable)</h3>
-<p>Type in the following code below: Here we create a boxplot. The other advantage of ggplot2 is that we can actually store the plot in an object (<code>boxp</code> in our case) nad then add more layers to our box plot.</p>
+<p>Type in the following code below: Here we create a boxplot. The other advantage of ggplot2 is that we can actually store the plot in an object (<code>boxp</code> in our case) and then add more layers to our box plot.</p>
 <pre class="r"><code>## create an unlabelled boxplot
 boxp &lt;- nc_tidy1 %&gt;%
   ggplot(aes(x = white_majority,y=med_hh_income)) + 
@@ -1926,7 +1926,7 @@ boxp + geom_text(aes(label=name), check_overlap = T,
   labs(x = &quot;Majority Racial composition&quot;,
        y = &quot;Median Household Income&quot;,
        title = &quot;Distirbution of Median HH Income among white and PoC majority counties&quot;)</code></pre>
-<p><strong>Q.12) Based on the plot - Describe in 1-2, the differences between Median Household Income among Majority White vs Majority PoC counties. Which counties are outliers in Majority white and Poc counties? Here is a resource to interpret boxplots <a href="https://flowingdata.com/2008/02/15/how-to-read-and-use-a-box-and-whisker-plot/" class="uri">https://flowingdata.com/2008/02/15/how-to-read-and-use-a-box-and-whisker-plot/</a></strong></p>
+<p><strong>Q.12) Based on the plot - Describe in 1-2 sentences, the differences between Median Household Income among Majority White vs Majority PoC counties. Which counties are outliers in Majority white and Poc counties? Here is a resource to interpret boxplots <a href="https://flowingdata.com/2008/02/15/how-to-read-and-use-a-box-and-whisker-plot/" class="uri">https://flowingdata.com/2008/02/15/how-to-read-and-use-a-box-and-whisker-plot/</a></strong></p>
 </div>
 <div id="point-plot" class="section level3">
 <h3><span class="header-section-number">3.6.3</span> Point plot</h3>

@@ -1,7 +1,7 @@
 ---
 title: "GEOG 215: Lab 3"
 subtitle: "Taming Mighty Census with TidyCensus"
-author: "105 points"
+author: "100 points (plus 5 points Extra Credit)"
 date: "Due Feb 17, 03:35 PM" 
 output: 
   html_document:
@@ -55,7 +55,7 @@ knitr::opts_chunk$set(eval = FALSE)
 ***
 # Summary
 
-In this lab, You will learn implement and solidify your data importing skills and those that you learnt in the datacamp course: "Working with data in the tidyverse". 
+In this lab, You will learn to implement and solidify your data importing skills and those that you learnt in the datacamp course: "Working with data in the tidyverse". 
 In addition you will also learn how to import, clean and analyze the US census data in R. The US census is a comprehensive resourceful repository of data that can help explore and answer all sorts of powerful spatial questions. It is a fundamental *foundation* dataset and provides reliable social and demographic information at multiple administrative units for all of the US
 
 By the end of the lab you should have a good idea of:
@@ -74,7 +74,7 @@ By the end of the lab you should have a good idea of:
 
 ## Create Project
 
-First of all, as we learnt in lab1, we want to create an R project for lab2 to keep all our code together. Now that we will interact with multiple data files, we want to me more organized to avoid losing track of all the moving peieces. As we did earlier in lab1/lab2 , either create a project in a new directory called *lab3* or create a directory called lab3 and create the project in an existing directory. If you dont remember,
+First of all, as we learnt in lab1, we want to create an R project for lab2 to keep all our code together. Now that we will interact with multiple data files, we want to me more organized to avoid losing track of all the moving pieces. As we did earlier in lab1/lab2 , either create a project in a new directory called *lab3* or create a directory called lab3 and create the project in an existing directory. If you dont remember,
 you can get a [refresher on projects](https://r4ds.had.co.nz/workflow-projects.html). Section 8.4 has the instructions on how to create a new project.
 
 ***
@@ -110,7 +110,6 @@ Now Load the following packages:
 
 ```{r load_packages}
 library(tidyverse)
-library(readxl) #this already gets installed with tidyverse. However if you had issue installing tidyverse, you can also install this packages separately
 library(sf)
 library(janitor)
 library(tidycensus)
@@ -128,10 +127,10 @@ Obtain your census API key from <http://api.census.gov/data/key_signup.html>. Pu
 Once you receive your key, set it in the following code below:
 
 ```{r}
-#census_api_key(key = "YOUR API KEY GOES HERE", install = TRUE)
+#census_api_key(key = "YOUR API KEY GOES HERE", install = TRUE, overwrite = "TRUE")
 ```
 
-Now that your census key is set, you are ready to interface with the census API. The tidyCensus packaged has been developed to help use the census api in R and import census data in a very user friendly format. The documentation for using the package is available here <https://walkerke.github.io/tidycensus/articles/basic-usage.html>. It is a very useful documentation, and will help you with aspects of both the lab and the HW1.
+Now that your census key is set, you are ready to interface with the census API. The tidyCensus package has been developed to help use the census api in R and import census data in a very user friendly format. The documentation for using the package is available here <https://walkerke.github.io/tidycensus/articles/basic-usage.html>. It is a very useful documentation, and will help you with aspects of both the lab and the HW1.
 
 # Analysis
 
@@ -244,7 +243,7 @@ This dataset is in a 'wide' format. Although it is relatively clean, we still ne
 
 ### Remove Unnecessary Columns
 
-First, we need remove all unnecessary columns. We can remove ALL the columns ending with `M`. These columns store the margin or error for each variable. Because our data is at a county level, the margin of error is really small, and hence we dont need to worry about it in our analysis and can safely remove all columns measuring margin of error.
+First, we need to remove all unnecessary columns. We can remove ALL the columns ending with `M`. These columns store the margin or error for each variable. Because our data is at a county level, the margin of error is really small, and hence we dont need to worry about it in our analysis and can safely remove all columns measuring margin of error.
 
 **Q.4) Remove all the columns in `nc_raw` that end with an `m` by filling the `select` query below. Hint: you can use of the very useful helper functions that can be used with select(). <https://dplyr.tidyverse.org/reference/select.html>**
 
@@ -269,7 +268,7 @@ colnames(nc_wide)
 
 ### Creating new variables of interest
 
-We still need to create a few more columns for race. Being `Hispanic or Latino` is considered ethnicity, and not race in the census. One could have `Hispanic or Latino` ethnicity and identify as one or more race. We have already  considered non-Hispanic Whites, Blacks, and Native Americans. Additionally, we create 3 more columns: for number of  Hispanics in each county, the total number of persons of color (poc), and categorical variable telling us whether the majority of the county is `white` or `hispanic`. For the purpose of this lab, however, we will consider those as two more categories of race.
+We still need to create a few more columns for race. Being `Hispanic or Latino` is considered ethnicity, and not race in the census. One could have `Hispanic or Latino` ethnicity and identify as one or more race. We have already  considered non-Hispanic Whites, Blacks, and Native Americans. Additionally, we create 3 more columns: for number of  Hispanics in each county, the total number of persons of color `poc`, and categorical variable telling us whether the majority of the county is `white` or `hispanic`. For the purpose of this lab, however, we will consider those as two more categories of race.
 
 ***
 <div class = "blue">
@@ -283,7 +282,7 @@ Taming, Tidying and Transforming are all circular and not strictly in any one or
 ```{r}
 #Q.5 Fill in the blanks below
 nc_wide <- nc_wide %>% _____(hispanic = ___________,
-                             poc = t________________) %>%
+                             poc = ________________) %>%
   white_majority = ifelse(white > poc, 1,0) %>% 
                                 recode_factor(`1` = 'white',
                                                           `0` = 'poc')) %>%
@@ -353,9 +352,9 @@ Thankfully, it does give an error since we are trying to add both numeric variab
 
 Hence, that should give us one rule of thumb: *You cannot combine variables with different data types in the same column*. Hence, `white_majority` should be its own variable. Additionally, even though `med_hh_income` is numeric, its unit is dollars, while the unit for other numeric variables is the number of people. 
 
-Hence, more strictly: *"You should combine variables with different UNITS in the same column (unless they are converted to the same unit)*
+Hence, more strictly: *You should combine variables with different UNITS in the same column (unless they are converted to the same unit)*
 
-Finally, although `total_population` and other race columns are all counting th number of people, total_population is more of a summary variable since it is composef of the multiple race variables. Hence, we can say that even if *variables have the same unit, they should not be in one column if they measure different scales (individual race vs total population)
+Finally, although `total_population` and other race columns are all counting the number of people, total_population is more of a summary variable since it is composed of the multiple race variables. Hence, we can say that even if variables have the same unit, they should not be in one column if they measure different scales (individual race vs total population)
 
 Hence our new tidy should have the following columns: `geoid`, `name`, `white_majority`, `total_population`, `med_hh_income`, and then the 2 tidied columns called `race` (which contains the type of each race), and `race_count` (which counts people in each race per county)
 
@@ -378,7 +377,7 @@ Lets transform data to see how "tidying" data helps make our data science proces
 
 To make comparisons more meaningful, Lets *transform* our data to create a new variable called `race_pct` that calculates percentage of population of a particular race in a particular county
 
-**Q.7) Fill in the blank to create a new variable in `nc_tidy` `race_pct` based on the above description**
+**Q.7) Fill in the blank to create a new variable called `race_pct` in the `nc_tidy` dataframe based on the above description**
 
 ```{r}
 # Q.7)
@@ -403,7 +402,7 @@ nc_tidy1$name <- nc_tidy1$name %>% str_replace(pattern = " County, North Carolin
 nc_tidy1$name %>% head
 ```
 
-**Q.8) Answer in 1 sentence: What does the str_replace() function do here to the name string?**
+**Q.8) Answer in 1 sentence: What does the str_replace() function do here to the strings in the `name` column?**
 
 ***
 
@@ -413,7 +412,7 @@ Tidy data gives a lot of control over easy visualizations for multiple aspects o
 
 ### Histograms (Plotting 1 continuous variable)
 
-Lets explore the distribution of our continuous data. Knowing the distribution of data is important for statistical modeling and for looking at variation in data. For example, if the data does not look like a normal distribution, it might violate statistical tests, or may be too narrowly variable to be of any use to prediction.
+Lets explore the distribution of our continuous data. Knowing the distribution of data is important for statistical modeling and for looking at variation in data. For example, if the data does not look like a normal distribution, it might violate statistical tests. Similarly, the data may not have enough variation to be of any use in prediction models.
 
 Type in the code below:
 
@@ -464,7 +463,7 @@ You just created a plot by *transforming* your dataframe *on the fly*. That is a
 
 ### Boxplots (Plotting 1 continuous 1 categorical variable)
 
-Type in the following code below: Here we create a boxplot. The other advantage of ggplot2 is that we can actually store the plot in an object (`boxp` in our case) nad then add more layers to our box plot.
+Type in the following code below: Here we create a boxplot. The other advantage of ggplot2 is that we can actually store the plot in an object (`boxp` in our case) and then add more layers to our box plot.
 
 ```{r}
 ## create an unlabelled boxplot
@@ -483,7 +482,7 @@ boxp + geom_text(aes(label=name), check_overlap = T,
        title = "Distirbution of Median HH Income among white and PoC majority counties")
 ```
 
-**Q.12) Based on the plot - Describe in 1-2, the differences between Median Household Income among Majority White vs Majority PoC counties. Which counties are outliers in Majority white and Poc counties? Here is a resource to interpret boxplots <https://flowingdata.com/2008/02/15/how-to-read-and-use-a-box-and-whisker-plot/>**
+**Q.12) Based on the plot - Describe in 1-2 sentences, the differences between Median Household Income among Majority White vs Majority PoC counties. Which counties are outliers in Majority white and Poc counties? Here is a resource to interpret boxplots <https://flowingdata.com/2008/02/15/how-to-read-and-use-a-box-and-whisker-plot/>**
 
 ### Point plot
 
@@ -519,20 +518,20 @@ You can even *unzip* your files in R using the `unzip()` function.
 Type the code below to download, unzip, and read in a geospatial file of NC counties.
 
 ```{r}
-if(!file.exists("data/NC_Counties.zip")){
+if(!file.exists("./NC_Counties.zip")){
   print("NC_Counties.zip does not exist, fetching zip file from the source")
   download.file(url = "https://opendata.arcgis.com/datasets/34acbf4a26784f189c9528c1cf317193_0.zip?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D",
-                destfile = "data/NC_Counties.zip")
+                destfile = "./NC_Counties.zip")
 }
 
-print("NC_counties.zip exists at '.data/NC_Counties.zip'")
+print("NC_counties.zip exists at './NC_Counties.zip'")
 
-if(!file.exists("data/NC_Counties/NC_Counties.shp")){
-  print("unzipped folder and shp not detected, unzipping 'NC_Counties.zip' to '.data/NC_counties'")
-unzip("data/NC_Counties.zip",exdir = "data/NC_Counties",overwrite = T)
+if(!file.exists("./NC_Counties/NC_Counties.shp")){
+  print("unzipped folder and shp not detected, unzipping 'NC_Counties.zip' to './NC_counties'")
+unzip("./NC_Counties.zip",exdir = "./NC_Counties",overwrite = T)
 }
 
-nc_shp <- st_read("./data/NC_Counties/NC_Counties.shp",stringsAsFactors =F)
+nc_shp <- st_read("./NC_Counties/NC_Counties.shp",stringsAsFactors =F)
 nc_shp <- nc_shp %>% clean_names(case = "snake")
 
 ```
