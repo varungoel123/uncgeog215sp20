@@ -1978,7 +1978,8 @@ nc_shp &lt;- nc_shp %&gt;% clean_names(case = &quot;snake&quot;)</code></pre>
 <div id="join-your-data" class="section level3">
 <h3><span class="header-section-number">3.7.2</span> Join your data</h3>
 <p>Before we can make a map, we have to join the geographical data to our <code>nc_wide</code> and <code>nc_tidy</code> dataset.</p>
-<p><strong>Q.14) Fill in the blanks below and execute that keeps the renamed <code>name</code> column and the the <code>geometry</code> column only. The <code>co_name</code> column should be renamed to <code>name</code>. Hint: This can be done within the select function itself.</strong></p>
+<p><strong>Q.14) Execute the code below to join your geospatial data to your census data. YOU WILL GET FULL POINTS ON THIS QUESTION, since the fill in the blanks have already been filled in for you. The original question for youre reference was below:</strong></p>
+<p><em>&quot;“Fill in the blanks below and execute that keeps the renamed <code>name</code> column and the the <code>geometry</code> column only. The <code>co_name</code> column should be renamed to <code>name</code>. Hint: This can be done within the select function itself.”&quot;</em></p>
 <pre class="r"><code>nc_shp &lt;- nc_shp %&gt;% select(name = co_name, geometry) %&gt;%
   mutate(name = name %&gt;% str_to_title())
 
