@@ -51,5 +51,5 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 **Feb 10: Taming, Tidying, and Transforming your Data:** [pdf](lectures/09_tidyWrangling/wrangle.pdf){target="_blank"}, 
 [html](lectures/09_tidyWrangling/wrangle.html){target="_blank"}
 
-**Feb 12: Taming, Tidying, and Transforming your Data:** [pdf](lectures/10_dataViz1/viz1.pdf){target="_blank"}, 
+**Feb 12: Visualizing your Data:** [pdf](lectures/10_dataViz1/viz1.pdf){target="_blank"}, 
 [html](lectures/10_dataViz1/viz1.html){target="_blank"}
