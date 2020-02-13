@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Visualizing Your Data: Part 1</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Intro To Spatial Data Science" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/5235085b15.js"></script>
+    <link rel="stylesheet" href="css/my-theme_nologo.css" type="text/css" />
+    <link rel="stylesheet" href="css/my-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Visualizing Your Data: Part 1
+## Class #10 | GEOG 215
+### Intro To Spatial Data Science
+
+---
+
+
+
+# Today's Class
+
+--
+
+## The Fun Part
+
+---
+
+# Today's Class
+
+## The Fun Part (For real)
+
+- #.shout[Data Visualizations]
+
+---
+class:middle, inverse, center
+
+#WHY VISUALIZE DATA
+
+---
+# A motivating Example
+
+&lt;img src="img/Anscombe's_quartet_1.svg" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+# A motivating Example
+
+&lt;img src="img/whyViz2.png" width="50%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* Jackson, 1980: *American Sociological Review*]
+
+---
+class:middle, inverse, center
+
+#WHY VISUALIZE CORRECTLY
+
+---
+# Bad Taste
+
+&lt;img src="img/wrongViz.png" width="50%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* Media Matters for America]
+
+---
+# Your Turn (figure 1)
+
+
+&lt;img src="img/coronavirus1.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* Yahoo Finance]
+
+---
+# Your Turn (figure 2)
+
+
+&lt;img src="img/homeless1.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* http://www.pbs.org/now/shows/305/homeless-map.html]
+
+---
+class:middle, inverse, center
+
+#WHY VISUALIZE NICELY?
+
+---
+# Bad Perception
+
+&lt;img src="img/lifeExp.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* http://socviz.co/lookatdata.html#why-look-at-data]
+
+---
+### Pick your battles or Risk Sensory Overload
+
+&lt;img src="img/immune_ugly.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* https://paldhous.github.io/ucb/2016/dataviz/week2.html#]
+
+---
+### Pick your battles or Risk Sensory Overload
+
+&lt;img src="img/immune_good.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* https://paldhous.github.io/ucb/2016/dataviz/week2.html#]
+
+---
+## What is the Purpose of visualization
+
+#### Exploratory VS Explanatory visualization
+
+&lt;img src="img/explorevsexplain.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* DataCamp, Rick Scavetta]
+
+---
+## What is the Purpose of visualization
+
+#### Exploratory VS Explanatory visualization
+
+&lt;img src="img/purppose.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* Jackie Wirz, from https://apreshill.github.io/data-vis-labs-2018/]
+
+---
+## Data Visualization for Exploratory Analysis
+
+#### Data Cleaning
+
+- Testing for obvious inconsistencies and errors in your data
+- Think about what your data represents
+  - Are there any missing values
+  - Values out of range
+  - Are there any outliers
+  
+---
+## Data Cleaning
+
+#### Detect Missing Data
+
+&lt;img src="img/missing1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+## Data Cleaning
+
+#### Detect Outliers
+
+&lt;img src="img/outliers1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+## Data Visualization for Exploratory Analysis
+
+#### Looking for 'structure'/'signal' in the data/'noise'
+
+--
+- What "pops" out?
+
+--
+- Are there obvious patterns or is the data random
+
+--
+- Visualize data multiple ways to generate possible explanations to explore
+
+--
+- Iterate/Repeat/Update
+
+---
+
+### Think about the visualization based on the type of data/variable
+
+&lt;img src="img/graph_type.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* https://serialmentor.com/]
+
+---
+
+### Think about the visualization based on what you want to show
+
+&lt;img src="img/whatyouwanttoshow.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* https://paldhous.github.io/ucb/2016/dataviz/week2.html#]
+
+---
+class:middle, inverse, center
+
+#Visualizing using ggplot2()
+
+---
+##  `ggplot2()`
+
+#### Based on the Grammar of Graphics
+
+- A graph is made of several **layers**
+
+- Grammar (i.e mathematical and aesthetic rules define layers)
+
+---
+## ggplot2 layers
+
+&lt;img src="img/ggplot2layers.png" width="70%" style="display: block; margin: auto;" /&gt;
+--
+For this class, we will mainly focus on:
+
+- Data
+- Aesthetics
+- Geometries
+- Facets
+
+---
+### Example:
+
+#### Histogram
+
+&lt;img src="viz1_files/figure-html/unnamed-chunk-16-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+```r
+ggplot(data = nc_wide) +
+   geom_histogram(aes(x = med_hh_income)) + theme_minimal()
+```
+
+---
+### Constructing a ggplot2
+
+
+```r
+ggplot(data = &lt;DATA&gt;) + 
+  &lt;GEOM_FUNCTION&gt;(mapping = aes(&lt;MAPPINGS&gt;))
+```
+
+1.Initialize the data
+
+2. add (at least) one geometry — with +
+
+3. specify required Aesthetics — with aes()
+
+---
+### Lets look at our histogram again
+
+&lt;img src="viz1_files/figure-html/unnamed-chunk-19-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+### Lets look at our histogram again
+
+&lt;img src="viz1_files/figure-html/unnamed-chunk-20-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+### Distributing categorical data
+
+&lt;img src="viz1_files/figure-html/unnamed-chunk-21-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+
+
+```r
+nc_wide %&gt;%
+  ggplot() + geom_bar(aes(x = white_majority, fill = white_majority)) +
+  theme_bw()
+```
+
+---
+### Aesthetics in ggplot2
+
+- x
+- y
+- colour
+- fill
+- size
+- alpha
+- linetype
+- labels
+- shape
+
+---
+# Next Class
+
+- #### Data Visualization 2 (including maps)
+  - email a few visualizations, we will scrutinize them
+- #### HW 1 doubts
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
