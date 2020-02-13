@@ -1655,7 +1655,7 @@ library(sf)</code></pre>
 <div class="blue">
 <p><strong>Data Science: 2 approaches to consider</strong></p>
 <p>Often, a data science project involves <code>coming across</code> a potential stream of data, taming, tidying, transforming and visualizing to see trends and patterns, forming questions and hypothesis, and then using models to answer them. This can be considered a <strong>data-driven</strong> approach, where you let the data do the talking, and help you think about questions you want to test. The focus is here to collect as much data as possible, and then formulate theory.</p>
-<p>Another approach, , is the <strong>theory-based</strong> approach, where you already have an apriori theory/question, and you then only collect data that helps answer an empirical question on whether the theory is true or not.</p>
+<p>Another approach is the <strong>theory-driven</strong> approach, where you already have an apriori theory/question, and you then only collect data that helps answer an empirical question on whether the theory is true or not.</p>
 <p>Science, and asking good questions in general, is neither completely data-driven or theory driven. Generally, you have some apriori questions or theory, that helps you narrow down the kind of empirical data. Then you perform different exploratory analysis (taming,tidying, transforming, visualizing, modelling) to look at patterns and form interesting questions. Some of these questions may conform to your apriori beliefs and some may update those beliefs. Based on your updated belief, you create and test hypotheses - which is an educated guess or proposed explanation that you then test through careful modeling and experimentation.</p>
 </div>
 <hr />
@@ -1682,7 +1682,7 @@ your_COUNTYHEALTH_Data &lt;-read_excel(&quot;your_COUNTYHEALTH_file&quot;, sheet
 ### You can also load sheets 2,3 separately
 # Sheet 2 is an overall measure of Health
 # sheet 3 is broken into broad sub categories
-# Sheet 4 is brokern into individual categories
+# Sheet 4 is broken into individual categories
 # You can use either the z score or rankings. Read the introduction in sheet 1 to know what the variables mean.
 
 # You can load your census data through the API and the shapefile through automated downloaded using the same code that we have in lab3. You can just download the same variables from the census, as in lab3.</code></pre>
@@ -1691,7 +1691,7 @@ your_COUNTYHEALTH_Data &lt;-read_excel(&quot;your_COUNTYHEALTH_file&quot;, sheet
 <h3><span class="header-section-number">4.3.2</span> Data Wrangling</h3>
 <p>This category is broadly defined. Once you have all your raw data in R in the previous section, you can use this section to tame, tidy and transform your data.</p>
 <p>This is where you will clean your data for missing values etc., and bring it into a “tidy” format. Mainly this is where you will have your data (you will likely have more than one data frame in all likelihood) in a good enough format to create visualizations and other summary tables.</p>
-<p>You are free to use whatever command you want to clean your tidy. We have covered all the commands needed to clean and tidy your data. I recommend you either comment or write in words in markdown, your reasoning behind your code. You are also welcome to have as many variables as you need to be able to answer the questions that you mentioned in the <code>background</code> section. However, you are required to have atleast a minimum number of variables based on the criteria below.</p>
+<p>You are free to use whatever command you want to clean your dataset and make it tidy. We have covered all the commands needed to clean and tidy your data. I recommend you either comment or write in words in markdown, your reasoning behind your code. You are also welcome to have as many variables as you need to be able to answer the questions that you mentioned in the <code>background</code> section. However, you are required to have atleast a minimum number of variables based on the criteria below.</p>
 <ol style="list-style-type: decimal">
 <li><p>CAFO file - <strong>atleast 1</strong> variable out of the following - Count of swine CAFOs per county, total number of allowable swine counts in a county, average number of allowable swine counts per CAFO per county`(allowable count/number of Cafos).</p></li>
 <li><p>Census data - <strong>atleast 2</strong> race/ethnicity categories <code>(% of race/ethnicity in each county)</code> out of non-hispanic white, non-hispanic black, hispanic, and persons of color.</p></li>
@@ -1700,7 +1700,7 @@ your_COUNTYHEALTH_Data &lt;-read_excel(&quot;your_COUNTYHEALTH_file&quot;, sheet
 </ol>
 <p>In addition, here are a few suggestions that might help:</p>
 <ol style="list-style-type: decimal">
-<li><p>Tame all your raw datasets individually. Do not combine them till you have the correct variable names, taken care of missing values etc. Ofcourse, you might figure out that you need to add or delete more variables as you are working with your homework. Rememeber that you can just re-run your script with the new code. If you need to create new variables or summaries that involve variables from more than 1 cokumn, then you WILL have to join them first.</p></li>
+<li><p>Tame all your raw datasets individually. Do not combine them till you have the correct variable names, taken care of missing values etc. Of course, you might figure out that you need to add or delete more variables as you are working with your homework. Rememeber that you can just re-run your script with the new code. If you need to create new variables or summaries that involve variables from more than 1 column, then you WILL have to join them first.</p></li>
 <li><p>Same goes for summarized datasets: Once you tame your data, then summarize it. Otherwise you might suffer the garbage in garbage out problem. For example, The Cafo file has individual cafos, but our analysis is at the County level. Hence you will likely have to group_by and summarize to find the number of cafos in each county, or the number allowable animals (<code>allowable count column</code>) etc. If you have some duplicates or NAs in the individual file, they will propage to your summary file, unless you are careful.</p></li>
 <li><p>Following up, if you create summaries using functions such as <code>mean()</code> or <code>sum()</code>, you can add the argument <code>na.rm=T</code>, to remove NAs from the calculations.</p></li>
 <li><p>I recommend that you join spatial data at the end, and have separate data frames for those with spatial data. For example, if you have a dataframe with columns such as number of CAFOs, income, percentage race for each county, you dont need spatial data to plot non-spatial graphs. When you want to plot maps, you can then create a new data frame with the joined spatial data, and use that to make maps.</p></li>
@@ -1710,8 +1710,8 @@ your_COUNTYHEALTH_Data &lt;-read_excel(&quot;your_COUNTYHEALTH_file&quot;, sheet
 <h3><span class="header-section-number">4.3.3</span> Exploratory Results</h3>
 <p>In this section, you will create and display any graphs, maps or summary tables to explore your data.</p>
 <ol style="list-style-type: decimal">
-<li><p>You should have a <strong>minimum of 5</strong> graphics - including <em>atleast 2</em> maps. <strong>Please briefly describe what your observations are for each graphics</strong>. I will grade them NOT on aesthetic but based how useful the graph is to your investigation. I recommend that you use combinations of visualizations (such as histograms, barplots, scatter plots, boxplots or any other that we have learnt). For example, If you want to look at the histogram of more than 1 variable (eg, for each % race composition for each race), you can use facetting to show that information in 1 graph. If you make 5 separate graphs instead, I will count them as 1, unless they really add to a story in a different way.</p></li>
-<li><p>You can also tables. They count as visualizations too, but in most cases, visualizations are more impactful than tables for exploratory analysis.</p></li>
+<li><p>You should have a <strong>minimum of 5</strong> graphics (not counting tables) - including <em>atleast 2</em> maps. <strong>Please briefly describe what your observations are for each graphics</strong>. I will grade them NOT on aesthetic but based how useful the graph is to your investigation. I recommend that you use combinations of visualizations (such as histograms, barplots, scatter plots, boxplots or any other that we have learnt). For example, If you want to look at the histogram of more than 1 variable (eg, for each % race composition for each race), you can use facetting to show that information in 1 graph. If you make 5 separate graphs instead, I will count them as 1, unless they really add to a story in a different way.</p></li>
+<li><p>You can also create tables. They count as visualizations too, but in most cases, visualizations are more impactful than tables for exploratory analysis.</p></li>
 </ol>
 </div>
 <div id="discussion" class="section level3">
@@ -1724,7 +1724,7 @@ your_COUNTYHEALTH_Data &lt;-read_excel(&quot;your_COUNTYHEALTH_file&quot;, sheet
 </ol>
 <hr />
 <div class="blue">
-<p><strong>Exploration VS Explanation</strong> Note that since we are only conducting exploratory analysis, we cannot make any conclusions. We can only explore the patterns, and range of possible explanatations/questions/hypotheses/ that may be explaining the process underlying the pattern that you see. To actually test whether a particular cause/process is associated with or responsible for the patterns that you see, you use explanatory analysis through careful experimentation and investigation. For example, if your exploratory suggested a correlation between CAFOs and persons of color, as one of the many other possible correlations, you can choose a particular hypothesis about CAFOs and persons of color. THen you will carefully conduct an analysis to weigh your evidence and decide whether to reject your hypothesis or not.</p>
+<p><strong>Exploration VS Explanation</strong> Note that since we are only conducting exploratory analysis, we cannot make any conclusions. We can only explore the patterns, and range of possible explanatations/questions/hypotheses/ that may be explaining the process underlying the pattern that you see. To actually test whether a particular cause/process is associated with or responsible for the patterns that you see, you use explanatory analysis through careful experimentation and investigation. For example, if your exploratory suggested a correlation between CAFOs and persons of color, as one of the many other possible correlations, you can choose a particular hypothesis about CAFOs and persons of color. Then you will carefully conduct an analysis to weigh your evidence and decide whether to reject your hypothesis or not.</p>
 </div>
 <hr />
 </div>
