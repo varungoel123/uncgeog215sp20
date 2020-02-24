@@ -53,3 +53,13 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 
 **Feb 12: Visualizing your Data:** [pdf](lectures/10_dataViz1/viz1.pdf){target="_blank"}, 
 [html](lectures/10_dataViz1/viz1.html){target="_blank"}
+
+### Week 7: Maps, and Asking Spatial Questions
+
+**Feb 17: Visualizing Spatial Data**
+[pdf](lectures/11_maps_viz/viz2.pdf){target="_blank"}, 
+[html](lectures/11_maps_viz/viz2.html){target="_blank"}
+
+**Feb 19: Asking Spatial Questions**
+[pdf](lectures/12_askingQs/geog215_askingQs.pdf){target="_blank"}
+

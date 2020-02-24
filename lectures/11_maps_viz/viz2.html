@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Visualizing Your Data: Part 2</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Intro To Spatial Data Science" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/5235085b15.js"></script>
+    <link rel="stylesheet" href="css/my-theme_nologo.css" type="text/css" />
+    <link rel="stylesheet" href="css/my-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Visualizing Your Data: Part 2
+## Class #11 | GEOG 215
+### Intro To Spatial Data Science
+
+---
+
+
+
+
+---
+class:middle, inverse, center
+
+&gt; ## “The greatest value of a picture is when it forces us to notice what we never expected to see.” -John Tukey
+
+---
+# Today's Class
+
+### Visualizing data multiple ways
+
+  - #### Focus on seeing what pops out
+  - #### Develop an intuition for visualizations
+
+### Maps, Maps and Maps
+
+---
+
+# Recap
+
+&lt;img src="img/whatyouwanttoshow.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* https://paldhous.github.io/ucb/2016/dataviz/week2.html#]
+
+---
+# Let the data speak
+
+&lt;img src="img/flowing-data-inspo.png" width="50%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* flowing data]
+
+---
+class:middle, inverse, center
+
+# Lets make our data speak
+
+---
+# Distribution
+
+#### What is the composition of my variable?
+  - Are values concentrated/spread out
+  - Are there any breaks/ outliers
+  - Influences the questions you want to ask/ story you want to tell
+  
+---
+# Distribution
+#### Continous Variable
+&lt;img src="viz2_files/figure-html/unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+### Distribution
+#### Continous Variable, multiple categories
+
+```r
+nc_tidy1 %&gt;% filter(race %in% c("white","black")) %&gt;% 
+  ggplot(aes(x = race_pct, fill = race)) + 
+  geom_histogram(binwidth = 5 ,col = "white",
+                 alpha = 0.3,position = "identity") + 
+  scale_x_continuous(breaks = seq(0, 100, 5))+
+  theme_bw()
+```
+
+&lt;img src="viz2_files/figure-html/unnamed-chunk-5-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+### Distribution
+#### Continous Variable, multiple categories - density
+
+```r
+nc_tidy1 %&gt;% filter(race %in% c("white","black")) %&gt;% 
+  ggplot(aes(x = race_pct, fill = race)) + 
+  geom_density(binwidth = 5 ,col = "white",
+                 alpha = 0.3,position = "identity") + 
+  scale_x_continuous(breaks = seq(0, 100, 5))+
+  theme_bw()
+```
+
+&lt;img src="viz2_files/figure-html/unnamed-chunk-7-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+# Distribution
+#### Categorical variable
+&lt;img src="viz2_files/figure-html/unnamed-chunk-8-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+
+
+```r
+nc_wide %&gt;%
+  ggplot() + geom_bar(aes(x = white_majority, fill = white_majority)) +
+  theme_bw()
+```
+
+---
+### Distribution
+
+## Continuous variable, categorical variable
+
+```r
+nc_tidy1 %&gt;%
+  ggplot(aes(x = white_majority,y=med_hh_income)) + 
+  geom_boxplot()  +
+  theme_minimal()
+```
+
+&lt;img src="viz2_files/figure-html/unnamed-chunk-11-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+# Relationship
+
+#### Focus on co-variation
+  - How do x and y vary together
+  - Is there a trend?
+  - *Correlation is not equal to Causation*
+---
+
+# Relationship
+
+
+```r
+nc_tidy1 %&gt;% filter(race == "black") %&gt;%
+  ggplot(aes(x = race_pct,y=med_hh_income)) + 
+  geom_point()  + geom_rug() +
+  theme_minimal()
+```
+
+&lt;img src="viz2_files/figure-html/unnamed-chunk-13-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+# Relationship
+#### Comparison between 2 categories
+
+```r
+nc_tidy1 %&gt;% filter(race %in% c("black","white")) %&gt;%
+  ggplot(aes(x = race_pct,y=med_hh_income)) + 
+  geom_point()  + geom_smooth() + facet_wrap(~race) +
+  theme_minimal()
+```
+
+&lt;img src="viz2_files/figure-html/unnamed-chunk-15-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+# Comparison
+
+#### Focus on spotting differences
+  - Differences across categories
+  - Differences across time
+  - Differences across units
+
+
+---
+
+# Comparison
+#### Differences across units
+
+
+```r
+nc_wide %&gt;% mutate(name = name %&gt;% str_replace(" County, North Carolina","")) %&gt;%
+  ggplot(aes(y = reorder(name,med_hh_income),x=med_hh_income)) + 
+  geom_point(color = "maroon") + labs(x = "Median Household Income",
+                      y = "County Names",
+                      title = "Median HH Income by County") +
+  theme_minimal() + theme(axis.text.y = element_text(size = 6))
+```
+
+&lt;img src="viz2_files/figure-html/unnamed-chunk-17-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+# Comparison
+#### Differences across categories
+
+```r
+nc_tidy1 %&gt;%
+  ggplot(aes(x = white_majority,y=med_hh_income)) + 
+  geom_boxplot()  +
+  theme_minimal()
+```
+
+&lt;img src="viz2_files/figure-html/unnamed-chunk-19-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+# Composition
+
+#### Focus on parts of a whole
+  - Focus on relative percentages
+  - Generally not on counts
+
+---
+# Composition
+
+&lt;img src="img/stacked_bar.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* Simon Halliday]
+
+
+---
+# Composition
+
+&lt;img src="img/composition.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* NYtimes]
+
+
+---
+# Composition
+
+#### Save your pies for Dessert, Please!!!!!!!
+
+&lt;img src="img/pie.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* Stephen Few]
+
+---
+# Connection
+
+#### Focus on connections
+  - Who is connected to who?
+  - Focus on the edge, rather than the vertex
+  
+  
+---
+# Connection
+&lt;img src="img/connection.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* Tiago Paez via medium]
+
+---
+class:middle, inverse, center
+## Location
+---
+
+# Why do we create maps
+
+### Allows for visual interpretation of geographic patterns of phenomena
+
+  - #### Location of objects/events
+    - Themselves (e.g., clustered? where?) 
+    - Or, in relation to other things
+  - #### Variation of a type or value
+    - Categories
+    - Quantities
+
+---
+# Map Types
+
+  - #### Point map
+  - #### Proportional Symbol map
+  - #### Choropleth map
+  
+---
+# Point Map
+
+#### Variable of interest is represented as set of point features
+
+  - e.g., disease events, facilities, wells
+  
+#### Symbology is held constant (all points have the same shape, color, and size)
+
+  – Visual interpretation of the density of events (per area) via the locations of points on the map
+  
+---
+# Point Map
+
+```r
+ggplot() + geom_sf(dat = nc_shp) +
+  geom_sf(data = cafo_shp,
+          col="red",alpha=0.4) + coord_sf(datum = NA) +
+  theme_minimal() 
+```
+
+&lt;img src="viz2_files/figure-html/unnamed-chunk-25-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+ # Proportional Symbol Map
+
+#### Variable of interest is represented as set of
+point features, with interval/ratio
+information
+  
+  - e.g., number of disease cases
+  
+####Size of symbol is scaled proportionally to the value of the attribute
+
+---
+# Proportional Symbol Map
+
+
+```r
+ggplot() + geom_sf(dat = nc_shp) +
+  geom_sf(data = cafo_shp %&gt;% mutate(allowable_count &gt; 0), aes(size = allowable_count),
+          col="maroon",alpha=0.7) + coord_sf(datum = NA) +
+  scale_size_area() +
+  theme_minimal() 
+```
+
+&lt;img src="viz2_files/figure-html/unnamed-chunk-27-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+# Choropleth Map
+
+#### Variable of interest represented by
+ratios/rates/proportions located within
+areal features (polygons)
+
+- We generally do not use counts
+- Areas are shaded with different colors, patterns, or intensities
+  - Shows geographic variation
+  - Requires classifying or binning the data values
+
+---
+# Choropleth Map
+
+Lets look at examples from lab 3
+
+---
+# Choropleth Map
+
+#### Data Classifcation
+
+  - Our eyes are not good at discerning more than 6- 8 different shades of color in one map
+  - Values (attribute that is being mapped) are classifed or binned into classes
+  - Each class is assigned a specifc color along a color ramp
+    – Value or Saturation sequence
+    
+---
+# Choropleth Map
+
+#### Data Classifcation
+&lt;img src="img/classification.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* Paul Delamater]
+
+---
+## Is your data really spatial?
+
+ - What are you interested in?
+
+    - Are you interested in the units of interest?
+    - Or, are interested in the geographic distribution of those units of interest
+
+---
+## Is your data really spatial?
+
+&lt;img src="img/spatial.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* Kieran Healy]
+ 
+---
+## Is your data really spatial?
+
+&lt;img src="img/non-spatial.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* Kieran Healy]
+
+---
+# Choropleth Map
+
+&lt;img src="img/pop_maps.png" width="70%" style="display: block; margin: auto;" /&gt;
+.footnote[*Source:* xkcd]
+
+---
+# Choropleth Map
+
+#### Ur-choropleth Maps
+
+&lt;img src="img/pop_dens.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+# Choropleth Map
+
+#### Ur-choropleth Maps
+
+&lt;img src="img/af_am.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+# Choropleth Map
+
+#### Example
+&lt;img src="img/election.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+# Cartograms
+
+&lt;img src="img/cartogram.png" width="70%" style="display: block; margin: auto;" /&gt;
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
