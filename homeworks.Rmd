@@ -11,3 +11,12 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 ```
 
 # Last Updated: `r format(Sys.time(), "%a %b %d %X")` {.tabset .tabset-fade .tabset-pills}
+
+******
+<br>
+<br>
+
+### **Homework 1: Investigating relationships between CAFOs, people and health in North Carolina**
+
+[LINK TO HOMEWORK 1](homeworks/hw1/hw1.html){target="_blank"}
+
