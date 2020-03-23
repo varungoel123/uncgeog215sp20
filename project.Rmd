@@ -10,4 +10,80 @@ options(knitr.table.format = "html", knitr.kable.NA = '')
 knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE) 
 ```
 
-# Last Updated: `r format(Sys.time(), "%a %b %d %X")` {.tabset .tabset-fade .tabset-pills}
+### Last Updated: `r format(Sys.time(), "%a %b %d %X")` {.tabset .tabset-fade .tabset-pills}
+
+---
+
+
+## **Overview**
+
+The main goal of your final project is to tackle an interesting problem using the tools and techniques covered in this class. This can be interpreted broadly and the requirements are discussed below. 
+
+The rough outline of the project is: 
+
+- Start with an over-arching question based broadly on a problem you are trying to tackle. The questions that you came up with in your class exercise can be a good starting point. Most over-arching questions will be broad, and start with a **Why** or  a **how** instead of *what*, *which* or *where*?
+
+- Then break down the big question into small tangible questions (around 3 - 5)
+
+- For each of those small questions:
+
+  - Find data that might get at that question. 
+  - Import, tidy, transform visualize. 
+  - Iterate
+  - Summarize your results and communicate:
+
+Your project should demonstrate the use of techniques and methods for exploratory spatial analysis that we learn in class.
+
+You can choose to either submit your project INDIVIDUALLY or in a GROUP (maximum of 3 students) of your own choice. Regardless of whether you choose a group or an individual project, you will be graded on a standard criteria (to be distributed by the instructor at different project stages). However, in general it is expected that a group project will have greater breadth and depth as compared to an individual project. Your final project counts towards ***25%*** of your grade
+
+## **Final deliverables**
+
+#### **Project Report** 
+
+Your final deliverable will be an Rmarkdown Document in the form of a project report that is aimed at a general audience. The exact rubric for the project report will be distributed by the instructor after submission of your project proposals.
+
+#### **Analysis code**
+
+ In the process of developing your final project, you will likely write a lot of code that you might not use for your final project report. This could all the different data cleaning steps, summary tables, plots and other graphics that you analyzed but did not put in your final project.You might also be using R scripts for cleaning data or other helper functions. You will put all your code for analysis in an Rmarkdown document that will also be submitted along with your final project report. Unlike your project report, this document does not have to be polished or refined. However, it should have enough documentation for me to know what all steps you tried. Not only will this document help you internally, but also help me see all the effort you put in your final project. That way, even if you were not able to get a very compelling answer to the questions you asked in your final project, I will use your analysis document to give you points based on your effort.
+
+## **Important Deadlines**
+
+Although there is no late penalty for missing deadlines, the deadlines below will help orient you, keep your group on track and help you get maximum timely help.
+
+- **March 30** - Project Proposals Due - [Click here for instructions]("./final_project/project_proposal.pdf"){target="_blank"}
+
+- **April 19** - Draft Project Report Due
+
+- **April 22** - Peer Review Due
+
+- **May 4** - Final Project Report Due
+
+## **Helpful Resources**
+
+### **Asking for help, Advice on your projects**
+
+I, the TA, and the GRC will help you as you work on your projects. You will get help in the following ways:
+
+- **Feedback on Project Proposals**: You will get detailed feedback on each of your project proposals including comments on feasibility, suggestion for datasets, spatial methods, exploratory analysis and so on.
+
+- **one-on-one help during office hours**: I and TA have a [sign-up sheet](https://docs.google.com/spreadsheets/d/1nICT2k-BMOJwfCB9ufyiJesJ7cbwPErWAMVoUMy0hs0/edit?usp=sharing) that you individually or as a group can fill in to schedule an appointment virtually at any stage of the project. If you want to schedule something outside those hours, or need a longer consultation please email us.
+
+- **Peer Review** - Other than your instructor and TA, you will also get feedback on your draft project report from one of your fellow classmates.
+
+- **Online help forums** - The internet is your oyster. Please look up google, stack overflow, quora and other online forums for help on coding, questions or websites that house datasets. Take a look below for other resources to find datasets for your projects.
+
+## **Where to find data?**
+
+You can find a seriously large amount of data online. There are some obvious places to look for datasets such as [data.gov](data.gov). Please take a look at the [data resources](https://geog215-spds.rbind.io/data_resources.html) too. This page will be updated periodically. In addition, there is lots of assertive information available online. While I will add links to some popular sources I encourage you to be resourceful and conduct your own online searches to find some potential datasets. Once we get your project proposals we can individually point you to data sources for your particular project.
+
+# **Grading Rubric**
+
+***Coming soon***
+
+### **Example of a Project**
+
+Below is a description of an example student project I proposed as part of the GRC application for the class. In addition I have also included a sample project proposal in your [project proposal document]("./final_project/project_proposal.pdf"){target="_blank"}
+
+One example of a student research project for this class would be to use spatial data science techniques to examine the relationship between food and the built environment in North Carolina to identify ‘obesogenic environments’ and their characteristics. This is currently an active research area and requires extensive data cobbling and geo-computational crunching to link multiple fine scale raster and vector geospatial datasets programmatically. A group of students will use skills learnt in class throughout the spectrum of the geospatial toolkit ranging from creating their own geospatial data, analysing it and writing their results in reproducible research format. Students will start by assembling the required different datasets on grocery stores (or lack of) and convenience stores, on road networks, census tract data, and data on green space land-use/land cover. Since, grocery stores and convenience stores data are not readily available in one place publicly, students will use computational geocoding approaches to extract spatial data for the food environment. They will then utilise APIs to vector extract data on roads and raster data on green spaces. Once the data is assembled and converted into an integrated geospatial dataset, they will conduct geo-computational queries and exploratory data analysis to examine questions such as: a) number of healthy/unhealthy food stores (points)  in each census tract (areal data) b) correlation between percentage of green space in a census tract (raster to vector operations) and distance to healthy food access and c) examine covariates that predict the likelihood of being in a census tract with low physical activity spaces (measured by green space) and unhealthy food environments (measured by number of and average distance to healthy food stores). While going through this process, students will understand the research process such as hypothesis generation using exploratory data analysis, and also critically thinking about their results and their interpretation. For example, after finishing their analysis, students will reflect on their results and assess policy significance, such as examining whether there are certain communities that are disproportionately exposed to obesogenic environments, and the structural factors that make healthier interventions difficult. Finally, students will write up their results in the form of a digital reproducible file with code, figures and write-up, all using open source environments such as R.
+
+
