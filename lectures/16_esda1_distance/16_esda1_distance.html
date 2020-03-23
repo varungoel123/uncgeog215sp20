@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ESDA 1: Distance</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Class #16 | Geog 215" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# ESDA 1: Distance
+### Class #16 | Geog 215
+### Introduction to Spatial Data Science
+### Spring 2020
+
+---
+
+
+
+
+
+class: middle
+
+&gt; ## *“Everything is related to everything else, but near things are more related than distant things"* - Waldo Tobler
+---
+
+# Quick Recap from last class
+
+## Exploratory (Spatial) Data Analysis
+
+### Two questions to consider:
+
+ - ### What type of geographic variation occurs *within* my variables?
+
+ - ### What type of geographic variation occurs *between* my variables?
+
+
+---
+class: middle, center
+
+# Why do we care?
+
+
+---
+# Tobler's First Law of Geography (TFL)
+
+### "All things are related, but nearby things are more related than distant things"
+
+- ### Spatial Dependence
+
+  - What happens at one location is dependent on what happens at another location
+  
+- ### Underlines almost every physical and social phenomena
+
+---
+# Tobler's First Law of Geography (TFL) in Action
+
+&lt;img src="img/tobler_eg.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+# Tobler's First Law of Geography (TFL)
+
+### "All things are related, but nearby things are more related than distant things"
+
+- #### Spatial Dependence
+
+  - What happens at one location is dependent on what happens at another location
+  
+- Underlines almost every physical and social phenomena
+
+-  ### If TFL werent' true
+
+  - #### GIS would be impossible
+  - #### Life would be impossible
+  - #### I will be out of work... :/
+
+---
+
+# In Exploratory Spatial Data Analysis
+
+### We try to learn about spatial dependence/trends in our data
+
+- ### What is the geographic variation within my variables
+  - #### At what spatial scale does my data look similar/dissimilar
+    - eg. Till what distance from a cafo do I see similar cancer rates ?
+    - eg. Where are the outliers my in my data situated?
+    - Can i predict missing data?
+    
+- ### What is the geographic variation between my variables
+  - #### Are  2 variables spatially correlated?
+    - eg - Do places with higher bednet coverage have lower rates of malaria? are there any places with high coverage of bednets, but still high malaria? 
+    
+---
+## Quantifying Spatial dependence and relationships
+
+  - ### **Distance**
+  
+  - ### Adjacency
+  
+  - ### Interaction
+  
+  - ### Neighborhood
+
+&lt;img src="img/geog_concepts.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+# Distance
+
+- ### A fundamental geographic concept
+
+  - #### Affects relationships and interactions among things and places
+  
+- ### Physical distance
+
+ - #### Separation in either space or time 
+ - #### Essential to understanding “space” 
+ - #### As an effect and/or as an outcome!
+
+---
+# Distance
+
+- ### Social Distance
+
+ - #### Connection and isolation 
+ - #### Formation of social networks
+ 
+   - Are some subgroups more likely to interact or not?
+   
+   - Information dissemination
+   
+---
+# Distance Decay
+
+- ### Important concept in Geography
+
+- ### Interaction (actual or potential) or relationship among phenomena decreases with increasing distance
+
+  - #### Distance has “friction”
+  
+---
+# Distance Decay
+
+&lt;img src="img/distance_decay.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+### Can you think of other examples?
+
+---
+# Why Distance
+
+### Distance is a fundamental geographic concept that affects relationships and interactions among phenomena
+ 
+- ### Sometime we want to explain it
+- ### Sometimes we want to measure it for input to other calculations
+- ### Sometimes we want to map it
+
+---
+# Euclidean Distance
+
+- ### Based on **Pythogoras Theorem**
+
+  - `\(\ a^2 + b^2 = c^2\)`
+
+- ### Assumes:
+  - A planar Earth (Project CS)
+  - No differences in elevation
+  
+- ### Does not require a GIS
+  - Simple Math Calculation
+  - #### Should not be used with latitude and longitude!!!
+
+&lt;img src="img/euclidean.png" width="20%" style="display: block; margin: auto;" /&gt;
+
+---
+# Euclidean Distance
+
+## Limitations
+
+- ### Assumes flat earth
+
+  - Especially limiting over large distances
+  
+- ### Assumes no slope in terrain
+
+  - Especially limiting in mountainous terrain
+  
+- ### Assumes no barriers to movement
+
+  - Barriers can include anything that’s not a road (in the case of vehicular travel) or anything on the landscape that stands in the way
+
+---
+# Great Circle Distance
+
+### Great circle distance is the shortest distance between two points on a sphere
+
+  - #### Used for points stored in spherical coordinates
+  - #### Required to calculate distance in spherical coordinates, especially if points are far apart
+  
+&lt;img src="img/gc.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+# Manhattan Distance
+
+- ### One way to account for barriers is to recognize that travel can be limited to transportation routes that follow cardinal directions (N, S, E, W)
+
+  – #### In cities with a grid system
+  
+    - Eg. in Manhattan where most streets are at right angles
+
+&lt;img src="img/manhattan.png" width="70%" style="display: block; margin: auto;" /&gt;
+---
+# Minkowski Distance
+.pull-left[
+- ### Falls between Euclidean and Manhattan distance
+- ### Distance of a curved arc connecting two points
+
+&lt;img src="img/minkowski_eq.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+&lt;img src="img/minkowski.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+
+
+---
+# Network Distance
+
+.pull-left[
+- ### Restricts travel along
+existing arcs (lines)
+
+  - #### e.g., on city streets
+  
+- ### Distance is the sum of the lengths of arcs that make up the route
+- ### Available as an API from ESRI, open street maps etc. !
+]
+
+.pull-right[
+&lt;img src="img/network.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+# Travel Time
+
+### More accurate portrayal of human movement
+
+- ### Requires travel network or travel surface
+
+  - #### Available as an API from ESRI 
+  - #### Can be computationally intensive
+  
+- ### Vehicular-based : US studies
+
+  - #### Augmented using alternative travel modes
+  
+    - e.g., public transit, walking
+
+
+---
+# In what situation is Euclidean Distance Appropriate?
+
+## POLL EVERYWHERE
+
+
+---
+# Networks and Distance
+
+### In many cases, human movement is constrained to a network or network-like features
+
+
+- #### **Point**: True “separation” among places should not be measured as straight lines, as this is not how people “overcome” distance
+
+- #### **Counterpoint**: in some (many?) cases, Euclidean distances and network-based distances/times are highly correlated; hence Euclidean distances are a reasonable proxy
+
+---
+# Measuring Distance
+
+### Basic approaches to measuring distance among things (for comparative purposes)
+
+- ### Absolute distance
+
+  - #### Based upon the actual distance separating them
+  
+- ### Relative distance
+
+  - Nearest feature
+  
+    - #### The nearest feature is considered a neighbor, or
+    - #### Or, nearest k features 
+    
+- ### Topology-based
+
+- #### Connecting features are considered neighbors
+
+---
+class: center, middle, inverse
+
+## FINISH MIDTERM (Quiz closes indefinitely on Friday 11:55 pm)
+
+-- 
+
+## Start thinking about project proposals
+
+--
+
+## Enjoy Spring-Break
+
+--
+
+## WASH YOUR HANDS, OFTEN!
+
+---
+
+# Distance based queries
+
+- Distance based operations may include:
+
+  - **Spatial query**
+  
+    - Select geographic features based on distance
+     - Example, distance to health care facility
+     
+  - **Buffer**
+  
+    - Use distance to define area around a point, line, or polygon feature
+    - Number of grocery stores within walking distance
+    
+  - **Identify neighbors**
+  
+    - Identify geographic features within a neighborhood
+    - Whether a Cafo exists in my neighborhood
+  
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
