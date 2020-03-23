@@ -1,0 +1,171 @@
+---
+title: 'GEOG 215: Introduction to Spatial Data Science'
+author: "Spring 2020"
+date: "MW 3:35 pm - 4:50 pm"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse); library(kableExtra);library(stringr); library(pander)
+library(lubridate)
+#options(knitr.table.format = "latex", knitr.kable.NA = '') 
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE) 
+```
+**Location:** https://unc.zoom.us/my/goelvarun
+
+**Time:** MW 3:35pm - 4:50pm  
+
+**Course Website:** [geog215-spds.rbind.io](geog215-spds.rbind.io)  
+
+**Class Discussion Website:** [https://piazza.com/unc/spring2020/geog215/home](https://piazza.com/unc/spring2020/geog215/home)
+&nbsp
+&nbsp
+
+**Instructor:** Varun Goel | varung@live.unc.edu  
+Office Hours: *https://unc.zoom.us/my/goelvarun | Mon 11-12 pm, Thu 2-4 pm, Fri 2-3 pm or by appointment* |
+Phone: 919-579-9775
+  
+**Teaching Assistant:** Prabisha Shreshta | prabisha@live.unc.edu  
+Office Hours: *https://unc.zoom.us/my/prabisha | TBD*  
+  
+**Graduate Research Consultant:** Kate Brandt | kebrandt@live.unc.edu
+Office Hours: *https://unc.zoom.us/j/5157304784 | By appointment*
+
+**Pdf copy of the Old syllabus:** [Download here](course_info/syllabus_v1_latex.pdf){target="_blank"}
+
+**Pdf copy of the revised syllabus starting March 23, 2020:** [Download here](course_info/geog215_revised_syllabus_spring20.pdf){target="_blank"}
+
+---
+
+# Overview
+
+This revised & updated syllabus will be the reference point for course policies & procedures during this time of remote learning. I might need to make revisions or additional changes to this syllabus. I will let you know if this is the case — thank you for understanding. My goal is to support you towards the successful completion of the course.
+
+# Accessing the course
+
+In the remaining planned class sessions, we will extensively use zoom for class interaction, and continue to use the course website, piazza and sakai as we did before spring break for other purposes. Hence, all course material - readings, assignments, lecture slides, and video lectures, will all be uploaded on the course website. We will continue using piazza for announcements and class discussion. We will only use Sakai for uploading your assignments, taking quizzes and uploading your grades.
+
+For the time being, we will hold Zoom meetings during our regularly scheduled class meeting time (3:35 PM - 4:50 PM on Monday & Wednesday), unless otherwise indicated on the updated schedule of class sessions & assignments (see below). If issues of connectivity, health, or other responsibilities prevent you from joining us, please let me know. I will also make the course content available via the website (including lectures) if you are unable to join any scheduled class session because of technical difficulties, different timezones or changes in your schedule and responsibilities. I will make these meetings available via the course website under the lectures menubar. 
+
+If you don’t have one already, please activate your Zoom account. You can access the premium version for free through UNC here at https://zoom.unc.edu. Although the preferable way to connect to zoom will be via an internet connection through your computer, you can also connect by dialing in through your phone. If you have any issues with Zoom (or Sakai), you can contact ITS.
+
+# Office hours and contacting me
+
+Starting March 23, I will use Zoom for office hours. You can visit office hours using the link at [https://unc.zoom.us/j/4024154173](https://unc.zoom.us/j/4024154173). My Zoom ID is *402-415-4173*. I will continue to hold office hours at the previously scheduled days & times: Mon 11-12 pm, Thu 2-4 pm, Fri 2-3 pm.
+
+If your schedule and personal circumstances don’t allow you to visit during office hours, please email me to arrange a different time to meet via Zoom. We can also chat via phone, Google Hangout, or FaceTime. I aim to respond to your email within 24 hours.
+
+# PRIMARY learning objectives (for the remainder of the semester)
+While the learning objectives as initially outlined for this course--what you will know, understand, and do--will not fundamentally change, I want to highlight what the primary learning objectives will be as we shift into the rest of the semester in this remote format (taken from the original list on the original syllabus):
+
+1. Describe and interpret interesting spatial patterns in data
+
+2. Critically evaluate and choose appropriate Exploratory Spatial Data Analysis to analyze data
+
+3. Write and communicate your results in a scientific and reproducible manner using a [literate programming](http://ross.net/funnelweb/tutorial/intro_what.html) language such as Mardown
+
+4. Answer useful research questions by applying the tools and principles of spatial data science to a real world dataset
+
+# Revised grading criteria
+
+The revised grading criteria is as follows for the individual components:
+
+- Class Participation: **10%**
+- Labs: **20%**
+- Homework: **10%**
+- Exams: **30%**
+- Peer Review: **5%**
+- Final project: **25%**
+
+## Classroom participation (**10%**)
+Your current class participation grade will be the lowest it can now go. Even if you are not able to participate in any of our planned Zoom sessions for the remainder of the semester, your class participation grade will remain as it currently is, based on your participation in class till date. 
+
+I will continue to make manifold opportunities for you to increase your class participation grade (such as via Zoom, which includes a chat feature so you can type in thoughts to a discussion, in addition to speaking).  As noted above, I will also include opportunities that occur outside of Zoom sessions (such as some additional short assignments or other ways for you to communicate your questions/ideas/comprehension/understanding with me) as part of those opportunities. I will also be flexible in making these opportunities possible and will individualize these opportunities as I am able.  If you want to discuss ways you can raise your participation score (such as scheduling a one-on-one Zoom meeting with me), please email me and we can devise a plan together that makes sense in our new learning context.
+
+## Labs **(20%)**
+
+You have already been graded for 5 labs (3 Class labs + 2 data camp labs) which account for 10% of your grade. In addition you will have 2 more class labs (4% each) and 1 datacamp lab (2%) for the remaining 10% of your grade.
+
+## Homework **(10%)**
+
+You have already finished the HW component of the class. Your HW 1 now accounts for **10%** of your grade.
+
+## Exams (**15%**)
+
+The grading criteria for exams remains the same as before. Exam 2 will consist of 15% of your grade.
+
+## Peer Review (**5%**)
+
+Based on a given checklist by the instructor you will provide feedback on the draft final project to one of your classmates.
+
+## Final Project (**25%**)
+
+Your final project will now be graded on a scale of 25% instead of 20%. However, unlike before, you can choose to either submit your project *INDIVIDUALLY* or in a *GROUP* (maximum of 3 students) of your own choice. Regardless of whether you choose a group or an individual project, you will be graded on a standard criteria (to be distributed by the instructor at different project stages). However, in general it is expected that a group project will have greater breadth and depth as compared to an individual project.
+
+**Note on Late Penalty Waivers:**
+*I am waiving the late penalty for all assignments for the remainder of the semester. Even if you are not able to participate in Zoom sessions for the remainder of the semester, this will not affect your participation and engagement grade*
+
+As before, grades will be based on the following low cutoff values, although I reserve the right to modify the exact values: **A** *(93%)*, **A-** *(90%)*, **B+** *(87%)*, **B** *(83%)*, **B-** *(80%)*, **C+** *(77%)*, **C** *(73%)*, **C-** *(70%)*, **D** *(60%)*, anything below *60%* is an **F**.
+
+Given the current situation with Covid-19, if you are adversely affected by remote learning or by the crisis, please refer to the emergency grading guidelines by the university at https://registrar.unc.edu/files/2020/03/emergency-grading-accomodation.pdf to assess other options for grading including availing a pass/fail option or a 'cv' letter grade.
+
+# Remote learning expectations
+
+Some of you may be familiar with using Zoom for meetings.  For many, this dive into remote learning is a new experience.  And, participation within an online learning environment is different than in-class participation in a classroom setting.  To help you with some useful pointers, here is an [overview of etiquette for our remote learning adventure](https://bit.ly/Online-Class-Tips) (especially since I won’t be able to ask you to put your screens off and away during our Zoom sessions!):
+
+# Accessibility and accommodations
+
+The University of North Carolina at Chapel Hill facilitates the implementation of reasonable accommodations, including resources and services, for students with disabilities, chronic medical conditions, a temporary disability, or pregnancy complications resulting in difficulties with accessing learning opportunities.
+
+All official accommodations are coordinated through the Accessibility Resources and Service Office. See the ARS website for contact information, or email ars@unc.edu. Relevant policy documents as they relate to registration and accommodations determinations and the student registration form are available on the ARS website under the About ARS tab.
+
+Even if you do not have a documented need for an official accommodation, please let me know if I can make any aspect of this course more accessible for you. My ability to help you is based on your communication with me; please communicate with me so that I can help you be successful in this course as well as make any suggestions or reasonable modifications that are appropriate for your individual needs.
+
+I recognize that not everyone will be able to access the Internet with a stable connection each Tuesday & Thursday for the rest of the semester.While I will do my best to foster a meaningful learning environment during our scheduled Zoom sessions, you will also be able to achieve the above learning objectives successfully even if you need to do so asynchronously. 
+
+Additionally, the change to remote learning can cause anxiety, stress, and unforeseen burdens on people’s lives. Even remotely, you can take advantage of UNC-based resources through the Dean of Students’ Office and CAPS.  I encourage you to use these when they may be of use to you.
+
+I cannot stress enough: your health and well-being is of the utmost importance.  If you are ill--especially if you are exhibiting any symptoms related to the coronavirus--you do not need to submit any documentation to me verifying your illness. If you are ill and unable to complete any of the assignments on time (e.g. labs, project components) before the end of the semester, please email me as soon as you are able. I will work with you to figure out alternate arrangements to show your learning, or if it makes sense to receive an Incomplete for the course, which you can then complete when you recover.
+
+# Revised outline and schedule
+
+Please visit the schedule page for the latest revised schedule
+
+
+# Class principles
+
+Finally, I want to re-state the class principles in during this unprecendented time of remote learning (ref. Dr. Brandon Bayne, UNC)
+
+1. Nobody signed up for this.
+
+  - Not for the sickness, not for the social distancing, not for the sudden end of our collective lives together on campus
+  - Not for an online class, not for teaching remotely, not for learning from home, not for mastering new technologies, not for varied access to learning materials
+
+2.	The humane option is the best option.
+
+  - We are going to prioritize supporting each other as humans
+  - We are going to prioritize simple solutions that make sense for the most
+  - We are going to prioritize sharing resources and communicating clearly
+
+3.	We cannot just do the same thing online.
+
+  - Some assignments are no longer possible
+  - Some expectations are no longer reasonable
+  - Some objectives are no longer valuable
+
+4.	We will foster intellectual nourishment, social connection, and personal accommodation.
+
+  - Accessible asynchronous content for diverse access, time zones, and contexts
+  - Optional synchronous discussion to learn together and combat isolation
+
+5.	We will remain flexible and adjust to the situation.
+
+  - Nobody knows where this is going and what we’ll need to adapt
+  - Everybody needs support and understanding in this unprecedented moment
+
+

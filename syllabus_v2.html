@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Spring 2020" />
+
+
+<title>GEOG 215: Introduction to Spatial Data Science</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css/custom_css.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GEOG 215</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="schedule_v2.html">
+    <span class="fa fa-calendar"></span>
+     
+    Schedule
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-folder-open"></span>
+     
+    Materials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="lectures.html">
+        <span class="fa fa-laptop"></span>
+         
+        Lecture slides
+      </a>
+    </li>
+    <li>
+      <a href="readings.html">
+        <span class="fa fa-file-alt"></span>
+         
+        Readings
+      </a>
+    </li>
+    <li>
+      <a href="labs_schedule.html">
+        <span class="fa fa-flask"></span>
+         
+        Labs
+      </a>
+    </li>
+    <li>
+      <a href="homeworks.html">
+        <span class="fa fa-clipboard-list"></span>
+         
+        Homework
+      </a>
+    </li>
+    <li>
+      <a href="project.html">
+        <span class="fa fa-file-powerpoint"></span>
+         
+        Project
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-book-open"></span>
+     
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="software_resources.html">
+        <span class="fa fa-desktop"></span>
+         
+        Software resources
+      </a>
+    </li>
+    <li>
+      <a href="data_resources.html">
+        <span class="fa fa-database"></span>
+         
+        Data resources
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="syllabus_v1.html">
+    <span class="fa fa-info-circle"></span>
+     
+    Syllabus
+  </a>
+</li>
+<li>
+  <a href="http://datacamp.com">
+    <span class="fa fa-brain"></span>
+     
+    DataCamp
+  </a>
+</li>
+<li>
+  <a href="course_info/faq.html">
+    <span class="fa fa-question"></span>
+     
+    Help
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">GEOG 215: Introduction to Spatial Data Science</h1>
+<h4 class="author">Spring 2020</h4>
+<h4 class="date">MW 3:35 pm - 4:50 pm</h4>
+
+</div>
+
+
+<p><strong>Location:</strong> <a href="https://unc.zoom.us/my/goelvarun" class="uri">https://unc.zoom.us/my/goelvarun</a></p>
+<p><strong>Time:</strong> MW 3:35pm - 4:50pm</p>
+<p><strong>Course Website:</strong> <a href="geog215-spds.rbind.io">geog215-spds.rbind.io</a></p>
+<p><strong>Class Discussion Website:</strong> <a href="https://piazza.com/unc/spring2020/geog215/home">https://piazza.com/unc/spring2020/geog215/home</a> &amp;nbsp &amp;nbsp</p>
+<p><strong>Instructor:</strong> Varun Goel | <a href="mailto:varung@live.unc.edu" class="email">varung@live.unc.edu</a><br />
+Office Hours: <em><a href="https://unc.zoom.us/my/goelvarun" class="uri">https://unc.zoom.us/my/goelvarun</a> | Mon 11-12 pm, Thu 2-4 pm, Fri 2-3 pm or by appointment</em> | Phone: 919-579-9775</p>
+<p><strong>Teaching Assistant:</strong> Prabisha Shreshta | <a href="mailto:prabisha@live.unc.edu" class="email">prabisha@live.unc.edu</a><br />
+Office Hours: <em><a href="https://unc.zoom.us/my/prabisha" class="uri">https://unc.zoom.us/my/prabisha</a> | TBD</em></p>
+<p><strong>Graduate Research Consultant:</strong> Kate Brandt | <a href="mailto:kebrandt@live.unc.edu" class="email">kebrandt@live.unc.edu</a> Office Hours: <em><a href="https://unc.zoom.us/j/5157304784" class="uri">https://unc.zoom.us/j/5157304784</a> | By appointment</em></p>
+<p><strong>Pdf copy of the Old syllabus:</strong> <a href="course_info/syllabus_v1_latex.pdf" target="_blank">Download here</a></p>
+<p><strong>Pdf copy of the revised syllabus starting March 23, 2020:</strong> <a href="course_info/geog215_revised_syllabus_spring20.pdf" target="_blank">Download here</a></p>
+<hr />
+<div id="overview" class="section level1">
+<h1>Overview</h1>
+<p>This revised &amp; updated syllabus will be the reference point for course policies &amp; procedures during this time of remote learning. I might need to make revisions or additional changes to this syllabus. I will let you know if this is the case — thank you for understanding. My goal is to support you towards the successful completion of the course.</p>
+</div>
+<div id="accessing-the-course" class="section level1">
+<h1>Accessing the course</h1>
+<p>In the remaining planned class sessions, we will extensively use zoom for class interaction, and continue to use the course website, piazza and sakai as we did before spring break for other purposes. Hence, all course material - readings, assignments, lecture slides, and video lectures, will all be uploaded on the course website. We will continue using piazza for announcements and class discussion. We will only use Sakai for uploading your assignments, taking quizzes and uploading your grades.</p>
+<p>For the time being, we will hold Zoom meetings during our regularly scheduled class meeting time (3:35 PM - 4:50 PM on Monday &amp; Wednesday), unless otherwise indicated on the updated schedule of class sessions &amp; assignments (see below). If issues of connectivity, health, or other responsibilities prevent you from joining us, please let me know. I will also make the course content available via the website (including lectures) if you are unable to join any scheduled class session because of technical difficulties, different timezones or changes in your schedule and responsibilities. I will make these meetings available via the course website under the lectures menubar.</p>
+<p>If you don’t have one already, please activate your Zoom account. You can access the premium version for free through UNC here at <a href="https://zoom.unc.edu" class="uri">https://zoom.unc.edu</a>. Although the preferable way to connect to zoom will be via an internet connection through your computer, you can also connect by dialing in through your phone. If you have any issues with Zoom (or Sakai), you can contact ITS.</p>
+</div>
+<div id="office-hours-and-contacting-me" class="section level1">
+<h1>Office hours and contacting me</h1>
+<p>Starting March 23, I will use Zoom for office hours. You can visit office hours using the link at <a href="https://unc.zoom.us/j/4024154173">https://unc.zoom.us/j/4024154173</a>. My Zoom ID is <em>402-415-4173</em>. I will continue to hold office hours at the previously scheduled days &amp; times: Mon 11-12 pm, Thu 2-4 pm, Fri 2-3 pm.</p>
+<p>If your schedule and personal circumstances don’t allow you to visit during office hours, please email me to arrange a different time to meet via Zoom. We can also chat via phone, Google Hangout, or FaceTime. I aim to respond to your email within 24 hours.</p>
+</div>
+<div id="primary-learning-objectives-for-the-remainder-of-the-semester" class="section level1">
+<h1>PRIMARY learning objectives (for the remainder of the semester)</h1>
+<p>While the learning objectives as initially outlined for this course–what you will know, understand, and do–will not fundamentally change, I want to highlight what the primary learning objectives will be as we shift into the rest of the semester in this remote format (taken from the original list on the original syllabus):</p>
+<ol style="list-style-type: decimal">
+<li><p>Describe and interpret interesting spatial patterns in data</p></li>
+<li><p>Critically evaluate and choose appropriate Exploratory Spatial Data Analysis to analyze data</p></li>
+<li><p>Write and communicate your results in a scientific and reproducible manner using a <a href="http://ross.net/funnelweb/tutorial/intro_what.html">literate programming</a> language such as Mardown</p></li>
+<li><p>Answer useful research questions by applying the tools and principles of spatial data science to a real world dataset</p></li>
+</ol>
+</div>
+<div id="revised-grading-criteria" class="section level1">
+<h1>Revised grading criteria</h1>
+<p>The revised grading criteria is as follows for the individual components:</p>
+<ul>
+<li>Class Participation: <strong>10%</strong></li>
+<li>Labs: <strong>20%</strong></li>
+<li>Homework: <strong>10%</strong></li>
+<li>Exams: <strong>30%</strong></li>
+<li>Peer Review: <strong>5%</strong></li>
+<li>Final project: <strong>25%</strong></li>
+</ul>
+<div id="classroom-participation-10" class="section level2">
+<h2>Classroom participation (<strong>10%</strong>)</h2>
+<p>Your current class participation grade will be the lowest it can now go. Even if you are not able to participate in any of our planned Zoom sessions for the remainder of the semester, your class participation grade will remain as it currently is, based on your participation in class till date.</p>
+<p>I will continue to make manifold opportunities for you to increase your class participation grade (such as via Zoom, which includes a chat feature so you can type in thoughts to a discussion, in addition to speaking). As noted above, I will also include opportunities that occur outside of Zoom sessions (such as some additional short assignments or other ways for you to communicate your questions/ideas/comprehension/understanding with me) as part of those opportunities. I will also be flexible in making these opportunities possible and will individualize these opportunities as I am able. If you want to discuss ways you can raise your participation score (such as scheduling a one-on-one Zoom meeting with me), please email me and we can devise a plan together that makes sense in our new learning context.</p>
+</div>
+<div id="labs-20" class="section level2">
+<h2>Labs <strong>(20%)</strong></h2>
+<p>You have already been graded for 5 labs (3 Class labs + 2 data camp labs) which account for 10% of your grade. In addition you will have 2 more class labs (4% each) and 1 datacamp lab (2%) for the remaining 10% of your grade.</p>
+</div>
+<div id="homework-10" class="section level2">
+<h2>Homework <strong>(10%)</strong></h2>
+<p>You have already finished the HW component of the class. Your HW 1 now accounts for <strong>10%</strong> of your grade.</p>
+</div>
+<div id="exams-15" class="section level2">
+<h2>Exams (<strong>15%</strong>)</h2>
+<p>The grading criteria for exams remains the same as before. Exam 2 will consist of 15% of your grade.</p>
+</div>
+<div id="peer-review-5" class="section level2">
+<h2>Peer Review (<strong>5%</strong>)</h2>
+<p>Based on a given checklist by the instructor you will provide feedback on the draft final project to one of your classmates.</p>
+</div>
+<div id="final-project-25" class="section level2">
+<h2>Final Project (<strong>25%</strong>)</h2>
+<p>Your final project will now be graded on a scale of 25% instead of 20%. However, unlike before, you can choose to either submit your project <em>INDIVIDUALLY</em> or in a <em>GROUP</em> (maximum of 3 students) of your own choice. Regardless of whether you choose a group or an individual project, you will be graded on a standard criteria (to be distributed by the instructor at different project stages). However, in general it is expected that a group project will have greater breadth and depth as compared to an individual project.</p>
+<p><strong>Note on Late Penalty Waivers:</strong> <em>I am waiving the late penalty for all assignments for the remainder of the semester. Even if you are not able to participate in Zoom sessions for the remainder of the semester, this will not affect your participation and engagement grade</em></p>
+<p>As before, grades will be based on the following low cutoff values, although I reserve the right to modify the exact values: <strong>A</strong> <em>(93%)</em>, <strong>A-</strong> <em>(90%)</em>, <strong>B+</strong> <em>(87%)</em>, <strong>B</strong> <em>(83%)</em>, <strong>B-</strong> <em>(80%)</em>, <strong>C+</strong> <em>(77%)</em>, <strong>C</strong> <em>(73%)</em>, <strong>C-</strong> <em>(70%)</em>, <strong>D</strong> <em>(60%)</em>, anything below <em>60%</em> is an <strong>F</strong>.</p>
+<p>Given the current situation with Covid-19, if you are adversely affected by remote learning or by the crisis, please refer to the emergency grading guidelines by the university at <a href="https://registrar.unc.edu/files/2020/03/emergency-grading-accomodation.pdf" class="uri">https://registrar.unc.edu/files/2020/03/emergency-grading-accomodation.pdf</a> to assess other options for grading including availing a pass/fail option or a ‘cv’ letter grade.</p>
+</div>
+</div>
+<div id="remote-learning-expectations" class="section level1">
+<h1>Remote learning expectations</h1>
+<p>Some of you may be familiar with using Zoom for meetings. For many, this dive into remote learning is a new experience. And, participation within an online learning environment is different than in-class participation in a classroom setting. To help you with some useful pointers, here is an <a href="https://bit.ly/Online-Class-Tips">overview of etiquette for our remote learning adventure</a> (especially since I won’t be able to ask you to put your screens off and away during our Zoom sessions!):</p>
+</div>
+<div id="accessibility-and-accommodations" class="section level1">
+<h1>Accessibility and accommodations</h1>
+<p>The University of North Carolina at Chapel Hill facilitates the implementation of reasonable accommodations, including resources and services, for students with disabilities, chronic medical conditions, a temporary disability, or pregnancy complications resulting in difficulties with accessing learning opportunities.</p>
+<p>All official accommodations are coordinated through the Accessibility Resources and Service Office. See the ARS website for contact information, or email <a href="mailto:ars@unc.edu" class="email">ars@unc.edu</a>. Relevant policy documents as they relate to registration and accommodations determinations and the student registration form are available on the ARS website under the About ARS tab.</p>
+<p>Even if you do not have a documented need for an official accommodation, please let me know if I can make any aspect of this course more accessible for you. My ability to help you is based on your communication with me; please communicate with me so that I can help you be successful in this course as well as make any suggestions or reasonable modifications that are appropriate for your individual needs.</p>
+<p>I recognize that not everyone will be able to access the Internet with a stable connection each Tuesday &amp; Thursday for the rest of the semester.While I will do my best to foster a meaningful learning environment during our scheduled Zoom sessions, you will also be able to achieve the above learning objectives successfully even if you need to do so asynchronously.</p>
+<p>Additionally, the change to remote learning can cause anxiety, stress, and unforeseen burdens on people’s lives. Even remotely, you can take advantage of UNC-based resources through the Dean of Students’ Office and CAPS. I encourage you to use these when they may be of use to you.</p>
+<p>I cannot stress enough: your health and well-being is of the utmost importance. If you are ill–especially if you are exhibiting any symptoms related to the coronavirus–you do not need to submit any documentation to me verifying your illness. If you are ill and unable to complete any of the assignments on time (e.g. labs, project components) before the end of the semester, please email me as soon as you are able. I will work with you to figure out alternate arrangements to show your learning, or if it makes sense to receive an Incomplete for the course, which you can then complete when you recover.</p>
+</div>
+<div id="revised-outline-and-schedule" class="section level1">
+<h1>Revised outline and schedule</h1>
+<p>Please visit the schedule page for the latest revised schedule</p>
+</div>
+<div id="class-principles" class="section level1">
+<h1>Class principles</h1>
+<p>Finally, I want to re-state the class principles in during this unprecendented time of remote learning (ref. Dr. Brandon Bayne, UNC)</p>
+<ol style="list-style-type: decimal">
+<li>Nobody signed up for this.</li>
+</ol>
+<ul>
+<li>Not for the sickness, not for the social distancing, not for the sudden end of our collective lives together on campus</li>
+<li>Not for an online class, not for teaching remotely, not for learning from home, not for mastering new technologies, not for varied access to learning materials</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>The humane option is the best option.</li>
+</ol>
+<ul>
+<li>We are going to prioritize supporting each other as humans</li>
+<li>We are going to prioritize simple solutions that make sense for the most</li>
+<li>We are going to prioritize sharing resources and communicating clearly</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>We cannot just do the same thing online.</li>
+</ol>
+<ul>
+<li>Some assignments are no longer possible</li>
+<li>Some expectations are no longer reasonable</li>
+<li>Some objectives are no longer valuable</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>We will foster intellectual nourishment, social connection, and personal accommodation.</li>
+</ol>
+<ul>
+<li>Accessible asynchronous content for diverse access, time zones, and contexts</li>
+<li>Optional synchronous discussion to learn together and combat isolation</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>We will remain flexible and adjust to the situation.</li>
+</ol>
+<ul>
+<li>Nobody knows where this is going and what we’ll need to adapt</li>
+<li>Everybody needs support and understanding in this unprecedented moment</li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
