@@ -63,3 +63,21 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 **Feb 19: Asking Spatial Questions**
 [pdf](lectures/12_askingQs/geog215_askingQs.pdf){target="_blank"}
 
+### Week 8: Reproducible Research, Midterm practice
+
+**Feb 24: Principles of Reproducible Research**
+[pdf](lectures/13_reproducible_research/reproducible.pdf){target="_blank"}, 
+[html](lectures/13_reproducible_research/reproducible.html){target="_blank"}
+
+**Feb 26: Practice Midterm**
+
+### Week 9: Exploratory Spatial Data Analysis I
+
+**March 2: Class Project, Intro to ESDA**
+[pdf](lectures/15_esda/15_esda.pdf){target="_blank"}, 
+[html](lectures/15_esda/15_esda.html){target="_blank"}
+
+**March 4: Distance**
+[pdf](lectures/16_esda1_distance/16_esda1_distance.pdf){target="_blank"}, 
+[html](lectures/16_esda1_distance/16_esda1_distance.html){target="_blank"}
+
