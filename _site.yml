@@ -36,7 +36,7 @@ navbar:
   right:
   - text: Syllabus
     icon: fa-info-circle
-    href: syllabus_v1.html
+    href: syllabus_v2.html
   - text: DataCamp
     icon: fa-brain
     href: "http://datacamp.com"
