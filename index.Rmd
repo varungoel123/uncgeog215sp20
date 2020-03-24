@@ -27,7 +27,7 @@ wk1.date <- as.Date("2020-01-08")
 > **Varun Goel:**  Mon 11am - 12pm, Thu 2 - 4pm, Fri 2 - 3pm
 > **Prabisha Shrestha:** Mon 1 - 2pm, Wed 12 - 2pm
 
-> **[Sign-up for office hours/consultation here(https://docs.google.com/spreadsheets/d/1nICT2k-BMOJwfCB9ufyiJesJ7cbwPErWAMVoUMy0hs0/edit?usp=sharing)**
+> **[Sign-up for office hours/consultation here](https://docs.google.com/spreadsheets/d/1nICT2k-BMOJwfCB9ufyiJesJ7cbwPErWAMVoUMy0hs0/edit?usp=sharing){target="_blank"}**
 
 
 
