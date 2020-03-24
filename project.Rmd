@@ -14,6 +14,9 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 
 ---
 
+##### **[Sign-up for office hours/consultation](https://docs.google.com/spreadsheets/d/1nICT2k-BMOJwfCB9ufyiJesJ7cbwPErWAMVoUMy0hs0/edit?usp=sharing)**
+
+##### **[Sign-up for individual/group projects](https://docs.google.com/spreadsheets/d/1EbuQxTVlIhx--dAvc0h3e36wgEI_qV7KzXa_Ds4VEaM/edit?usp=sharing)**
 
 ## **Overview**
 
