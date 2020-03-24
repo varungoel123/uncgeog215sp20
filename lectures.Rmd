@@ -81,3 +81,9 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 [pdf](lectures/16_esda1_distance/16_esda1_distance.pdf){target="_blank"}, 
 [html](lectures/16_esda1_distance/16_esda1_distance.html){target="_blank"}
 
+### Week 12: Revised class logistics and Wrangling Spatial Data
+
+**March 23: Checking in and class updates**
+[pdf](lectures/17_class2ndhalf/17_Class2ndHalf.pdf){target="_blank"}, 
+[recorded lecture {password-protected}](https://unc.zoom.us/rec/share/uZNHf7vR23NIQ4nns0LBYaorDq21aaa8h3NK_6FZnRyw40DwIwGLVu0b8c0R1XeW){target="_blank"}
+
