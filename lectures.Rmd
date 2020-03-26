@@ -87,3 +87,7 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 [pdf](lectures/17_class2ndhalf/17_Class2ndHalf.pdf){target="_blank"}, 
 [recorded lecture {password-protected}](https://unc.zoom.us/rec/share/uZNHf7vR23NIQ4nns0LBYaorDq21aaa8h3NK_6FZnRyw40DwIwGLVu0b8c0R1XeW){target="_blank"}
 
+**March 25: Wrangling Spatial Data**
+[pdf](lectures/18_wranglingSpatialData/18_wranglingSpatialData.pdf){target="_blank"},
+[Class Demo](lectures/18_wranglingSpatialData/18_wranglingSpatialData.R){target="_blank"}, 
+[recorded lecture {password-protected}](https://unc.zoom.us/rec/share/z-x8KZHprTJOZbPh2UXBXpA7OdXMX6a8gyYY_PoLykcdtKMibhnB8UnZnNcKzqNW){target="_blank"}
