@@ -105,7 +105,7 @@ library(units) ## install this package too if it gives an error, generally it is
 
 ## Prep Data
 
-Download the zipped file [here](labs/lab4/lab4_dat.zip){target="_blank"}, and unzip all contents into your **project directory**. **Do not have any sub_folders where you store the data. If you do, you will have to adjust your file names**.
+Download the zipped file [here](lab4_dat.zip){target="_blank"}, and unzip all contents into your **project directory**. **Do not have any sub_folders where you store the data. If you do, you will have to adjust your file names**.
 
 Load the neccessary datasets below
 
