@@ -1,0 +1,521 @@
+---
+title: "GEOG 215: Lab 4"
+subtitle: "Manipulating Spatial Data in R"
+author: "100 points (plus 10 points Extra Credit)"
+date: "Wednesday, April 1, 11:59 PM" 
+output: 
+  html_document:
+    number_sections: true
+    code_folding: show
+    toc: true
+    toc_float:
+      collapsed: TRUE
+      smooth_scroll: TRUE
+
+---
+
+<style>
+
+strong {
+     color: Maroon;
+     font-size: 12px;
+}
+
+p {
+    font-size: 12px;
+}
+
+h1 {
+    font-size: 24px;
+  color: DarkBlue;
+}
+
+h2 {
+    font-size: 20px;
+  color: DarkBlue;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+div.blue { 
+background-color:#ffdad2; 
+padding: 10px 10px 3px 10px;
+}
+
+</style>
+
+******
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE, warning = FALSE, message = FALSE, 
+  comment = NA, dpi = 300,
+  fig.align = "center", out.width = "70%", cache = FALSE)
+```
+***
+# Summary
+
+In this lab, You will learn functions of manipulating vector and raster data, especially learning how to run various topological operations. In addition, you will also learn the `tmap` package, an excellent and powerful mapping package that builds on the ggplot2 grammar of graphics functionality, but is especially catered to making powerful and beautiful maps. While the lab only introduces you to some concepts, you should read Chapter 4 of the book *** Geomputation in R*** at https://geocompr.robinlovelace.net/spatial-operations.html for more details.
+
+*******
+
+# Preparations
+
+## Create Project
+
+As we did for earlier labs, create a project in a new directory called *lab4* or create a directory called lab3 and create the project in an existing directory. If you dont remember,
+you can get a [refresher on projects](https://r4ds.had.co.nz/workflow-projects.html). Section 8.4 has the instructions on how to create a new project.
+
+***
+
+## Install Required Packages
+Before you start working in RMarkdown, you need to make sure you have the necessary R packages installed:
+
+Run the R code in your console to install the `"raster"` and `"tmap"` packages.**
+The other packages should be installed but if you dont have them you will need to install the `"sf"` and `"tidyverse"` packages too.
+
+```{r check_packages, message=FALSE, warning=FALSE}
+  # This code will install required packages if they are not already installed
+  # ALWAYS INSTALL YOUR PACKAGES LIKE THIS!
+  packageList <- c("raster","tmap", "RColorBrewer")
+  for(p in packageList){
+    if (!requireNamespace(p)) {
+      install.packages(p)
+    }
+  }
+```
+
+***
+
+
+## Load required Packages
+Now Load the following packages:
+
+```{r load_packages}
+library(tidyverse)
+library(RColorBrewer)
+library(sf)
+library(raster)
+library(tmap)
+library(units) ## install this package too if it gives an error, generally it is installed with the sf package
+```
+******
+
+## Prep Data
+
+Download the zipped file [here](labs/lab4/lab4_dat.zip){target="_blank"}, and unzip all contents into your **project directory**. **Do not have any sub_folders where you store the data. If you do, you will have to adjust your file names**.
+
+Load the neccessary datasets below
+
+```{r}
+# load file of North Carolina emergency medical services
+ems <- read_csv("nc_ems.csv")
+# read in vector shapefile of census tracts for North Carolina
+county <- st_read("NCDOT_County_Boundaries.shp")
+# read in vector shapefile of North Carolina Counties
+tracts <- st_read("nc_tracts.shp")
+```
+
+### Converting csv file into an `sf` object
+
+Notice the structure of the `ems` file: It is currently a tibble. However, it has X and Y columns that represent Longitude and Latitudes respectively. Hence, this file can be converted into an sf object using the following `st_as_sf` command:
+
+```{r}
+ems_geo <- ems %>% st_as_sf(coords = c("X" , "Y"), crs = 4269)
+```
+
+******
+<div class = "blue">
+**Important**
+Each geographic or projected coordinate system has a unique code called **EPSG** which a standard list of spatial reference systems maintained by the International Association of Oil and Gas Producers. This is done using the `st_as_sf` function which flexibly converts a non-sf object into an `sf` object. We mention the column referring to the coordinates, and also provide the number for the coordinate reference system. `4269` is the EPSG code for **NAD83** Geographic Coordinate System that is widely used for North America. There are also other ways to provide your own coordinate system or using a *WKT* (Well-Known Text)
+</div>
+******
+
+# Vector Data Analysis
+
+## Spatial Subsetting
+
+### Subsetting all EMS in Orange and Durham County
+
+To do this, you need to 
+
+- 1. Create a subsetted county level`sf` object called `county_sub` that only contains attributes and geometries for Orange and Durham County
+
+- 2. Subset the `ems_geo` file  by the newly created `county_sub` file, using the code below:
+
+```{r}
+## subset county file
+county_sub <- county %>% filter(CountyName %in% c("Durham","Orange"))
+
+## Spatially subset ems_geo file based on intersection with the boundary of Durham and Orange counties. This is a really nifty feature that is similar to logical indexing or positive indexing in a dataframe, except that the subsetting feature itself is a spatial feature
+
+ems_sub <- ems_geo[ county_sub, ]
+# This should return an error, however
+```
+
+**Q.1) Oops, we get an error.**
+
+  - **a) Read the error message, and explain in 1 line why the spatial subsetting does not work. You can deduce an answer by running the `st_crs()` function on `county_sub` and `ems_geo`. `st_crs(x)` retrieves the coordinate reference system from an object **
+  
+  - **b) Which object is in a Geographic Coordinate System ? Which object is in a Projected Coordinate system? What are the units of the object in the Projected Coordinate System ?**
+  
+Now that we understand the reason behind our error, Lets project our `ems_geo` object to the same coordinate system as the `county_sub` file. To re-project our object, we will use the `st_transform()` command:
+
+```{r}
+ems_geo <- ems_geo %>% st_transform(st_crs(county_sub)$epsg)
+## st_crs(county_sub)$epsg ensures that the projection is the same as the EPSG code of the county_sub object.
+
+## Ensure that the crs are same now for both files:
+st_crs(ems_geo) == st_crs(county_sub) # This should be TRUE
+```
+A `head(ems_geo)` command will reveal that the coordinates of `ems_geo` are now in projected coordinate units.
+
+Great, now we can run the spatial subsetting below
+
+```{r}
+ems_sub <- ems_geo[ county_sub,]
+```
+
+**Q 2) Based on the output of `ems_sub`, how many Emergency Management Services are located within Durham and Orange County ?**
+
+You can plot these out on a map quickly using the `tmap` package
+
+```{r}
+tm_shape(county_sub) + tm_polygons(col = "skyblue") + 
+  tm_text(text = "CountyName", ymod = 2.5, col = "black", fontface = "bold") +
+  tm_shape(ems_sub) + tm_dots(col = "red", size = 0.2, shape = 2)
+```
+
+Note that the tmap is similar to ggplot2 where you arrange our graphic in layers. In this case, you first specify the `sf` object in `tm_shape` followed by the geometry you want to give (in this case polygons). `tm_text` helps us label the counties. Finally, we add the ems locations as points using `tm_dots` function on top of our map. Note that you need to use `tm_shape` whenever you are adding graphics based on a new `sf` object (`ems_sub` in this case)
+
+More details about the tmap package can be found here https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html
+
+## Spatial Join
+
+### Calculating EMS locations in each county
+
+Although we do not have a common column such as countyname or ID among our different datasets, we can leverage their spatial geometries to join features based on a spatial relationship. This is done using the `st_join` command from the sf package.Lets try it out.
+
+```{r}
+## Here we join county information to each ems location
+ems_join1 <- ems_geo %>% st_join(county)
+```
+
+You will notice that the new object `ems_join1` now has all the county level information attributes attached to every single EMS location. By default, `st_join` is a **left join**, and it joins the columns in the 2 objects based on whether they spatial *intersect* with each other. This flexibility is extremely powerful.
+
+For example, we know that EMS locations exist outside the Orange and Durham county boundaries too. Hence, it is possible that for houses at the edges of the boundaries of these counties, there might be EMS locations nearby on the edge of a surrounding county that have arbitrarily been cut off due to the subsetting. Now we will spatially join those locations too that are within 5km of our county boundary using the `st_is_within_distance` function. 
+
+Note, that since our projection system units are in feet, `dist` has to be in feet.
+
+```{r}
+ems_sub2 <- ems_geo[ county_sub, , op = st_is_within_distance, dist = 16404.2] #Remember that units are in feet - 16404.2 feet  = 5 km
+
+tm_shape(county_sub) + tm_polygons(col = "skyblue") + 
+  tm_text(text = "CountyName", ymod = 2.5, col = "black", fontface = "bold") +
+  tm_shape(ems_sub2) + tm_dots(col = "red", size = 0.2, shape = 2) +
+  tm_layout(inner.margins = c(0.05,0.05,0.05,0.05))
+
+#tm_dots is used to show point objects
+#tm_text is used to label maps
+#tm_layout helps adjust the map - in this case we adjust margins to reflect our EMS points outside the county boundaries better
+```
+
+Now that you have county level information attached to `ems_join1` you can use the new columns to calculate useful county level statistics such number of EMS locations in each county.
+
+**Q 3) Using the tools you have learnt previously in class, create a tibble (data frame) called `ems_count` that counts the number of EMS locations in each county. (Hint: remember group_by and summarize? or count() functions from tidyverse**
+
+**Q 4) Which county(ies) have the highest and the lowest number of EMS locations?**
+
+## Spatial Data Aggregation
+
+### Calculating access to Emergency Medical Services in NC 
+
+We can use spatial operations such as spatial joins to aggregate data. In this case, we use spatial joins to sum up EMS locations (at the individual point level) to reflect EMS access at the county level.
+
+First lets visualize the number of EMS services at the county level. In the earlier case, even though we were able to calculate number of EMS per county in a table, it will be more interesting to see the distribution on a map. To do that, we would need to join attribute information about number of EMS for each county to our county polygon dataset.
+
+One way to do that, is to join the table `ems_count` you created earlier in Q 3) to the `county` object.
+
+**Q 5) Create a new sf object `county_ems` by left joining the `county` object (argument 1) with `ems_count`. (argument 2) **
+
+Another way, leveraging spatial join, would be to count the total number of EMS points that spatially lie inside each county polygon. This is especially useful and practical, because in many cases, you might not have clean identifying information such as county names in both your datasets to join by attributes.
+
+```{r}
+# Let us first run this: Spatially join all EMS locations TO county boundaries
+county_ems <- county %>% 
+  st_join(ems_geo)
+```
+**Q 6) How many rows and columns did you get in the `county_ems` object? Is this what you were expecting? Why or why not? The explaination is given below but try to give an answer based on your current understanding. You will get full points for this question.**
+
+The reason is that since many counties have multiple EMS location points inside their boundary, a row is created for each EMS location for each county (It is also called a One to Many join). Hence, in order to get total number of EMS per county, we need to count the number of rows for each county.
+
+```{r}
+county_ems <- county %>% 
+  st_join(ems_geo) %>%
+  group_by(CountyName) %>%
+  summarize(num_ems = n()) %>%
+left_join(st_drop_geometry(county), by = "CountyName") # to add back the other columns in the county object
+
+# Now we can plot number of EMS by county using tmap
+tm_shape(county_ems) + tm_polygons(col = "num_ems", title = "Count") + 
+  tm_text(text = "CountyName", size = 0.35) +
+  tm_layout(title = "Emergency Medical Services in North Carolina",
+            title.size = 0.75,
+            inner.margins = c(0.06, 0.10, 0.10, 0.08))
+```
+
+******
+<div class = "blue">
+**Important: Dropping Geometries from an sf object**
+Even though the `sf` object is great because it functions very similarly to a dataframe, the presence of the geometry column can be cumbersome, especially when you do not need to do conduct a spatial operation. You will notice, whenever you run any tidyverse operation on an `sf` object, the geometry column gets transferred over too. Hence, you need to explicitly drop the geometry from an `sf` object to convert it into just a dataframe. 
+
+As seen in the above code chunk, this can be done by using the `st_drop_geometry()` function:
+
+`x_nogeom <- st_drop_geometry(x_geom)`
+
+In your datacamp exercise, you will notice that you can also drop geometry by using the following command:
+`x_nogeom <- st_set_geometry(x_geom, NULL)`
+</div>
+******
+
+**Q 7) What might be an issue with plotting the number of emergency medical services as a choropleth map? Could you suggest an alternative map style or or a variable to map to better reflect access to EMS services? Again, give a 1-2 line answer to the best of your knowledge.**
+
+The problem with a county level map that the resolution is to coarse to show us where EMS services are actually located. Also, a county is not equally populated, some parts in a county are more populated than others, and hence we can expect EMS services to take that into account. Hence, we will instead map the populations of durham and orange county at the census tract level to get a better idea of the distribution of the population.
+```{r}
+tracts_sub <- tracts[county_sub, ]
+# TOTAL_P is the population column
+# we use a blue purple palette, and classify our color schemes based on breaks in our data
+tm_shape(tracts_sub) + tm_polygons(col = "TOTAL_P", palette = "BuPu", style = "pretty",
+                               border.col = "white", border.alpha = 0.5) + 
+  tm_shape(county_sub) + tm_borders(col = "black") +
+  tm_shape(ems_sub2) + tm_dots(col = "red", size = 0.2, shape = 1)
+``` 
+
+**Q 8) Based on visual inspection, where do you think most EMS services our located, in densely population tracts or in sparsely populated tracts.**
+
+## Non over-lapping Join
+
+Sometimes, in many applications, especially when dealing with 2 point objects, it is possible that you want to conduct a spatial join based on pairs of closest points. For example, if you had a point file of hospitals, and another of pharmacies, you could use a spatial join to get information on the number of drugs each hospital has available  based on the drugs available to the nearest pharmarcy. Lets try a hypothetical example below. In this case, we take centroids of each census tract, so that our tract data is now a point instead of a polygon. This is actually a commonly used operation, because especially when you have census tracts with large populations, and dont want the shape of the tract to influence your results.
+
+In this case, we convert each tract to a centroid, and then spatially join all ems locations to each tract if they are within 5 km of the centroid. Note that in this case we use the `set_units` function to first set the distance to 5 km and convert in to feet since our projection unit is feet.
+
+```{r}
+# Convert polygons to centroids
+tracts_sub_ctrd <- st_centroid(tracts_sub)
+tracts_sub_ctrd_ems <- tracts_sub_ctrd %>% 
+  st_join(ems_sub2,
+          join = st_is_within_distance, 
+          dist = 5 %>% set_units(km) %>% set_units(ft))
+```
+Take a look at your `tracts_sub_ctrd_ems` object and answer the following.
+
+**Q 9)`tracts_sub_ctrd_ems` has 295 rows, much more than the number of tracts (117 rows in `tracts_sub_ctrd`). Explain why are there more rows in `tracts_sub_ctrd_ems`. Also, you will notice that there are many `NAs` in the `OBJECTID` column that got joined from the ems data. What do those `NAs` tell us about the availability of EMS services within 5 km of the census tracts?**
+
+## Distance operations
+
+While spatial relationships such as `intersect` or `is_within_distance` are logical/binary (either  point intersects or it does not, either a point is within a specified distance or is not), you can also continuous relationships such as distance relations which tell how far each element in one spatial object may be from other elements in the same `sf` object, or from elements in another `sf` object. This is done by using the `st_distance` function.
+
+Take a look at the example below:
+```{r}
+# calculate distance between each combination of tract and ems location and convert the distance to kilometres
+tract_ems_dist <- st_distance(tracts_sub_ctrd,ems_geo) %>% set_units(km)
+```
+
+This is will output a matrix with 1st argument (all tract centroids) as rows and the 2nd argument (all ems locations) as columns (as seen in the figure below). 
+
+```{r echo = FALSE, eval=TRUE, out.width= "30%", fig.cap="Distance matrix"}
+knitr::include_graphics("st_distance_eg.png")
+```
+
+We can use this distance matrix to find for example, the distance to the nearest EMS from each tract. This can give us an idea of how much time it might take for EMS responders to reach a households in a particular census tract.
+
+```{r}
+tracts_sub_ctrd <- tracts_sub_ctrd %>%
+  mutate(ems_dist = apply(X = tract_ems_dist, MARGIN = 1, FUN = min))
+
+# the apply function is a command in base R. We use it here since tidyverse does not have a good workflow for row-wise operations. In this case, the apply function takes EACH row (which represents distances to all EMS facilities from a particular census tract), and finds the minimum distance for each tract.
+```
+
+Lets explore our data a little bit more for Orange and Durham County
+
+First, lets see how distance to nearest EMS is distributed geographically.
+Since we already have nearest distance for each census tract centroid, we can join that attribute to our regular census tract polygon file and map it.
+
+**Q 10) In the following code chunk create a chropleth map that shows distance to nearest ems facility for each census tract in Durham and Orange County (fill in the blanks)**
+
+```{r}
+tracts_sub <- tracts_sub %>% mutate(ems_dist = tracts_sub_ctrd$ems_dist)
+
+ems_dist_map <- tm_shape(________) + 
+  _______(col = "______", palette = "BuPu", style = "pretty",
+                               border.col = "white", border.alpha = 0.5) + 
+  tm_shape(county_sub) + tm_borders(col = "black") + 
+  tm_layout(title = "Distance to Nearest EMS")
+
+ems_dist_map
+```
+
+To make comparisons more meaningful, instead of total population lets see if distance nearest EMS is linked to population density
+To calculate population density we need the area of each tract. Luckily we can use the `st_area` function to calculate the area of each tract, and then divide the total population by the area to get population density.
+
+Lets create the new variables, and see how distance to nearest ems facility relates to population density.
+
+```{r}
+tracts_sub <- tracts_sub %>% 
+  mutate(area_km2 = st_area(tracts_sub) %>% set_units(km^2) %>% set_units(NULL),
+         pop_dense = TOTAL_P/area_km2)
+
+tracts_sub %>% ggplot(aes(x = pop_dense, y = ems_dist), alpha = 0.5) +
+  geom_point() + geom_smooth() + xlab("population density (km^2)") +
+  ylab("distance to ems (km)") + theme_minimal()
+```
+
+**Q 11) Based on the scatter plot, is there a relationship between population density and distance to nearest EMS? If so, what? Can you give a possible explanation of why do you think this relationship maybe? If you think it does not match your expectations, provide an explanation of what you would have expected**
+
+Finally lets plot distance to EMS and population density side by by side on a map, for geographic comparisons. This is very easily done in tmap
+```{r}
+# map of population density
+
+pop_dense_map <- tm_shape(tracts_sub) + 
+    tm_polygons(col = "pop_dense", palette = "BuPu", style = "pretty",
+            border.col = "white", border.alpha = 0.5) + 
+    tm_shape(county_sub) + tm_borders(col = "black") + 
+    tm_layout(title = "Population Density")
+
+tmap_arrange(ems_dist_map, pop_dense_map)
+```
+
+The maps are not perfect, and you cannot make out everything clearly just by visual inspection, but you can see how powerful tmap is to make useful visuals.
+
+**Q 12) Based on the 2 maps, Do more densely populated areas have EMS services closer by or further away?**
+
+**Extra Credit (10 points): One way to look at places with poor access to EMS could be those that have high population density AND have a longer distance to nearest EMS facility. Write code to find those tracts in `tracts_sub` that have population density greater than 1000 people per sq. km AND the nearest EMS located more than 3 km away**
+
+# Raster Data (20 points for running code successfully and printing outputs)
+
+There are no questions to answer for this section. However, please go through the code and instructions to get an idea of how to perform operations on raster data. We dont focus a lot on raster data due to limited class time and since many raster operations are learnt in advanced courses. 
+
+## Data prep
+
+Raster operations are mostly done using the `raster` package. 
+```{r}
+elev <- raster("elev.tif")
+grain <- raster("grain.tif")
+```
+
+## Map Algebra
+
+### Local Operations - adding 2 rasters
+
+In the following example, you can see that we can conduct mathematical operations for each spatially overlayed cell across multiple raster layers.
+
+```{r}
+## Create a 6 x 6 raster
+raster1 <- matrix(sample(100, 36), ncol =6) %>% raster()
+raster2 <- matrix(sample(100, 36), ncol =6) %>% raster()
+# add 2 rasters - this is a local operation
+add_raster <- raster1 + raster2
+```
+
+While the `raster` package has its own plotting functionality, the tmap package is extremely flexible, and you can easily map raster data with tmap using a consistent grammar.
+
+```{r}
+tm1 <- tm_shape(raster1) + tm_raster(palette = "Greens") +
+  tm_layout(title = "Raster 1")
+tm2 <- tm_shape(raster2) + tm_raster(palette = "Greens") +
+  tm_layout(title = "Raster 2")
+tm_add <- tm_shape(add_raster) + tm_raster(palette = "Greens") +
+  tm_layout(title = "Raster 1 + Raster 2")
+
+tmap_arrange(tm1,tm2,tm_add)
+```
+
+### Local operations - Reclassifying a raster
+
+In the following example, you can perform local operations on a raster by reclassifying values. This is a commonly used operation in raster analysis. For example, spatial products such as land cover types and forest cover types are generally generated using reclassification. For example, lets say you have a raster that contains continuous values ranging from 0 -100 representing the percentage of tree cover in a pixel. If we are only interested in categories such as low, medium and high tree cover, we can reclassify the original data into 1, 2, 3 respectively.
+
+In the example below, we create a new reclassified elevation raster. 
+
+```{r}
+# reclassification
+
+# create a new matrix of 3 columns - the first 2 columns contain start and end values of the range of values, and 3 column contains new reclassified value
+
+rcl = matrix(c(0, 12, 1, 12, 24, 2, 24, 36, 3), ncol = 3, byrow = TRUE)
+# reclassify values and store in new raster call recl
+recl = reclassify(elev, rcl = rcl)
+
+tm_elev <- tm_shape(elev) + tm_raster(palette = "Greens")
+tm_recl <- tm_shape(recl) + tm_raster(palette = "Greens")
+
+tmap_arrange(tm_elev,tm_recl)
+```
+
+### Focal Operations
+
+In this case, we take the elevation raster, and smooth it out by taking the minimum value of the nearby cells. Notice, that because this is a focal operation, the output raster has different dimensions. 
+
+```{r}
+r_focal = focal(elev, w = matrix(1, nrow = 3, ncol = 3), fun = min)
+
+tm_shape(r_focal) + tm_raster(palette = "Greens")
+```
+
+### Zonal Operations
+
+This is similar to focal operations, except that zones do not have to be regularly shaped or of the same size. Lets plot a map of elevation and different soil types side-by-side
+
+```{r}
+t1 <- tm_shape(elev) + tm_raster(palette = "Greens")
+t2 <- tm_shape(grain) + tm_raster(palette = "Set2")
+tmap_arrange(t1, t2)
+```
+
+Now, for each zone (clay, sand, and silt) we can use the zonal operation to calculate mean elevation. This will return 1 single summary value for each zone.
+
+```{r}
+z = zonal(elev, grain, fun = "mean") %>%
+  as.data.frame()
+```
+
+## Combining vector and raster data
+
+### Extracting raster values with a vector
+
+Finally, most spatial analysis involves combining both raster and vector datasets to get an answer. For example, many forest conservation practitioners are interested in monitoring tree cover for different protected sites around the world. In that case, they use satellite derived raster data to assess tree cover on their sites. We can use the extremely efficient `extract` function to extract values of a raster, for any vector points/lines/polygons that spatially overlay on a raster.
+
+```{r}
+## combining vector and raster
+
+# import raster and vector data
+data(land)
+data(World)
+trees <- land$trees
+# Create points across the world - consider these as locations of protected forest sights
+forest_points <- st_centroid(World)
+
+tm_shape(trees) + tm_raster(palette = "Greens") +
+tm_shape(World) + tm_borders(col="black") +
+  tm_shape(forest_points) + tm_dots(shape = 4, size = 0.1, col = "red")
+
+# use extract function to get values of % tree cover for each forest point
+raster::extract(land$trees, forest_points)
+```
+
+## Grading
+
+The vector section of the lab is worth 70 points (12*5 for each question + 10 points for successfull code execution). The raster section is worth 20 points for successfully running the code. 10 points for successful knitting of the document. 10 points for extra credit.
+
+## Deliverables
+
+**Knit your file to html and upload both your `.html` and `.Rmd` file. make sure to save your `.Rmd` file  as `lab04_YOURLASTNAME.Rmd`. Then it will automatically save the html with same name when knitted.
+
+***
+## Feedback
+
+Let me know how much time you spent, how useful the lab was (scale 1-5), and how difficult did you find it (scale 1-5). And any other feedback you have for me or the lab. Your private feedback is confidential and will only be available to me.
+
+
+
