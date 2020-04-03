@@ -99,3 +99,7 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 [pdf](lectures/19_spatialNeighbors/19_spatialNeighbors.pdf){target="_blank"}, 
 [recorded lecture {password-protected}](https://unc.zoom.us/rec/share/6-1cN5v1zDhLSM_QtGjTd5ERHNm0T6a81iEfq6AOzh1oWTkazPOg_13O7hOcMzSy){target="_blank"}
 
+**April 1: Spatial Clustering and Autocorrelation**
+[pdf](lectures/lecture20/20-GEOG215-SpClusterAutoCor.pdf){target="_blank"}, 
+[recorded lecture {password-protected through your sakai credentials}](https://sakai.unc.edu/x/DYlpu4){target="_blank"}
+
