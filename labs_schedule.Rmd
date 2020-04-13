@@ -29,3 +29,12 @@ Helpful reference link for RMarkdown:
 
 **Taming Mighty Census Using TidyCensus**: [link](labs/lab3/lab3.html){target="_blank"}
   
+## Lab 4 : (Due Wednesday, April 1, 11:59 pm)
+
+**Manipulating Spatial Data in R**: 
+[link](labs/lab4/lab4.html){target="_blank"}
+
+## Lab 5 : (no due date - for you to practice)
+
+**Spatial Autocorrelation in R**: 
+[link](labs/lab5/lab5.html){target="_blank"}
