@@ -103,3 +103,17 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 [pdf](lectures/lecture20/20-GEOG215-SpClusterAutoCor.pdf){target="_blank"}, 
 [recorded lecture {password-protected through your sakai credentials}](https://sakai.unc.edu/x/DYlpu4){target="_blank"}
 
+### Week 14: GLobal and Local Spatial Autocorrelation
+
+**April 6: Spatial Autocorrelation: Theory and Concepts**
+[pdf](lectures/21_spatialAutocorrelation.pdf){target="_blank"}, 
+[recorded lecture {password-protected}](https://unc.zoom.us/rec/share/vcZSaIDf_25LbqPI8krHSqQ6QIKiX6a81yYc_qZbmU55PM5IguS__pKNAX_wzT8i){target="_blank"}
+
+**April 8: Spatial Autocorrelation: Practice**
+[recorded lecture {password-protected}](https://unc.zoom.us/rec/share/xe0lJLKv1TtLeJ2O9kryavMEE4K5eaa80CEa8_dczkz43WRRzF7ljzX7Pd2fvKZP){target="_blank"}
+
+### Week 15: Spatial Point Pattern Analysis
+
+**April 6: Spatial Point Pattern Analysis: Theory and Concepts**
+[pdf](lectu22_pointpattern.pdf){target="_blank"}, 
+[recorded lecture {password-protected}](https://unc.zoom.us/rec/share/wudTK7zu30FIfoHwyXjuY6sPH4bmX6a8gSYZ_KVYnkkFZHELedBICVfHOa51W2LS){target="_blank"}
