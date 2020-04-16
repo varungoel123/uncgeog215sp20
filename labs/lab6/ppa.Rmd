@@ -1,0 +1,200 @@
+---
+title: "Point Pattern Analysis"
+subtitle: Geog 215
+author: Varun Goel
+output: 
+  html_document:
+    theme: cosmo
+---
+
+```{r setup, include=TRUE,  results = 'hide', warning=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+library(tidyverse)
+library(sf)
+library(tmap)
+library(tmaptools)
+library(spatstat) # for point pattern analysis
+library(maptools) # for point pattern analysis
+library(raster)
+library(aspace) # for centrography
+```
+
+# Load data
+
+```{r, message=F, warning=FALSE, results='hide'}
+cholera <- st_read("data/SnowGIS/Cholera_Deaths.shp")
+pumps <- st_read("data/SnowGIS/Pumps.shp")
+```
+
+# create bbox for cholera and add buffer
+
+```{r}
+
+london <- st_as_sfc(st_bbox(cholera) + c(-50, -50, 50, 50))
+st_crs(london) <- st_crs(cholera)
+```
+
+## John Snow's redefined map
+
+```{r}
+tmap_mode("view")
+tm_basemap("Stamen.Toner") + tm_shape(cholera) + tm_dots(col = "red") +
+  tm_shape(pumps) + tm_dots(col ="green") +
+  tm_tiles("Stamen.TonerLabels")
+```
+
+## Basic version of map with London Boundary
+
+```{r}
+tmap_mode("plot")
+  tm_shape(london) + tm_borders(col = "black") +
+tm_shape(cholera) + tm_dots(col = "red", size = 1, alpha = 0.4) +
+  tm_shape(pumps) + tm_dots(col ="green", size = 1)
+```
+
+# Set up data for point pattern analysis
+
+We convert our `sf` objects to a format that are required for the `spatstat` package. In addition we set our points as "unmarked" which means that we do not care about any attributes/values attached to each point. If we care about the attributes, those points are considered "marked".
+
+```{r}
+cholera.sp <- as(cholera, "Spatial")
+cholera.ppp <- as(cholera.sp, "ppp")
+
+pumps.sp <- as(pumps, "Spatial")
+pumps.ppp <- as(pumps.sp, "ppp")
+# Dont use Marked points
+marks(cholera.ppp)  <- NULL
+marks(pumps.ppp)  <- NULL
+# set observation window
+city.sp <- as(london, "Spatial")
+city.owin <- as.owin(city.sp)
+Window(cholera.ppp) <- city.owin
+```
+
+# Quadrat analysis
+
+```{r}
+#6 by 6 window
+qcounts1<-quadratcount(cholera.ppp, nx = 6, ny = 6)
+```
+
+# 6 by 6 Quadrat
+
+```{r}
+
+plot(cholera.ppp, pch=20, cols="grey70", main=NULL)
+#The plot the cells and counts 
+plot(qcounts1, col = "red", add=TRUE)
+```
+
+```{r}
+# performing a VMR test
+
+Qcount<-data.frame(qcounts1)
+var(Qcount$Freq)/mean(Qcount$Freq)
+quadrat.test(cholera.ppp, nx = 6, ny = 6)
+```
+## Map quadrat density
+
+```{r}
+qcounts1.d <- intensity(qcounts1)
+# Plot the density
+plot(intensity(qcounts1, image=TRUE), main=NULL, las=1)  # Plot density raster
+plot(cholera.ppp, pch=20, cex=0.6, col=rgb(0,0,0,.5), add=TRUE)  # Add points
+plot(pumps.ppp, pch=20, cex=2, col="red", add=TRUE)
+```
+
+# quadrat 20 by 20
+
+```{r}
+qcounts2<-quadratcount(cholera.ppp, nx = 20, ny = 20)
+plot(cholera.ppp, pch=20, cols="grey70", main=NULL)
+#The plot the cells and counts 
+plot(qcounts2, col = "red", add=TRUE, cex = 0.6)
+```
+
+
+
+```{r}
+Qcount<-data.frame(qcounts2)
+var(Qcount$Freq)/mean(Qcount$Freq)
+quadrat.test(cholera.ppp, nx = 20, ny = 20)
+```
+
+```{r}
+qcounts2.d <- intensity(qcounts2)
+# Plot the density
+plot(intensity(qcounts2, image=TRUE), main=NULL, las=1)  # Plot density raster
+plot(cholera.ppp, pch=20, cex=0.6, col=rgb(0,0,0,.5), add=TRUE)  # Add points
+plot(pumps.ppp, pch=20, cex=2, col="red", add=TRUE)
+```
+
+
+
+# Kernel Density estimation
+
+## Using default kernal window
+```{r}
+K1 <- density(cholera.ppp) # Using the default bandwidth
+plot(K1, main=NULL, las=1)
+contour(K1, add=TRUE)
+```
+# using same gaussian window but half the bandwith
+
+```{r}
+K2 <- density(cholera.ppp, adjust = 0.5) # Using the default bandwidth
+plot(K2, main=NULL, las=1)
+contour(K2, add=TRUE)
+```
+## specify size of bandwidth
+
+```{r}
+K3 <- density(cholera.ppp, sigma = 20) # Using the default bandwidth
+plot(K3, main=NULL, las=1)
+contour(K3, add=TRUE)
+```
+
+## Weighted pattern by number of household members who died
+
+```{r}
+wppp <- ppp(st_coordinates(cholera)[,1], st_coordinates(cholera)[,2], window = city.owin, marks=NULL)
+K4 <- density(wppp, sigma = 20, weights = cholera$Count/sum(cholera$Count)) # Using the default bandwidth
+plot(K4, main=NULL, las=1)
+contour(K4, add=TRUE)
+```
+
+## Plot using tmap
+```{r}
+kernel_r <- raster(K4)
+projection(kernel_r) <- crs(cholera.sp)
+```
+
+```{r}
+tmap_mode("plot")
+tm_shape(kernel_r) + tm_raster(palette = "plasma") + 
+  tm_shape(cholera) + tm_dots(col= "red", size = 0.05, alpha = 0.4,
+                              border.col = "white", border.lwd = 2) +
+  tm_shape(pumps) + tm_dots(col = "blue", size = 0.2, border.col = "white", border.lwd = 2)
+ 
+```
+
+# Nearest Neighbor
+
+## Mean nearest neighbors
+
+```{r}
+cholera.nndist <- nndist(cholera.ppp)
+mean(cholera.nndist)
+```
+
+## Significance test for clustering
+
+```{r}
+clarkevans.test(cholera.ppp)
+```
+
+```{r}
+ANN <- apply(nndist(cholera.ppp, k=1:100),2,FUN=mean)
+plot(ANN ~ eval(1:100), type="b", main=NULL, las=1)
+```
+

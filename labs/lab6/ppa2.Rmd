@@ -1,0 +1,70 @@
+---
+title: "Point Pattern Analysis 2"
+subtitle: Geog 215
+author: Varun Goel
+output: 
+  html_document:
+    theme: cosmo
+---
+
+```{r setup, include=TRUE,  results = 'hide', warning=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+library(tidyverse)
+library(sf)
+library(tmap)
+library(tmaptools)
+library(spatstat) # for point pattern analysis
+library(maptools) # for point pattern analysis
+library(raster)
+library(aspace) # for centrography
+```
+
+# load data
+
+```{r}
+liq <- st_read("data/liquor/liq_Chicago.shp")
+groc <- st_read("data/grocery/chicago_sup.shp")
+chicago <- st_read("data/grocery/ChicagoBoundary.shp")
+```
+
+
+Liqour and grocery stores map
+
+```{r}
+tmap_mode("plot")
+tm_shape(chicago) + tm_borders(col = "black") + 
+  tm_shape(groc) + tm_dots(col= "red", size = 0.1, alpha = 0.4) +
+  tm_shape(liq) + tm_dots(col = "blue", size = 0.1, alpha = 0.4)
+```
+
+# mean centers
+
+```{r}
+groc_mc<- mean_centre(id = 1, filename = "groc_mc.txt", points = st_coordinates(groc)[,1:2])
+liq_mc <- mean_centre(id = 1, filename = "liq_mc.txt", points = st_coordinates(liq)[,1:2])
+
+plot(chicago$geometry)
+points(groc_mc[,2:3], col = "red", add = TRUE)
+points(liq_mc[,2:3], col = "green", add = TRUE)
+
+```
+
+# standard deviational ellipses
+
+```{r}
+groc_sde <- calc_sde(id=1, filename="groc_sde.txt", calccentre = T, points = st_coordinates(groc)[,1:2])
+liq_sde <- calc_sde(id=2, filename="liq_sde.txt", calccentre = T, points = st_coordinates(liq)[,1:2])
+```
+
+```{r}
+calc_sde(id=1, filename="groc_sde.txt", calccentre = T, points = st_coordinates(groc)[,1:2])
+
+plot_sde(plotnew=TRUE, plotcentre=FALSE, centre.col="red", centre.pch="1", sde.col="red",sde.lwd=1,titletxt="", plotpoints=FALSE,points.col="black")
+
+calc_sde(id=2, filename="liq_sde.txt", calccentre = T, points = st_coordinates(liq)[,1:2])
+
+plot_sde(plotnew=FALSE, plotcentre=FALSE, centre.col="blue", centre.pch="1", sde.col="blue",sde.lwd=1,titletxt="", plotpoints=FALSE,points.col="black")
+
+
+```
+

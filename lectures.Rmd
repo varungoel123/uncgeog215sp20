@@ -114,6 +114,11 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 
 ### Week 15: Spatial Point Pattern Analysis
 
-**April 6: Spatial Point Pattern Analysis: Theory and Concepts**
+**April 13: Spatial Point Pattern Analysis: Theory and Concepts**
 [pdf](lectures/22_pointpattern.pdf){target="_blank"}, 
 [recorded lecture {password-protected}](https://unc.zoom.us/rec/share/wudTK7zu30FIfoHwyXjuY6sPH4bmX6a8gSYZ_KVYnkkFZHELedBICVfHOa51W2LS){target="_blank"}
+
+**April 15: Spatial Point Pattern Analysis: Applications**
+[recorded lecture {password-protected}](https://unc.zoom.us/rec/share/x5RcF4PrxGFJaZHt6EiFZKMnE5m_X6a80CIY-KBbzU81UxlDO31hpbJLHbbeyC-L){target="_blank"}, 
+[class demonstration 1](labs/lab6/ppa.html){target="_blank"}, 
+[class demonstration 2](labs/lab6/ppa2.html){target="_blank"}
