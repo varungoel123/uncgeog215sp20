@@ -1,0 +1,132 @@
+---
+title: 'GEOG 215: Final Project Report Guidelines and Grading'
+author:
+- 250 points \newline
+- Introduction to Spatial Data Science \newline
+- Varun Goel
+output:
+  html_document:
+    theme: journal
+    mathjax: null
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<style>
+div.blue { background-color:#ffdad2; padding: 10px 10px 3px 10px;}
+</style>
+
+******
+
+### Introduction
+
+For your final project, you will be presenting the results from a spatial data analysis in a reproducible (there will be some exceptions) format. You will create a report that will include all the steps required to import your data, prepare it for analysis, conduct an exploratory spatial data analysis (ESDA) to answer your research question(s), and summarize your results.
+
+******
+
+### Required Components
+
+Below is a list of required components for your final project. While your projects may not have *ALL* the required components, it is expected that you will have majority of these components in your project. You would have already gotten feedback from either me/TA or the GRC on your projects. If you have any questions/concerns about how you can incorporate all (some) components in your project, please reach out to us. These are purposefully broad to cover the large range of projects and data in our class.  You already have the code to execute commands for the following components.
+
+* Create spatial data from non-spatial data (table join, converting regular data into spatial data)
+* Some descriptive statistics for your variable of interest, including important information about the number of observations, central tendency (mean), and summary statistics such as min, max, quartiles etc.
+* Atleast 3 non-map graphics for your variables of interest (e.g., histogram, boxplot, bar chart, scatter plot)  
+* Atleast 2 maps, displayed in sync with each other 
+* One spatial measure of Global or Local Clustering (Moran's I, Quadrat, Nearest Neighbor Distance)
+
+
+******
+
+### Reproducible
+
+You must organize your analysis such that it is reproducible. This means that as much as possible, you will write code so that your analysis can be reproduced when an outsider (in this case me) runs your code. So, you will be required to upload a zipped version of your project directory that contains your code and data. I will attempt to re-knit your analysis. Successful/Unsuccessful knitting will be evaluated in your final project grade.
+
+What does this mean?  It means that you will have to **1) be extremely organized and 2) use relative file paths in your code**.  I would suggest setting up a folder hierarchy such as this:
+
+* FinalProject
+    + Code
+    + Data
+    
+In this scenario, you would save your .Rmd file in the Code folder and all your data in the Data folder. If you have questions about this, let me know.
+    
+******
+
+### Other Requirements
+
+* All commands in your R Code Chunks must have short, descriptive comments that a layman should be able to understand  
+* You should use tidy data principles wherever possible.
+* All graphics must have understandable axis labels and titles 
+* All graphics and maps should not be completely default - You will need to change parts of your graphics (color, size, axis, labelsm backgrounds, classifications) to reflect the questions you are trying to explore.
+
+
+******
+
+### Organization
+
+You should use the following headers (or something very similar) for your report. I have also included rough guides for the **narrative text** and **graphical** material to be included in each. The narrative text in the preparation and analysis sections should summarize (in plain text) what is occurring in your R code, and include any interpretation of the output as appropriate.
+
+#### *Introduction*
+
+*Should be a broad introduction to your topic.  Should be one paragraph (roughly 5-7 sentences)*. This introduce your main question, and summarize the sub-questions you ask to better explore your main question. The reader should be able to understand both **what** you are trying to answer and **why** does it matter? 
+
+#### *Data Preparation*
+
+*Include a plain text explanation of your data sources and an overview of the processing required to acquire and prepare your data for analysis.*
+
+#### *Exploratory Spatial Data Analysis*
+
+##### *Data Description and Summary*
+
+*Include descriptive statistics, graph(s), and a plain text description of what you learned about your data.* Before you can create/conduct exploratory maps, graphs or other tests to answer your specific questions - you need to know what your data is describing. This could include descriptive maps, histograms, summary statistics etc.
+
+
+##### *Analysis and Results*
+
+*This section is where you will create graphics, maps and run spatial tests to explore your specific research questions*. Here , you will mention specific hypothesis questions that you are trying to explore, implement the appropriate visualizations and spatial tests, and then write up the results for each sub-question/visualization. You will **not interpret** your results in this section, but simply describe them. It will be helpful to break this part into sub-sections. You have freedom on how to do that. For example, you could divide them by each sub-question you are trying to answer. Or you could divide them by specific methods. It is up to you, as long as the reader is able to follow the different steps you have taken.
+
+#### *Discussion and Conclusion*
+
+*This is the section where you will interpret your exploratory results* In this section, you need to interpret your results from the above section and talk about how they support/or do not support your viewpoints before you ran the results. This is also the section where you will talk about the *possible* reasons behind the patterns you see, and why you think so.
+
+#### *Limitations and Future Work*
+
+*Write atleast a paragraph on some thoughtful limitations of your analysis. This is crucial for both you and the reader, as it helps give context on how cautious one should be in interpreting the results. There is limited time in class and you will not be able to execute everything you wanted to for your project. This is where you want to explain to the reader, what other steps you would take if you had time to further explore the possible reasons for the patterns you observer and answer the questions you asked. Based on what you find, are there any new questions you would like to answer in the future*
+
+#### *Challenges*
+
+*This is primarily for my own feedback, but it also helps the reader understand what challenges you faced in your analysis, that may be useful for them to consider if they try to do something similar*. Mention atleast 1 challenge you faced while conducting your project, and what you did/could not do to solve that challenge. This could be at any part of the project stage - finding data, cleaning data, finding interesting patterns, making sense of results etc.
+
+
+******
+
+### Word Limit
+
+Although there is no strict word limit, you should have enough narrative words in your project for a reader to understand your project. Your project should have atleast **1000** words, which roughly amounts to 4 pages double-spaced of words. This *does not* include comments that you write in code chunks to explain your code.
+
+******
+
+### Formatting
+
+Your report should have a **floating Table of Contents**.  Your report should also have **code folding** enabled. Use **horizontal lines** to delineate sections of your report. Make sure that formatting in the knitted .html output is correct (e.g., headers show up as headers, inline R code works correctly, spacing is correct); this has been an issue in past assignments. Many of these parts were covered in data camp exercises, but I will also highlight them in class.
+
+******
+
+### Evaluation
+
+Your projects content will be evaluated on four major aspects,  
+
+@. Organization and clarity of the code and data  
+@. Organization and clarity of the R Markdown report  
+@. Quality of the narrative text and interpretation of the data  
+@. Quality of the graphs, maps, tables and other material in the R Markdown report  
+@. Quality and robustness of the interpretation of the data and analysis results
+
+******
+
+### Deliverables
+
+Make sure that your .Rmd file knits. When you are finished, zip up your files/folders (this is extremely easy to do on Mac and Windows computers). Upload a .zip file that contains all the files required to perform your analysis on Sakai.
+
+******
